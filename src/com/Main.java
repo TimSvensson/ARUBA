@@ -24,7 +24,6 @@ public class Main {
 
 		/* Send the list to Semantix */
 	}
-	
 }
 
 /*
