@@ -4,8 +4,8 @@ package com;
  * Created by Haubir on 4/5/17.
  */
 public class Geocoordinate {
-    int latitude;
-    int longitude;
+    private int latitude;
+    private int longitude;
 
     public Geocoordinate(int latitude, int longitude) {
         this.latitude = latitude;

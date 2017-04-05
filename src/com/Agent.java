@@ -6,11 +6,11 @@ package com;
  * Created by Haubir on 4/5/17.
  */
 public class Agent {
-    Position position;
-    String id;
-    String firstName;
-    String surName;
-    int travelTime;
+    private Position position;
+    private String id;
+    private String firstName;
+    private String surName;
+    private int travelTime;
     /* int distance; */
     /* roadDirections; */
     /*

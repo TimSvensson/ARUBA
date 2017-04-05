@@ -4,11 +4,11 @@ package com;
  * Created by Haubir on 4/5/17.
  */
 public class Assignment {
-    Position position;
-    String id;
-    String clientName;
-    int startTime;
-    int endTime;
+    private Position position;
+    private String id;
+    private String clientName;
+    private int startTime;
+    private int endTime;
 
     public Assignment(Position position, String id, String clientName, int startTime, int endTime) {
         this.position = position;

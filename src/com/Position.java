@@ -4,13 +4,13 @@ package com;
  * Created by Haubir on 4/5/17.
  */
 public class Position {
-    Geocoordinate geocoordinate;
-    String address;
-    String city;
-    String county;
-    String country;
-    String postcode;
-    String zip;
+    private Geocoordinate geocoordinate;
+    private String address;
+    private String city;
+    private String county;
+    private String country;
+    private String postcode;
+    private String zip;
 
     public Position(Geocoordinate geocoordinate, String address, String city, String county, String country, String postcode, String zip) {
         this.geocoordinate = geocoordinate;
