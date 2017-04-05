@@ -1,5 +1,10 @@
 package com;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 public class Main {
 
 	public static void main(String [] args) {
@@ -23,6 +28,43 @@ public class Main {
 		/* Conversion of this list to Semantix's code format */
 
 		/* Send the list to Semantix */
+
+
+
+
+		// Sorteringsalgoritm test:
+
+        List<Agent> listOfAgents = new ArrayList<Agent>();
+        SortingList sortingList = new SortingList(listOfAgents);
+        for (int i = 5; i > 0; i--) {
+            Agent newAgent = new Agent(new Position(
+                    new Geocoordinate(i, i),
+                    "" + i + "", "" + i + "",
+                    "" + i + "", "" + i + "",
+                    "" + i + "", "" + i + ""),
+                    "" + i + "",
+                    "" + i + "",
+                    "" + i + "", i);
+            sortingList.addAgent(newAgent);
+            System.out.println("New agent " + newAgent.getFirstName() + " has a travelTime of " + newAgent.getTravelTime() + "");
+        }
+
+        System.out.println("sortingList contains " + sortingList.getSize() + " agents.");
+
+        sortingList.printList();
+        int i = 3;
+        Agent newAgent = new Agent(new Position(
+                new Geocoordinate(i, i),
+                "" + i + "", "" + i + "",
+                "" + i + "", "" + i + "",
+                "" + i + "", "" + i + ""),
+                "" + i + "",
+                "" + i + "",
+                "" + i + "", i);
+        sortingList.addAgent(newAgent);
+        System.out.println("sortingList contains " + sortingList.getSize() + " agents.");
+        sortingList.printList();
+
 	}
 }
 

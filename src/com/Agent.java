@@ -2,10 +2,12 @@ package com;
 
 // import java.util.ArrayList;
 
+import java.util.Comparator;
+
 /**
  * Created by Haubir on 4/5/17.
  */
-public class Agent {
+public class Agent implements Comparable<Agent> {
     private Position position;
     private String id;
     private String firstName;
@@ -58,6 +60,11 @@ public class Agent {
 
     public void setTravelTime(int travelTime) {
         this.travelTime = travelTime;
+    }
+
+    @Override
+    public int compareTo(Agent o) {
+        return this.travelTime - o.travelTime;
     }
 
     /*public int getDistance() {
