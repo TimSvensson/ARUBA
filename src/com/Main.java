@@ -1,11 +1,28 @@
 package com;
 
 public class Main {
-	
+
 	public static void main(String [] args) {
-		
+
 		System.out.println("Hello world.");
-		
+
+		/* Agent and mission data is received from Semantix */
+
+		/* Conversion of the data to Java Objects */
+
+		/* Initiate the API(s) */
+
+		/* Send requests for the travel times between each agents address and the mission address */
+
+		/* Extract the relevant data from the API responses, put the traveltime in the Agent Objects and create
+		 * a list/array of agents */
+
+		/* Send the list/array to the Sorting Algorithm that will sort the agents based on the least amount of
+		 * traveltime */
+
+		/* Conversion of this list to Semantix's code format */
+
+		/* Send the list to Semantix */
 	}
 	
 }
