@@ -40,7 +40,7 @@ public class Main {
                     "" + i + "", "" + i + "",
                     "" + i + "", "" + i + "",
                     "" + i + "", "" + i + ""),
-                    "" + i + "",
+                    i,
                     "" + i + "",
                     "" + i + "", i);
             sortingList.addAgent(newAgent);
@@ -56,7 +56,7 @@ public class Main {
                 "" + i + "", "" + i + "",
                 "" + i + "", "" + i + "",
                 "" + i + "", "" + i + ""),
-                "" + i + "",
+                i,
                 "" + i + "",
                 "" + i + "", i);
         sortingList.addAgent(newAgent);
@@ -103,4 +103,19 @@ public class Main {
  *    Alltså, minst restid längst fram i listan och längst restid längst bak.
  * 7. Översätta denna lista till rätt format.
  * 8. Skicka listan till Semantix.
+ *
+ * Att göra:
+ *
+ * - Stöd för adressökning: Vad krävs? Skriv ner allt.
+ * - Stöd för postkodssökning: Vad krävs? Skriv ner allt.
+ * - Stöd för zip: Vad krävs? Skriv ner allt.
+ * - Stöd för staddsökning: Vad krävs? Skriv ner allt.
+ * - Stöd för etc. : Vad krävs? Skriv ner allt.
+ * - Ta medelvärdet av restiden från närmsta och längsta punkt inom en zon till klientens position
+ * - Ta mittpunkten i zonen och kör restiden därifrån till klientens position
+ * - Kolla närliggande zoner ifall ingen tolk finns i klientens zon. Fortsätt tills en tolk hittas
+ * - Vi måste planera exakt hur skelettet ska se ut på måndag.
+ * - Bam!
+ *
+ *
  * */

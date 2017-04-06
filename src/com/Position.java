@@ -9,7 +9,7 @@
  *      - City
  *      - Country
  *      - Postcode
- *      - Zip
+ *      - Zip - The two first digits in the postcode
  *
  * @author Created by Haubir -  haubir.mariwani@fasbros.it
  *                              jagheterhaubir@gmail.com

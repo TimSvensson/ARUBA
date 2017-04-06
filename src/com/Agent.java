@@ -4,7 +4,7 @@
  * <p>
  * An agent that is available for an assignment. The Agent object contains important information
  * about the agent, that will be used when the program finds out how long it takes for the agent
- * to reach an assignment's position.
+ * to reach an assignment's position. The agent only has a zip as position.
  *
  * @author Created by Haubir -  haubir.mariwani@fasbros.it
  *                              jagheterhaubir@gmail.com
@@ -16,20 +16,21 @@ package com;
 
 public class Agent implements Comparable<Agent> {
     private Position position;
-    private String id;
+    private int id;
     private String firstName;
     private String surName;
     private int travelTime;
-    /* int distance; */
-    /* roadDirections; */
+    //private int distance;
+
     /*
+    roadDirections;
     travelMode;
     Boolean isWorking;
     ArrayList<Assignment> assignments;
     schema;
     */
 
-    public Agent(Position position, String id, String firstName, String surName, int travelTime) {
+    public Agent(Position position, int id, String firstName, String surName, int travelTime) {
         this.position = position;
         this.id = id;
         this.firstName = firstName;
@@ -44,6 +45,14 @@ public class Agent implements Comparable<Agent> {
     public void setPosition(Position position) {
         this.position = position;
     }
+
+    /*public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }*/
 
     public String getFirstName() {
         return firstName;

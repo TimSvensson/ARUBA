@@ -16,17 +16,25 @@ package com;
 
 public class Assignment {
     private Position position;
-    private String id;
+    private int id;
     private String clientName;
     private int startTime;
     private int endTime;
 
-    public Assignment(Position position, String id, String clientName, int startTime, int endTime) {
+    public Assignment(Position position, int id, String clientName, int startTime, int endTime) {
         this.position = position;
         this.id = id;
         this.clientName = clientName;
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Position getPosition() {
