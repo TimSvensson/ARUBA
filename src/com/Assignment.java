@@ -1,8 +1,19 @@
+/**
+ *
+ * An assignment.
+ * <p>
+ * An assignment that needs an agent. The Assignment object contains important information
+ * about the assignment, that will be used when the program finds out how long it takes for the agents
+ * to reach the assignment's position.
+ *
+ * @author Created by Haubir -  haubir.mariwani@fasbros.it
+ *                              jagheterhaubir@gmail.com
+ * @version //What version of java is current
+ * @since April 5th of 2017
+ */
+
 package com;
 
-/**
- * Created by Haubir on 4/5/17.
- */
 public class Assignment {
     private Position position;
     private String id;

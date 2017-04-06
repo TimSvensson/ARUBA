@@ -1,12 +1,19 @@
+/**
+ *
+ * An agent.
+ * <p>
+ * An agent that is available for an assignment. The Agent object contains important information
+ * about the agent, that will be used when the program finds out how long it takes for the agent
+ * to reach an assignment's position.
+ *
+ * @author Created by Haubir -  haubir.mariwani@fasbros.it
+ *                              jagheterhaubir@gmail.com
+ * @version //What version of java is current
+ * @since April 5th of 2017
+ */
+
 package com;
 
-// import java.util.ArrayList;
-
-import java.util.Comparator;
-
-/**
- * Created by Haubir on 4/5/17.
- */
 public class Agent implements Comparable<Agent> {
     private Position position;
     private String id;

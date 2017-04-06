@@ -1,9 +1,8 @@
 package com;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import com.google.gson.*;
 
 public class Main {
 
@@ -32,8 +31,7 @@ public class Main {
 
 
 
-		// Sorteringsalgoritm test:
-
+		// Sorting algorithm test:
         List<Agent> listOfAgents = new ArrayList<Agent>();
         SortingList sortingList = new SortingList(listOfAgents);
         for (int i = 5; i > 0; i--) {
@@ -65,6 +63,15 @@ public class Main {
         System.out.println("sortingList contains " + sortingList.getSize() + " agents.");
         sortingList.printList();
 
+        // JSON test
+        Gson g = new Gson();
+        String sortingListJSON = g.toJson(sortingList);
+        System.out.println(sortingListJSON);
+
+        SortingList newList = g.fromJson(sortingListJSON, SortingList.class);
+
+        System.out.println("newList contains " + newList.getSize() + " agents.");
+        newList.printList();
 	}
 }
 
@@ -78,11 +85,14 @@ public class Main {
  * - Översättarmetod för indata från Semantix
  * - Översättarmetod för utdata till Semantix
  *
+ * - Importera biblioteken som API:erna använder sig av. Detta så att vi kan återskapa objekten som vi
+ *   får tillbaka efter att ha skickat requests.
+ *
  * - Alternativ till verbos information i utdatat:
  *   i) Debugging information, t.ex. profileringsinfo (tidskonsumtion osv.)
  *
  *
- *   Main-loop:
+ *    Main-loop:
  *
  * 1. Tolkdata och uppdragsdata tas emot från Semantix.
  * 2. Översättning av indatan till Javaobjekt.

@@ -1,8 +1,24 @@
+/**
+ *
+ * A position in the world.
+ * <p>
+ * This object contains one or several types of information about a place:
+ *
+ *      - Geocoordinates
+ *      - Address
+ *      - City
+ *      - Country
+ *      - Postcode
+ *      - Zip
+ *
+ * @author Created by Haubir -  haubir.mariwani@fasbros.it
+ *                              jagheterhaubir@gmail.com
+ * @version //What version of java is current
+ * @since April 5th of 2017
+ */
+
 package com;
 
-/**
- * Created by Haubir on 4/5/17.
- */
 public class Position {
     private Geocoordinate geocoordinate;
     private String address;

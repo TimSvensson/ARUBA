@@ -1,8 +1,17 @@
+/**
+ *
+ * A geocoordinate.
+ * <p>
+ * This object contains a positions latitude and longitude values.
+ *
+ * @author Created by Haubir -  haubir.mariwani@fasbros.it
+ *                              jagheterhaubir@gmail.com
+ * @version //What version of java is current
+ * @since April 5th of 2017
+ */
+
 package com;
 
-/**
- * Created by Haubir on 4/5/17.
- */
 public class Geocoordinate {
     private int latitude;
     private int longitude;

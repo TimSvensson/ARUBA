@@ -1,12 +1,23 @@
+
+/**
+ *
+ * A sorted list based on the least amount of travelTime that each Agent has.
+ * <p>
+ * A list that automatically sorts itself based on the least amount of travelTime that each Agent has.
+ * WARNING: Only works if the Agent class extends the Comparable class and overrides the compareTo() method.
+ *
+ * @author Created by Haubir -  haubir.mariwani@fasbros.it
+ *                              jagheterhaubir@gmail.com
+ * @version //What version of java is current
+ * @since April 5th of 2017
+ */
+
 package com;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Haubir on 4/5/17.
- */
 public class SortingList {
     private List<Agent> listOfAgents = new ArrayList<Agent>();
     private int size;
@@ -29,7 +40,7 @@ public class SortingList {
 
     /**
      * The constructor creates a new SortingList object by taking a list and adding it's elements onto it's own list
-     * @param list  - a list of Agents
+     * @param list - a list of Agents
      */
     public SortingList(List<Agent> list) {
         this.size = 0;
@@ -40,7 +51,7 @@ public class SortingList {
 
     /**
      * Adds an agent to the list and then sorts the list accordingly.
-     * @param a     - an Agent
+     * @param a - an Agent
      */
     public void addAgent(Agent a) {
         this.listOfAgents.add(a);
