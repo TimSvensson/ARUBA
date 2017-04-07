@@ -1,12 +1,18 @@
 package com;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.maps.*;
 import com.google.gson.*;
+import com.google.maps.errors.ApiException;
+import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.GeocodingResult;
+
+import java.io.IOException;
+
+import static com.google.maps.model.TravelMode.WALKING;
 
 public class Main {
 
-	public static void main(String [] args) {
+	public static void main(String [] args) throws InterruptedException, ApiException, IOException {
 
 		System.out.println("Hello world.");
 
@@ -30,48 +36,55 @@ public class Main {
 
 
 
+            /* Google Maps Directions API test */
 
-		// Sorting algorithm test:
-        List<Agent> listOfAgents = new ArrayList<Agent>();
-        SortingList sortingList = new SortingList(listOfAgents);
-        for (int i = 5; i > 0; i--) {
-            Agent newAgent = new Agent(new Position(
-                    new Geocoordinate(i, i),
-                    "" + i + "", "" + i + "",
-                    "" + i + "", "" + i + "",
-                    "" + i + "", "" + i + ""),
-                    i,
-                    "" + i + "",
-                    "" + i + "", i);
-            sortingList.addAgent(newAgent);
-            System.out.println("New agent " + newAgent.getFirstName() + " has a travelTime of " + newAgent.getTravelTime() + "");
-        }
+            String apiKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
+            GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
 
-        System.out.println("sortingList contains " + sortingList.getSize() + " agents.");
+            String [] firstNames        = {    "Haubir",               "Desireé",              "Tim"};
+            String [] lastNames         = {    "Mariwani",             "Björkman",             "Svensson"};
+            String [] addresses         = {    "Sernanders Väg 7",     "Flogstavägen 73A",     "Flogstavägen 77B"};
 
-        sortingList.printList();
-        int i = 3;
-        Agent newAgent = new Agent(new Position(
-                new Geocoordinate(i, i),
-                "" + i + "", "" + i + "",
-                "" + i + "", "" + i + "",
-                "" + i + "", "" + i + ""),
-                i,
-                "" + i + "",
-                "" + i + "", i);
-        sortingList.addAgent(newAgent);
-        System.out.println("sortingList contains " + sortingList.getSize() + " agents.");
-        sortingList.printList();
+            String destAddress = "Lägerhyddsvägen 2";
 
-        // JSON test
-        Gson g = new Gson();
-        String sortingListJSON = g.toJson(sortingList);
-        System.out.println(sortingListJSON);
+            DirectionsResult dirResult0 = DirectionsApi.getDirections(context, addresses[0], destAddress).mode(WALKING).await();
+            DirectionsResult dirResult1 = DirectionsApi.getDirections(context, addresses[1], destAddress).mode(WALKING).await();
+            DirectionsResult dirResult2 = DirectionsApi.getDirections(context, addresses[2], destAddress).mode(WALKING).await();
 
-        SortingList newList = g.fromJson(sortingListJSON, SortingList.class);
+            int totalDistance0 = (int) dirResult0.routes[0].legs[0].distance.inMeters;
+            int totalDuration0 = (int) dirResult0.routes[0].legs[0].duration.inSeconds;
 
-        System.out.println("newList contains " + newList.getSize() + " agents.");
-        newList.printList();
+            int totalDistance1 = (int) dirResult1.routes[0].legs[0].distance.inMeters;
+            int totalDuration1 = (int) dirResult1.routes[0].legs[0].duration.inSeconds;
+
+            int totalDistance2 = (int) dirResult2.routes[0].legs[0].distance.inMeters;
+            int totalDuration2 = (int) dirResult2.routes[0].legs[0].duration.inSeconds;
+
+            int [] travelDistances     =       {totalDistance0, totalDistance1, totalDistance2};
+            int [] travelTimes         =       {totalDuration0, totalDuration1, totalDuration2};
+
+            /* Google Maps Geocoding API test */
+            GeocodingResult[] results = GeocodingApi.geocode(context, destAddress).await();
+            System.out.println(results[0].formattedAddress);
+            double destLatitude = results[0].geometry.location.lat;
+            double destLongitude = results[0].geometry.location.lng;
+            System.out.println("Latitude: " + destLatitude + "\n" + "Longitude: " + destLongitude);
+            // Sorting algorithm test:
+            SortingList sortingList = new SortingList(3, firstNames, lastNames, addresses, travelDistances, travelTimes);
+
+            System.out.println("\nsortingList contains " + sortingList.getSize() + " agents.\n");
+
+            sortingList.printList();
+
+            // JSON test
+            /*Gson g = new Gson();
+            String sortingListJSON = g.toJson(sortingList);
+            System.out.println(sortingListJSON);
+
+            SortingList newList = g.fromJson(sortingListJSON, SortingList.class);
+
+            System.out.println("newList contains " + newList.getSize() + " agents.");
+            newList.printList();*/
 	}
 }
 

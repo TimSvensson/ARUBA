@@ -20,7 +20,7 @@ public class Agent implements Comparable<Agent> {
     private String firstName;
     private String surName;
     private int travelTime;
-    //private int distance;
+    private int distance;
 
     /*
     roadDirections;
@@ -30,12 +30,13 @@ public class Agent implements Comparable<Agent> {
     schema;
     */
 
-    public Agent(Position position, int id, String firstName, String surName, int travelTime) {
+    public Agent(Position position, int id, String firstName, String surName, int travelTime, int distance) {
         this.position = position;
         this.id = id;
         this.firstName = firstName;
         this.surName = surName;
         this.travelTime = travelTime;
+        this.distance = distance;
     }
 
     public Position getPosition() {
@@ -70,7 +71,7 @@ public class Agent implements Comparable<Agent> {
         this.surName = surName;
     }
 
-    public int getTravelTime() {
+    public long getTravelTime() {
         return travelTime;
     }
 
@@ -78,18 +79,19 @@ public class Agent implements Comparable<Agent> {
         this.travelTime = travelTime;
     }
 
+
     @Override
     public int compareTo(Agent o) {
         return this.travelTime - o.travelTime;
     }
 
-    /*public int getDistance() {
+    public int getDistance() {
         return distance;
     }
 
     public void setDistance(int distance) {
         this.distance = distance;
-    }*/
+    }
 
     /*public Boolean getWorking() {
         return isWorking;
