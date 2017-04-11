@@ -137,5 +137,5 @@ public class Main {
  * - En klass per API som ska implementera ett gemensamt interface.
  * - Gör interface för sorteringsalgoritmen så att den kan bli generisk.
  *      - Man ska kunna ange vilken objekttyp och sorteringskriteriet
- *
+ * - Order.java ska kunna ha en eller flera Assignments och en eller flera Agents.
  * */
