@@ -10,17 +10,17 @@ import static org.junit.Assert.*;
 public class AssignmentTest {
     public Geocoordinate geoTestHelp = new Geocoordinate(2222, 6666);
     public Position positionTestHelp = new Position(geoTestHelp, "", "", "", "", "", "");
-    public Assignment assTest = new Assignment(positionTestHelp, 42, "Carl", 4, 6);
+    public Assignment assTest = new Assignment(positionTestHelp, "42", "Carl", 4, 6);
 
     @Test
     public void getId() throws Exception {
-        assertEquals( 42,assTest.getId());
+        assertEquals( "42",assTest.getId());
     }
 
     @Test
     public void setId() throws Exception {
-        assTest.setId(55);
-        assertEquals(55, assTest.getId());
+        assTest.setId("55");
+        assertEquals("55", assTest.getId());
     }
 
     @Test

@@ -14,6 +14,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({PositionTest.class,
                      AssignmentTest.class,
-                     AgentTest.class,})
+                     AgentTest.class,
+                     OrderTest.class, })
 
 public final class AllTest {}

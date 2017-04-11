@@ -70,15 +70,18 @@ public class AgentTest {
     @Test
     public void compareTo() throws Exception {
         Agent agentHelp = new Agent(positionTestHelp , "323", "Bert", "Carlsson", 5, 50);
-        agentTest.compareTo(agentHelp);
+        assertEquals(1,agentTest.compareTo(agentHelp));
     }
 
     @Test
     public void getDistance() throws Exception {
+        assertEquals(657, agentTest.getDistance());
     }
 
     @Test
     public void setDistance() throws Exception {
+        agentTest.setDistance(444);
+        assertEquals(444, agentTest.getDistance());
     }
 
 }
