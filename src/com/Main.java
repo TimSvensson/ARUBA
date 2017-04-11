@@ -6,6 +6,9 @@ import com.google.maps.errors.ApiException;
 
 import java.io.IOException;
 
+/**
+ *
+ */
 public class Main {
 
     public static void main(String [] args) throws InterruptedException, ApiException, IOException {
@@ -63,7 +66,7 @@ public class Main {
         // JSON test
         Gson g = new Gson();
 
-        Assignment newAssignment = new Assignment(new Position("75"), 666, "", 1, 100);
+        Assignment newAssignment = new Assignment(new Position("75"), "666", "", 1, 100);
         String jsonNewAssignment = g.toJson(newAssignment);
         System.out.println(jsonNewAssignment);
 

@@ -9,7 +9,7 @@
  * @author Created by Haubir -  haubir.mariwani@fasbros.it
  *                              jagheterhaubir@gmail.com
  * @version //What version of java is current
- * @since April 5th of 2017
+ * @since April 11th of 2017
  */
 
 package com;
@@ -24,6 +24,8 @@ public class SortingList {
 
 
     /**
+     * @author Created by Haubir -  haubir.mariwani@fasbros.it
+     *                              jagheterhaubir@gmail.com
      * The constructor creates a new SortingList object by taking a list and adding it's elements onto it's own list
      * @param list - a list of Agents
      */
@@ -35,12 +37,14 @@ public class SortingList {
     }
 
     /**
+     * @author Created by Haubir -  haubir.mariwani@fasbros.it
+     *                              jagheterhaubir@gmail.com
      * The constructor creates a new SortingList object by taking in a number and adding as many Agents to the list as
      * the number. This constructor is only for testing and simulation purposes.
      * @param amount - a list of Agents
      */
     public SortingList(int amount, String [] firstNames, String [] lastNames, String [] addresses,
-                       int [] travelDistances, int [] travelTimes) {
+                       long [] travelDistances, long [] travelTimes) {
         for (int i = 0; i < amount; i++) {
             Agent newAgent = new Agent(new Position(
                     new Geocoordinate(i, i),
@@ -55,6 +59,8 @@ public class SortingList {
     }
 
     /**
+     * @author Created by Haubir -  haubir.mariwani@fasbros.it
+     *                              jagheterhaubir@gmail.com
      * Returns the list of Agents
      * @return listOfAgents
      */
@@ -63,6 +69,8 @@ public class SortingList {
     }
 
     /**
+     * @author Created by Haubir -  haubir.mariwani@fasbros.it
+     *                              jagheterhaubir@gmail.com
      * Returns an Agent based on it's index in the listOfAgents
      * @param index
      * @return the agent at the given index in the listOfAgents
@@ -72,6 +80,8 @@ public class SortingList {
     }
 
     /**
+     * @author Created by Haubir -  haubir.mariwani@fasbros.it
+     *                              jagheterhaubir@gmail.com
      * Returns the size of the list
      * @return size
      */
@@ -80,6 +90,8 @@ public class SortingList {
     }
 
     /**
+     * @author Created by Haubir -  haubir.mariwani@fasbros.it
+     *                              jagheterhaubir@gmail.com
      * Adds an agent to the list and then sorts the list accordingly.
      * @param a - an Agent
      */
@@ -90,6 +102,8 @@ public class SortingList {
     }
 
     /**
+     * @author Created by Haubir -  haubir.mariwani@fasbros.it
+     *                              jagheterhaubir@gmail.com
      * Prints the contents of the list.
      */
     public void printList() {

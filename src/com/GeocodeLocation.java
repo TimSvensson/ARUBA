@@ -1,3 +1,15 @@
+/**
+ * @author Created by Haubir -  haubir.mariwani@fasbros.it
+ *                              jagheterhaubir@gmail.com
+ *
+ * An locations geocodes.
+ * <p>
+ * The GeocodeLocation object contains detailed information about a location, retrieved from
+ * the Google Maps Geocoding API.
+ *
+ * @version //What version of java is current
+ * @since April 11th of 2017
+ */
 package com;
 
 import com.google.maps.GeoApiContext;
@@ -7,9 +19,6 @@ import com.google.maps.model.GeocodingResult;
 
 import java.io.IOException;
 
-/**
- * Created by Haubir on 4/7/17.
- */
 public class GeocodeLocation {
     private double destLatitude;
     private double destLongitude;

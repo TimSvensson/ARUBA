@@ -1,3 +1,15 @@
+/**
+ * @author Created by Haubir -  haubir.mariwani@fasbros.it
+ *                              jagheterhaubir@gmail.com
+ *
+ * A class that collects information about a DirectionsValues object.
+ * <p>
+ * The DirectionsTest object collects information about a DirectionsValues object.
+ *
+ * @version //What version of java is current
+ * @since April 11th of 2017
+ */
+
 package com;
 
 import com.google.maps.GeoApiContext;
@@ -7,18 +19,15 @@ import java.io.IOException;
 
 import static com.google.maps.model.TravelMode.DRIVING;
 
-/**
- * Created by Haubir on 4/7/17.
- */
 public class DirectionsTest {
     private String [] addresses         = {    "Sernanders Väg 7",     "Flogstavägen 73A",     "Flogstavägen 77B"};
-    private int [] travelDistances;
-    private int [] travelTimes;
+    private long [] travelDistances;
+    private long [] travelTimes;
 
     public DirectionsTest(GeoApiContext context, String apiKey, String destAddress) throws InterruptedException, ApiException, IOException {
         DirectionsValues [] agentDirectionsList = new DirectionsValues[addresses.length];
-        this.travelDistances = new int[addresses.length];
-        this.travelTimes = new int[addresses.length];
+        this.travelDistances = new long[addresses.length];
+        this.travelTimes = new long[addresses.length];
 
         for(int i = 0; i < addresses.length; i++) {
             DirectionsValues agentDirections = new DirectionsValues(context, this.addresses[i], destAddress, DRIVING);
@@ -36,11 +45,11 @@ public class DirectionsTest {
         this.addresses = addresses;
     }
 
-    public int[] getTravelDistances() {
+    public long[] getTravelDistances() {
         return travelDistances;
     }
 
-    public int[] getTravelTimes() {
+    public long[] getTravelTimes() {
         return travelTimes;
     }
 }
