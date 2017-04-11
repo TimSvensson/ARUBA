@@ -12,6 +12,9 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String [] args) throws InterruptedException, ApiException, IOException {
+
+        ARUBA aruba = new ARUBA();
+
         String apiKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
         GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
 
@@ -138,4 +141,8 @@ public class Main {
  * - Gör interface för sorteringsalgoritmen så att den kan bli generisk.
  *      - Man ska kunna ange vilken objekttyp och sorteringskriteriet
  * - Order.java ska kunna ha en eller flera Assignments och en eller flera Agents.
- * */
+ *
+ * Skicka vilket/vilka API/(API:er och dess/deras API-nycklel/nycklar i JSON-objektet i argumentet till main.
+ *
+ *
+ */
