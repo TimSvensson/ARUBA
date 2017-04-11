@@ -16,7 +16,7 @@ package com;
 
 public class Agent implements Comparable<Agent> {
     private Position position;
-    private int id;
+    private String id;
     private String firstName;
     private String surName;
     private int travelTime;
@@ -30,7 +30,7 @@ public class Agent implements Comparable<Agent> {
     schema;
     */
 
-    public Agent(Position position, int id, String firstName, String surName, int travelTime, int distance) {
+    public Agent(Position position, String id, String firstName, String surName, int travelTime, int distance) {
         this.position = position;
         this.id = id;
         this.firstName = firstName;
@@ -101,3 +101,24 @@ public class Agent implements Comparable<Agent> {
         isWorking = working;
     }*/
 }
+
+/*
+* { 
+*      ”interpretationSite”: { 
+*         ”zip”: ”42” 
+*      },
+*       ”interpreter”: {
+*          ”id”: ”42”,
+*          ”position”: {
+*             ”residenceZip”: ”42”
+*          }
+*       }, 
+*       ”interpreter”: {
+*           ”id”: ”4242”,
+*          ”position”: {
+*             ”residenceZip”: ”43”
+*          }
+*       }
+*  }
+*
+* */

@@ -22,21 +22,6 @@ public class SortingList {
     private List<Agent> listOfAgents = new ArrayList<Agent>();
     private int size;
 
-    /**
-     * Returns the list of Agents
-     * @return listOfAgents
-     */
-    public List<Agent> getListOfAgents() {
-        return listOfAgents;
-    }
-
-    /**
-     * Returns the size of the list
-     * @return size
-     */
-    public int getSize() {
-        return size;
-    }
 
     /**
      * The constructor creates a new SortingList object by taking a list and adding it's elements onto it's own list
@@ -62,11 +47,36 @@ public class SortingList {
                     addresses[i], "" + i + "",
                     "" + i + "", "" + i + "",
                     "" + i + "", "" + i + ""),
-                    i, firstNames[i], lastNames[i], travelTimes[i], travelDistances[i]);
+                    "" + i + "", firstNames[i], lastNames[i], travelTimes[i], travelDistances[i]);
             this.addAgent(newAgent);
-            //System.out.println("New agent " + newAgent.getFirstName() + " has a travelTime of " + newAgent.getTravelTime() + " seconds and a travelDistance of " + newAgent.getDistance() + " metres.");
+            System.out.println("New agent " + newAgent.getFirstName() + " has a travelTime of " + newAgent.getTravelTime() + " seconds and a travelDistance of " + newAgent.getDistance() + " metres.");
         }
 
+    }
+
+    /**
+     * Returns the list of Agents
+     * @return listOfAgents
+     */
+    public List<Agent> getListOfAgents() {
+        return listOfAgents;
+    }
+
+    /**
+     * Returns an Agent based on it's index in the listOfAgents
+     * @param index
+     * @return the agent at the given index in the listOfAgents
+     */
+    public Agent getAgent(int index) {
+        return this.listOfAgents.get(index);
+    }
+
+    /**
+     * Returns the size of the list
+     * @return size
+     */
+    public int getSize() {
+        return size;
     }
 
     /**

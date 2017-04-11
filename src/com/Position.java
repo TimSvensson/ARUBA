@@ -38,6 +38,10 @@ public class Position {
         this.zip = zip;
     }
 
+    public Position(String zip) {
+        new Position(new Geocoordinate(0,0), "", "", "", "", "", zip);
+    }
+
     public Geocoordinate getGeocoordinate() {
         return geocoordinate;
     }

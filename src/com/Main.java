@@ -1,20 +1,18 @@
 package com;
 
-import com.google.maps.*;
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
-import com.google.maps.model.DirectionsResult;
-import com.google.maps.model.GeocodingResult;
 
 import java.io.IOException;
 
-import static com.google.maps.model.TravelMode.WALKING;
-
 public class Main {
 
-	public static void main(String [] args) throws InterruptedException, ApiException, IOException {
+    public static void main(String [] args) throws InterruptedException, ApiException, IOException {
+        String apiKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
+        GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
 
-		System.out.println("Hello world.");
+        System.out.println("Hello world.");
 
 		/* Agent and mission data is received from Semantix */
 
@@ -36,56 +34,59 @@ public class Main {
 
 
 
-            /* Google Maps Directions API test */
+        // Google Maps Directions API test
+        String destAddress = "Lägerhyddsvägen 2";
 
-            String apiKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
-            GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
+        String [] firstNames        = {    "Haubir",               "Desireé",              "Tim"};
+        String [] lastNames         = {    "Mariwani",             "Björkman",             "Svensson"};
 
-            String [] firstNames        = {    "Haubir",               "Desireé",              "Tim"};
-            String [] lastNames         = {    "Mariwani",             "Björkman",             "Svensson"};
-            String [] addresses         = {    "Sernanders Väg 7",     "Flogstavägen 73A",     "Flogstavägen 77B"};
+        DirectionsTest directionsTest = new DirectionsTest(context, apiKey, destAddress);
 
-            String destAddress = "Lägerhyddsvägen 2";
+        // Google Maps Geocoding API test
+        GeocodeLocation geocodeLocation = new GeocodeLocation(context, destAddress);
+        System.out.println("\nGeocodeLocation: ");
+        System.out.println("Latitude: " + geocodeLocation.getDestLatitude() + "\n" + "Longitude: " + geocodeLocation.getDestLongitude());
 
-            DirectionsResult dirResult0 = DirectionsApi.getDirections(context, addresses[0], destAddress).mode(WALKING).await();
-            DirectionsResult dirResult1 = DirectionsApi.getDirections(context, addresses[1], destAddress).mode(WALKING).await();
-            DirectionsResult dirResult2 = DirectionsApi.getDirections(context, addresses[2], destAddress).mode(WALKING).await();
+        System.out.println("length of getAddresses(): " + directionsTest.getAddresses().length);
+        for (int i = 0; i < directionsTest.getTravelDistances().length; i++) {
+            System.out.println("directionsTest.getTravelDistances()[" + i + "]: " + directionsTest.getTravelDistances()[i]);
+            System.out.println("directionsTest.getTravelTimes()[" + i + "]: " + directionsTest.getTravelTimes()[i]);
+        }
+        // Sorting algorithm test
+        System.out.println("\nSortingList and DirectionsTest: ");
+        SortingList sortingList =   new SortingList(directionsTest.getAddresses().length, firstNames, lastNames, directionsTest.getAddresses(),
+                                                    directionsTest.getTravelDistances(), directionsTest.getTravelTimes());
 
-            int totalDistance0 = (int) dirResult0.routes[0].legs[0].distance.inMeters;
-            int totalDuration0 = (int) dirResult0.routes[0].legs[0].duration.inSeconds;
+        System.out.println("\nsortingList contains " + sortingList.getSize() + " agents.\n");
+        sortingList.printList();
 
-            int totalDistance1 = (int) dirResult1.routes[0].legs[0].distance.inMeters;
-            int totalDuration1 = (int) dirResult1.routes[0].legs[0].duration.inSeconds;
+        // JSON test
+        Gson g = new Gson();
 
-            int totalDistance2 = (int) dirResult2.routes[0].legs[0].distance.inMeters;
-            int totalDuration2 = (int) dirResult2.routes[0].legs[0].duration.inSeconds;
+        Assignment newAssignment = new Assignment(new Position("75"), 666, "", 1, 100);
+        String jsonNewAssignment = g.toJson(newAssignment);
+        System.out.println(jsonNewAssignment);
 
-            int [] travelDistances     =       {totalDistance0, totalDistance1, totalDistance2};
-            int [] travelTimes         =       {totalDuration0, totalDuration1, totalDuration2};
+        Agent [] agentArray = new Agent[sortingList.getSize()];
+        for (int i = 0; i < sortingList.getSize(); i++) {
+            agentArray[i] = sortingList.getAgent(i);
+        }
 
-            /* Google Maps Geocoding API test */
-            GeocodingResult[] results = GeocodingApi.geocode(context, destAddress).await();
-            System.out.println(results[0].formattedAddress);
-            double destLatitude = results[0].geometry.location.lat;
-            double destLongitude = results[0].geometry.location.lng;
-            System.out.println("Latitude: " + destLatitude + "\n" + "Longitude: " + destLongitude);
-            // Sorting algorithm test:
-            SortingList sortingList = new SortingList(3, firstNames, lastNames, addresses, travelDistances, travelTimes);
+        String jsonAgentArray = g.toJson(agentArray);
+        System.out.println(jsonAgentArray);
 
-            System.out.println("\nsortingList contains " + sortingList.getSize() + " agents.\n");
+        Order newOrder = new Order(newAssignment, agentArray);
+        String jsonNewOrder = g.toJson(newOrder);
+        System.out.println(jsonNewOrder);
 
-            sortingList.printList();
+        String sortingListJSON = g.toJson(sortingList);
+        System.out.println(sortingListJSON);
 
-            // JSON test
-            /*Gson g = new Gson();
-            String sortingListJSON = g.toJson(sortingList);
-            System.out.println(sortingListJSON);
+        SortingList newList = g.fromJson(sortingListJSON, SortingList.class);
 
-            SortingList newList = g.fromJson(sortingListJSON, SortingList.class);
-
-            System.out.println("newList contains " + newList.getSize() + " agents.");
-            newList.printList();*/
-	}
+        System.out.println("newList contains " + newList.getSize() + " agents.");
+        newList.printList();
+    }
 }
 
 /*
@@ -129,6 +130,9 @@ public class Main {
  * - Kolla närliggande zoner ifall ingen tolk finns i klientens zon. Fortsätt tills en tolk hittas
  * - Vi måste planera exakt hur skelettet ska se ut på måndag.
  * - Bam!
- *
+ * - Spara alla API nycklar i en fil och läsa in därifrån!
+ * - En klass per API som ska implementera ett gemensamt interface.
+ * - Gör interface för sorteringsalgoritmen så att den kan bli generisk.
+ *      - Man ska kunna ange vilken objekttyp och sorteringskriteriet
  *
  * */
