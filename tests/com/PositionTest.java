@@ -1,13 +1,14 @@
-/*package com;
+package com;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-Ä/
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * Created by desiree on 2017-04-07.
  */
-/*public class PositionTest {
+public class PositionTest {
     public Geocoordinate geoTestHelp = new Geocoordinate(2222, 6666);
     public Position positionTest = new Position(geoTestHelp, "", "", "", "", "", "");
 
@@ -16,4 +17,4 @@ import static org.junit.Assert.*;
     assertEquals("", positionTest.getAddress());
     }
 
-}*/
+}
