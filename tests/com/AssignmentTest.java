@@ -1,11 +1,11 @@
 package com;
 
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 /**
  * Created by desiree on 2017-04-11.
+ * Tests for assignment.java, at this point it's just basic.
  */
 public class AssignmentTest {
     public Geocoordinate geoTestHelp = new Geocoordinate(2222, 6666);
