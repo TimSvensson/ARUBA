@@ -149,4 +149,9 @@ public class Assignment {
     public void setEndTime(int endTime) {
         this.endTime = endTime;
     }
+
+    @Override
+    public String toString() {
+        return this.getClientName() + " " + this.getId();
+    }
 }

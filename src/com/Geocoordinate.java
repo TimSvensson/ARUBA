@@ -16,7 +16,7 @@ public class Geocoordinate {
     private double latitude;
     private double longitude;
 
-    public Geocoordinate(int latitude, int longitude) {
+    public Geocoordinate(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -35,5 +35,10 @@ public class Geocoordinate {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    @Override
+    public String toString() {
+        return "lat " + getLatitude() + ", lon " + getLongitude();
     }
 }

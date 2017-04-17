@@ -200,6 +200,11 @@ public class Agent implements Comparable<Agent> {
         else if (this.travelTime - o.travelTime == 0)   return 0;
         else                                            return 1;
     }
+
+    @Override
+    public String toString() {
+        return this.firstName + " " + this.surName + " " + this.id;
+    }
 }
 
 /*
