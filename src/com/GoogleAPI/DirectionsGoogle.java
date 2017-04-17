@@ -35,19 +35,31 @@ public class DirectionsGoogle implements DirectionsInterface {
      * Route objekt.
      */
 
+    /**
+     * Constructs a DirectionsGoogle object that is ready to calculate the travelroutes between all Agents and
+     * all Assignments.
+     *
+     * @param agents - the list of agents
+     * @param assignments - the list of assignments
+     */
     public DirectionsGoogle(List<Agent> agents, List<Assignment> assignments) {
         this.agents = agents;
         this.assignments = assignments;
-        this.travelRoutes = new ArrayList<TravelRoutes>();
+        this.travelRoutes = new ArrayList<>();
     }
 
+    /**
+     * Calculates the travelroutes between all Agents and all Assignments.
+     *
+     * @return true
+     */
     @Override
     public boolean CalculateDistances() {
-        for (Agent a : agents) {
-            for (Assignment ass : assignments) {
+        for (Agent a : this.agents) {
+            for (Assignment ass : this.assignments) {
                 try {
                     DirectionsResult dirResult =
-                            DirectionsApi.getDirections(context, a.getPosition().getAddress(), ass.getPosition().getAddress()).await();
+                            DirectionsApi.getDirections(this.context, a.getPosition().getAddress(), ass.getPosition().getAddress()).await();
 
                     // TODO All routes and legs must be uncovered here.
                     double distance = (double)  dirResult.routes[0].legs[0].distance.inMeters;
@@ -70,39 +82,89 @@ public class DirectionsGoogle implements DirectionsInterface {
         return true;
     }
 
+    /**
+     * Returns all the travelroutes that have been calculated by this object.
+     *
+     * @return travelRoutes
+     */
     @Override
     public ArrayList<TravelRoutes> getRoutes() {
-        return travelRoutes;
+        return this.travelRoutes;
     }
 
+    /**
+     * Returns the travelroutes to all the Assignments for the parameter Agent.
+     *
+     * @param agent - An Agent
+     * @return travelRoutes1 - The travelroutes to all the Assignments
+     */
     @Override
     public ArrayList<TravelRoutes> getRoutes(Agent agent) {
+        ArrayList<TravelRoutes> travelRoutes1 = new ArrayList<>();
+        for (TravelRoutes travRout : this.travelRoutes) {
+            if (agent.getId().equals(travRout.getAgent().getId())) {
+                travelRoutes1.add(travRout);
+            }
+        }
 
-        return null;
+        return (travelRoutes1.size() == 0) ? null : travelRoutes1;
     }
 
+    /**
+     * Returns the travelroutes from all the Agents to the parameter Assignment.
+     *
+     * @param assignment - An Assignment
+     * @return travelRoutes1 - The travelroutes from all the Agents
+     */
     @Override
     public ArrayList<TravelRoutes> getRoutes(Assignment assignment) {
-        return null;
+        ArrayList<TravelRoutes> travelRoutes1 = new ArrayList<>();
+        for (TravelRoutes travRout : this.travelRoutes) {
+            if (assignment.getId().equals(travRout.getAssignment().getId())) {
+                travelRoutes1.add(travRout);
+            }
+        }
+
+        return (travelRoutes1.size() == 0) ? null : travelRoutes1;
     }
 
+    /**
+     * Adds an Agent to the list of Agents.
+     *
+     * @param agent - The Agent that is to be added
+     */
     @Override
     public void AddAgent(Agent agent) {
-
+        this.agents.add(agent);
     }
 
+    /**
+     * Adds several Agents to the list of Agents.
+     *
+     * @param agents - The list of Agents.
+     */
     @Override
     public void AddAgents(List<Agent> agents) {
-
+        this.agents.addAll(agents);
     }
 
+    /**
+     * Adds several Assignments to the list of Assignments.
+     *
+     * @param assignment - The Assignment to be added.
+     */
     @Override
     public void AddAssignment(Assignment assignment) {
-
+        this.assignments.add(assignment);
     }
 
+    /**
+     * Adds several Assignments to the list of Agents.
+     *
+     * @param assignments - The list of Agents.
+     */
     @Override
     public void AddAssignments(List<Assignment> assignments) {
-
+        this.assignments.addAll(assignments);
     }
 }

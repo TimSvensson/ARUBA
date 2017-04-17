@@ -158,8 +158,15 @@ public class Agent implements Comparable<Agent> {
         this.distance = distance;
     }
 
+    public String getId() {
+        return id;
+    }
 
-    /*
+    public void setId(String id) {
+        this.id = id;
+    }
+
+/*
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
      *                              jagheterhaubir@gmail.com
      * Tells whether the Agent is currently working or not. True if working, else false.
