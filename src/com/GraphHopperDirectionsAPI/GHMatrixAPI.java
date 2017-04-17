@@ -43,10 +43,10 @@ public class GHMatrixAPI implements DirectionsInterface {
     GraphHopperMatrixWeb matrixClient;
 
 
-    private List<Agent> agents;
-    private List<Assignment> assignments;
+    private ArrayList<Agent> agents = new ArrayList<>();
+    private ArrayList<Assignment> assignments = new ArrayList<>();
 
-    private List<TravelRoutes> travelRoutes;
+    private ArrayList<TravelRoutes> travelRoutes;
 
     private MatrixResponse matrixResponse;
 
@@ -60,11 +60,10 @@ public class GHMatrixAPI implements DirectionsInterface {
         // Hint: create this thread safe instance only once in your application to allow the underlying library to cache
         // the costly initial https handshake
         matrixClient = new GraphHopperMatrixWeb();
-        matrixClient.setKey("[YOUR_KEY]");
+        matrixClient.setKey(APIkey);
     }
 
     //<editor-fold desc="Public Mathods">
-
 
     @Override
     public void AddAgent(Agent agent) {
@@ -116,7 +115,6 @@ public class GHMatrixAPI implements DirectionsInterface {
         travelRoutes = new ArrayList<TravelRoutes>();
 
         int index = 0;
-
         for (Assignment assignment : assignments) {
 
             for (Agent agent : agents) {
@@ -126,6 +124,7 @@ public class GHMatrixAPI implements DirectionsInterface {
                 Route route = new Route(response.getDistance(), response.getTime(), modeOfTransport);
 
                 travelRoutes.add(new TravelRoutes(agent, assignment, route));
+                index++;
             }
 
         }
@@ -135,17 +134,24 @@ public class GHMatrixAPI implements DirectionsInterface {
 
     @Override
     public ArrayList<TravelRoutes> getRoutes() {
-        throw new NotImplementedException();
+        // TODO Figure out how to do this without giving the recipient the possibility of modifying the original list
+        return this.travelRoutes;
     }
 
     @Override
     public ArrayList<TravelRoutes> getRoutes(Agent agent) {
+        // TODO
         throw new NotImplementedException();
     }
 
     @Override
     public ArrayList<TravelRoutes> getRoutes(Assignment assignment) {
+        // TODO
         throw new NotImplementedException();
+    }
+
+    public String getError() {
+        return matrixResponse.getErrors().toString();
     }
 
     //</editor-fold>

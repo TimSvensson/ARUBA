@@ -1,4 +1,7 @@
 package com;
+
+import com.GoogleAPITests.*;
+import com.GraphHopperDirectionsAPITests.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -12,9 +15,18 @@ import org.junit.runners.Suite;
  * For the moment there does not need to be anything int the AllTest class.
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({PositionTest.class,
-                     AssignmentTest.class,
-                     AgentTest.class,
-                     OrderTest.class, })
+@Suite.SuiteClasses({
+        GoogleDirectionsAPITest.class,
+        GoogleGeocodingAPITest.class,
+
+        GHMatrixAPITest.class,
+
+        AgentTest.class,
+        AssignmentTest.class,
+        OrderTest.class,
+        PositionTest.class,
+        RouteTest.class,
+        TravelRoutes.class
+})
 
 public final class AllTest {}

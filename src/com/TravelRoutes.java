@@ -13,6 +13,7 @@
 package com;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Holds all the Route objects for a specific Agent and a specific Assignment.
@@ -27,9 +28,11 @@ import java.util.ArrayList;
 public class TravelRoutes {
 
     //<editor-fold desc="Member Variables">
+
     private Agent agent;
     private Assignment assignment;
     private ArrayList<Route> routes;
+
     //</editor-fold>
 
     public TravelRoutes(Agent agent, Assignment assignment) {
@@ -70,18 +73,26 @@ public class TravelRoutes {
 
     //<editor-fold desc="Public Methods">
 
-    public void AddRoute(Route r) {
+    public void addRoute(Route r) {
         this.routes.add(r);
+    }
+
+    public void addRoutes(List<Route> routes) {
+        this.routes.addAll(routes);
+    }
+
+    public Route getRoute(int index) {
+        return getRoutes().get(index);
     }
 
     @Override
     public String toString() {
         String s =
-                "Agent\t" + this.agent.toString() + "\n\r" +
-                "Assignment\t" + this.assignment.toString() + "\n\r" +
-                "Routes\n\r";
+                "\tAgent\t\t" + this.agent.toString() + "\n\r" +
+                "\tAssignment\t" + this.assignment.toString() + "\n\r" +
+                "\tRoutes\n\r";
         for (Route r : this.routes) {
-            s += "\t\t\t" + r.toString();
+            s += "\t\t\t\t" + r.toString();
         }
         return s;
     }

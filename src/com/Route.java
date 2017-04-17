@@ -57,6 +57,6 @@ public class Route {
     @Override
     public String toString() {
         // TODO imporve
-        return modeOfTransport + " " + distance + " " + time;
+        return "vehicle: " + modeOfTransport + ", distance: " + distance + " m, time: " + time + " s";
     }
 }
