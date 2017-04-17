@@ -34,7 +34,7 @@ import java.util.List;
  * @version JDK 1.8
  * @since JDK 1.8
  */
-public class GHMatixAPI implements DirectionsInterface {
+public class GHMatrixAPI implements DirectionsInterface {
 
 
     //<editor-fold desc="Member Variables">
@@ -52,7 +52,7 @@ public class GHMatixAPI implements DirectionsInterface {
 
     //</editor-fold>
 
-    public GHMatixAPI(String APIkey) {
+    public GHMatrixAPI(String APIkey) {
 
         this.APIkey = APIkey;
 
