@@ -3,7 +3,7 @@ package com.GoogleAPI;
 import com.Agent;
 import com.Assignment;
 import com.Interface.DirectionsInterface;
-import com.Route;
+import com.TravelRoutes;
 
 import java.util.ArrayList;
 
@@ -14,22 +14,22 @@ public class DirectionsGoogle implements DirectionsInterface {
 
 
     @Override
-    public boolean CalculateDistances(ArrayList<Agent> agents, ArrayList<Assignment> assignments) {
+    public boolean CalculateDistances() {
         return false;
     }
 
     @Override
-    public ArrayList<Route> getRoutes() {
+    public ArrayList<TravelRoutes> getRoutes() {
         return null;
     }
 
     @Override
-    public ArrayList<Route> getRoutes(Agent agent) {
+    public ArrayList<TravelRoutes> getRoutes(Agent agent) {
         return null;
     }
 
     @Override
-    public ArrayList<Route> getRoutes(Assignment assignment) {
+    public ArrayList<TravelRoutes> getRoutes(Assignment assignment) {
         return null;
     }
 }

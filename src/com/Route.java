@@ -1,13 +1,62 @@
+/*
+ * Project: ARUBA
+ * Class:   AllRoutes
+ *
+ * Version info
+ * Created: 12/04/17
+ * Creator: Tim Svensson
+ *
+ * Copyright notice
+ * Property of Fasbros IT. Do not copy, alter, distribute, or sell in any way unless given explicit permission.
+ */
+
 package com;
 
 /**
- * Created by timsvensson on 11/04/17.
+ * Saves a route as a distance, a time and a modeOfTransport.
+ * <p>
+ * Used in conjunction with the TravelRoutes class. Saves a specific route, the distance, the time, and the modeOfTransport used
+ * between the origin and the destination.
+ *
+ * @author  Tim Svensson <tim.svensson@fasbros.it>
+ * @version JDK 1.8
+ * @since   JDK 1.8
  */
 public class Route {
 
-    private Position origin;
-    private Position destination;
+    //<editor-fold desc="Member variables">
 
+    private double distance;
+    private long time;
+    private String modeOfTransport;
 
+    //</editor-fold>
 
+    public Route(double distance, long time, String modeOfTransport) {
+        this.distance = distance;
+        this.time = time;
+        this.modeOfTransport = modeOfTransport;
+    }
+
+    //<editor-fold desc="Getters">
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public String getModeOfTransport() {
+        return modeOfTransport;
+    }
+
+    //</editor-fold>
+
+    @Override
+    public String toString() {
+        // TODO imporve
+        return modeOfTransport + " " + distance + " " + time;
+    }
 }

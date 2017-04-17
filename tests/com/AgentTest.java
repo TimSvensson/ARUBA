@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class AgentTest {
     public Geocoordinate geoTestHelp = new Geocoordinate(2222, 6666);
     public Position positionTestHelp = new Position(geoTestHelp, "", "", "", "", "", "");
-    public  Agent agentTest = new Agent(positionTestHelp , "333", "Carl", "Eriksson", 22, 657);
+    public Agent agentTest = new Agent(positionTestHelp , "333", "Carl", "Eriksson", 22, 657);
 
     @Test
     public void getPosition() throws Exception {

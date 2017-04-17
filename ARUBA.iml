@@ -30,5 +30,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="com.graphhopper:directions-api-java-client:0.5.0.2" level="project" />
   </component>
 </module>
