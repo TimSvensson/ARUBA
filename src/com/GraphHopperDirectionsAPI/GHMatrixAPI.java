@@ -65,6 +65,27 @@ public class GHMatrixAPI implements DirectionsInterface {
 
     //<editor-fold desc="Public Mathods">
 
+
+    @Override
+    public void AddAgent(Agent agent) {
+        agents.add(agent);
+    }
+
+    @Override
+    public void AddAgents(List<Agent> agents) {
+        agents.addAll(agents);
+    }
+
+    @Override
+    public void AddAssignment(Assignment assignment) {
+        assignments.add(assignment);
+    }
+
+    @Override
+    public void AddAssignments(List<Assignment> assignments) {
+        assignments.addAll(assignments);
+    }
+
     @Override
     public boolean CalculateDistances() {
 
@@ -73,7 +94,10 @@ public class GHMatrixAPI implements DirectionsInterface {
         //TODO Make dynamic
         ghmRequest.addOutArray("distances");
         ghmRequest.addOutArray("times");
-        ghmRequest.setVehicle("car");
+
+        String modeOfTransport = "car";
+
+        ghmRequest.setVehicle(modeOfTransport);
 
         for( Agent a : agents ) {
             ghmRequest.addFromPoint(ToGHPoint(a));
@@ -99,7 +123,7 @@ public class GHMatrixAPI implements DirectionsInterface {
 
                 GHMResponse response = matrixResponse.get(index, index);
 
-                Route route = new Route(response.getDistance(), response.getTime(), "car");
+                Route route = new Route(response.getDistance(), response.getTime(), modeOfTransport);
 
                 travelRoutes.add(new TravelRoutes(agent, assignment, route));
             }
@@ -107,14 +131,6 @@ public class GHMatrixAPI implements DirectionsInterface {
         }
 
         return true;
-    }
-
-    public void AddAssignments(List<Assignment> a) {
-        assignments.addAll(a);
-    }
-
-    public void AddAgents(List<Agent> a) {
-        agents.addAll(a);
     }
 
     @Override
@@ -147,6 +163,5 @@ public class GHMatrixAPI implements DirectionsInterface {
 
         return new GHPoint(lat, lon);
     }
-
 
 }

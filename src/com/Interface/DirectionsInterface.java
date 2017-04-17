@@ -15,6 +15,7 @@ import com.Assignment;
 import com.TravelRoutes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Interface for all Directions API calls.
@@ -54,5 +55,13 @@ public interface DirectionsInterface {
      * @return A set of routes associated with the assignment
      */
     ArrayList<TravelRoutes> getRoutes(Assignment assignment);
+
+    void AddAgent(Agent agent);
+
+    void AddAgents(List<Agent> agents);
+
+    void AddAssignment(Assignment assignment);
+
+    void AddAssignments(List<Assignment> assignments);
 
 }

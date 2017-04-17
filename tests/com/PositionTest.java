@@ -13,16 +13,16 @@ public class PositionTest {
 
     @Test
     public void getGeocoordinate() throws Exception {
-        assertEquals(2222 ,positionTest.getGeocoordinate().getLatitude());
-        assertEquals(6666, positionTest.getGeocoordinate().getLongitude());
+        assertEquals(2222 ,positionTest.getGeocoordinate().getLatitude(), 1);
+        assertEquals(6666, positionTest.getGeocoordinate().getLongitude(), 1);
     }
 
     @Test
     public void setGeocoordinate() throws Exception {
         Geocoordinate geoHelp = new Geocoordinate(2228,6668);
         positionTest.setGeocoordinate(geoHelp);
-        assertEquals(2228 ,positionTest.getGeocoordinate().getLatitude());
-        assertEquals(6668, positionTest.getGeocoordinate().getLongitude());
+        assertEquals(2228 ,positionTest.getGeocoordinate().getLatitude(), 1);
+        assertEquals(6668, positionTest.getGeocoordinate().getLongitude(), 1);
     }
 
     @Test
