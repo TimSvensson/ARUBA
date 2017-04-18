@@ -79,7 +79,25 @@ public class DirectionsGoogle implements DirectionsInterface {
             }
         }
 
-        return true;
+        return ((this.agents.size() + this.assignments.size()) == this.travelRoutes.size());
+    }
+
+    /**
+     * Returns the list of Agents that are in the object
+     *
+     * @return agents
+     */
+    public List<Agent> getAgents() {
+        return agents;
+    }
+
+    /**
+     * Returns the list of Assignments that are in the object
+     *
+     * @return assignments
+     */
+    public List<Assignment> getAssignments() {
+        return assignments;
     }
 
     /**
@@ -89,7 +107,7 @@ public class DirectionsGoogle implements DirectionsInterface {
      */
     @Override
     public ArrayList<TravelRoutes> getRoutes() {
-        return this.travelRoutes;
+        return travelRoutes;
     }
 
     /**
