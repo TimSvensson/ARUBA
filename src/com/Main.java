@@ -1,97 +1,13 @@
 package com;
 
-import com.google.gson.Gson;
-import com.google.maps.GeoApiContext;
-import com.google.maps.errors.ApiException;
-
-import java.io.IOException;
-
 /**
  *
  */
 public class Main {
 
-    public static void main(String [] args) throws InterruptedException, ApiException, IOException {
-
+    public static void main(String [] args){
         ARUBA aruba = new ARUBA();
-
-        String apiKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
-        GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
-
-        System.out.println("Hello world.");
-
-		/* Agent and mission data is received from Semantix */
-
-		/* Conversion of the data to Java Objects */
-
-		/* Initiate the API(s) */
-
-		/* Send requests for the travel times between each agents address and the mission address */
-
-		/* Extract the relevant data from the API responses, put the traveltime in the Agent Objects and create
-		 * a list/array of agents */
-
-		/* Send the list/array to the Sorting Algorithm that will sort the agents based on the least amount of
-		 * traveltime */
-
-		/* Conversion of this list to Semantix's code format */
-
-		/* Send the list to Semantix */
-
-
-
-        // Google Maps Directions API test
-        String destAddress = "Lägerhyddsvägen 2";
-
-        String [] firstNames        = {    "Haubir",               "Desireé",              "Tim"};
-        String [] lastNames         = {    "Mariwani",             "Björkman",             "Svensson"};
-
-        DirectionsTest directionsTest = new DirectionsTest(context, apiKey, destAddress);
-
-        // Google Maps Geocoding API test
-        GeocodeLocation geocodeLocation = new GeocodeLocation(context, destAddress);
-        System.out.println("\nGeocodeLocation: ");
-        System.out.println("Latitude: " + geocodeLocation.getDestLatitude() + "\n" + "Longitude: " + geocodeLocation.getDestLongitude());
-
-        System.out.println("length of getAddresses(): " + directionsTest.getAddresses().length);
-        for (int i = 0; i < directionsTest.getTravelDistances().length; i++) {
-            System.out.println("directionsTest.getTravelDistances()[" + i + "]: " + directionsTest.getTravelDistances()[i]);
-            System.out.println("directionsTest.getTravelTimes()[" + i + "]: " + directionsTest.getTravelTimes()[i]);
-        }
-        // Sorting algorithm test
-        System.out.println("\nSortingList and DirectionsTest: ");
-        SortingList sortingList =   new SortingList(directionsTest.getAddresses().length, firstNames, lastNames, directionsTest.getAddresses(),
-                                                    directionsTest.getTravelDistances(), directionsTest.getTravelTimes());
-
-        System.out.println("\nsortingList contains " + sortingList.getSize() + " agents.\n");
-        sortingList.printList();
-
-        // JSON test
-        Gson g = new Gson();
-
-        Assignment newAssignment = new Assignment(new Position("75"), "666", "", 1, 100);
-        String jsonNewAssignment = g.toJson(newAssignment);
-        System.out.println(jsonNewAssignment);
-
-        Agent [] agentArray = new Agent[sortingList.getSize()];
-        for (int i = 0; i < sortingList.getSize(); i++) {
-            agentArray[i] = sortingList.getAgent(i);
-        }
-
-        String jsonAgentArray = g.toJson(agentArray);
-        System.out.println(jsonAgentArray);
-
-        Order newOrder = new Order(newAssignment, agentArray);
-        String jsonNewOrder = g.toJson(newOrder);
-        System.out.println(jsonNewOrder);
-
-        String sortingListJSON = g.toJson(sortingList);
-        System.out.println(sortingListJSON);
-
-        SortingList newList = g.fromJson(sortingListJSON, SortingList.class);
-
-        System.out.println("newList contains " + newList.getSize() + " agents.");
-        newList.printList();
+        aruba.run();
     }
 }
 
