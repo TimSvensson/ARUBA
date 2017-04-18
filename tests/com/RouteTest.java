@@ -7,14 +7,22 @@ import org.junit.Test;
 import static org.testng.AssertJUnit.*;
 
 /**
- * Created by timsvensson on 17/04/17.
+ * Tests for Route.java.
+ * <p>
+ * Tests the basic functionality of the Route class. Assures that it stores the correct values in the correct member
+ * variables. Mostly sanity checks to catch any strange errors that may or may not occure.
+ * </p>
+ *
+ * @author Tim Svensson <tim.svensson@fasbros.it>
+ * @version JDK 1.8
+ * @since JDK 1.8
  */
 public class RouteTest {
 
-    String vehicle = "foot";
-    double distance = 1337;
-    long time = 9001;
-    Route route = new Route(distance, time, vehicle);
+    private String vehicle = "foot";
+    private double distance = 1337;
+    private long time = 9001;
+    private Route route = new Route(distance, time, vehicle);
 
     @Test
     public void getDistance() {
