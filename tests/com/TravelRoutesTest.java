@@ -1,48 +1,46 @@
 package com;
 
-import org.junit.jupiter.api.Test;
-
+import org.junit.Test;
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.testng.AssertJUnit.*;
 
 /**
  * Created by timsvensson on 17/04/17.
  */
 public class TravelRoutesTest {
 
-    Position p0;
-    Position p1;
+    public Position p0;
+    public Position p1;
 
-    Agent ag = new Agent(p0, "agent", "A", "Gent", -1, -1);
+    public Agent ag = new Agent(p0, "agent", "A", "Gent", -1, -1);
 
-    Assignment as = new Assignment(p1, "assignment", "Ass Ignment", -1, -1);
+    public Assignment as = new Assignment(p1, "assignment", "Ass Ignment", -1, -1);
 
-    double d0 = 1000;
-    double d1 = 2000;
-    double d2 = 3000;
+    public double d0 = 1000;
+    public double d1 = 2000;
+    public double d2 = 3000;
 
-    long t0 = 150;
-    long t1 = 300;
-    long t2 = 450;
+    public long t0 = 150;
+    public long t1 = 300;
+    public long t2 = 450;
 
-    String v0 = "bike";
-    String v1 = "car";
-    String v2 = "foot";
+    public String v0 = "bike";
+    public String v1 = "car";
+    public String v2 = "foot";
 
-    Route r0 = new Route(d0, t0, v0);
-    Route r1 = new Route(d1, t1, v1);
-    Route r2 = new Route(d2, t2, v2);
+    public Route r0 = new Route(d0, t0, v0);
+    public Route r1 = new Route(d1, t1, v1);
+    public Route r2 = new Route(d2, t2, v2);
 
-    ArrayList<Route> rs0 = new ArrayList<>(); // empty
-    ArrayList<Route> rs1 = new ArrayList<>();
-    ArrayList<Route> rs2 = new ArrayList<>();
-    ArrayList<Route> rs3 = new ArrayList<>();
+    public ArrayList<Route> rs0 = new ArrayList<>(); // empty
+    public ArrayList<Route> rs1 = new ArrayList<>();
+    public ArrayList<Route> rs2 = new ArrayList<>();
+    public ArrayList<Route> rs3 = new ArrayList<>();
 
-    TravelRoutes tr0; // no routes
-    TravelRoutes tr1;
-    TravelRoutes tr2;
-    TravelRoutes tr3;
+    public TravelRoutes tr0; // no routes
+    public TravelRoutes tr1;
+    public TravelRoutes tr2;
+    public TravelRoutes tr3;
 
     public TravelRoutesTest() {
 
@@ -81,10 +79,10 @@ public class TravelRoutesTest {
 
     @Test
     public void getAssignment() throws Exception {
-        assertTrue(tr0.getAssignment().equals(ag));
-        assertTrue(tr1.getAssignment().equals(ag));
-        assertTrue(tr2.getAssignment().equals(ag));
-        assertTrue(tr3.getAssignment().equals(ag));
+        assertTrue(tr0.getAssignment().equals(as));
+        assertTrue(tr1.getAssignment().equals(as));
+        assertTrue(tr2.getAssignment().equals(as));
+        assertTrue(tr3.getAssignment().equals(as));
     }
 
     @Test
@@ -101,7 +99,7 @@ public class TravelRoutesTest {
         ArrayList<Route> tmp1 = tr1.getRoutes();
 
         assertFalse(tmp1.isEmpty());
-        assertTrue(tmp1.get(0)==r0);
+        assertTrue(tmp1.get(0)==r1);
 
         // tr2
         ArrayList<Route> tmp2 = tr2.getRoutes();
@@ -154,8 +152,8 @@ public class TravelRoutesTest {
 
         assertFalse(tmp2.getRoutes().isEmpty());
 
-        tmp1.addRoute(r1);
-        tmp1.addRoute(r2);
+        tmp2.addRoute(r1);
+        tmp2.addRoute(r2);
 
         assertTrue(tmp2.getRoute(0).equals(r0));
         assertTrue(tmp2.getRoute(1).equals(r1));

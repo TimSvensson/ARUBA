@@ -26,7 +26,7 @@ import org.junit.runners.Suite;
         OrderTest.class,
         PositionTest.class,
         RouteTest.class,
-        TravelRoutes.class
+        TravelRoutesTest.class,
 })
 
 public final class AllTest {}

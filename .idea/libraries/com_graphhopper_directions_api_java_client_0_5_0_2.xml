@@ -2,19 +2,15 @@
   <library name="com.graphhopper:directions-api-java-client:0.5.0.2" type="repository">
     <properties maven-id="com.graphhopper:directions-api-java-client:0.5.0.2" />
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/directions-api-java-client-0.5.0.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/graphhopper-0.5.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/trove4j-3.0.3.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.12.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/okhttp-2.4.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/okio-1.4.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/json-20140107.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/graphhopper/directions-api-java-client/0.5.0.2/directions-api-java-client-0.5.0.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/graphhopper/graphhopper/0.5.0/graphhopper-0.5.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/sf/trove4j/trove4j/3.0.3/trove4j-3.0.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.12/slf4j-api-1.7.12.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/squareup/okhttp/okhttp/2.4.0/okhttp-2.4.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/squareup/okio/okio/1.4.0/okio-1.4.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/json/json/20140107/json-20140107.jar!/" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/lib/directions-api-java-client-0.5.0.2-javadoc.jar!/" />
-    </JAVADOC>
-    <SOURCES>
-      <root url="jar://$PROJECT_DIR$/lib/directions-api-java-client-0.5.0.2-sources.jar!/" />
-    </SOURCES>
+    <JAVADOC />
+    <SOURCES />
   </library>
 </component>

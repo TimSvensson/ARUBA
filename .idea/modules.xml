@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ARUBA.iml" filepath="$PROJECT_DIR$/ARUBA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ARUBA.iml" filepath="$PROJECT_DIR$/.idea/ARUBA.iml" />
     </modules>
   </component>
 </project>

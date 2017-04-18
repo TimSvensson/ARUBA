@@ -1,13 +1,15 @@
 package com;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+//import static org.junit.Assertions.*;
+import static org.testng.AssertJUnit.*;
 
 /**
  * Created by timsvensson on 17/04/17.
  */
-class RouteTest {
+public class RouteTest {
 
     String vehicle = "foot";
     double distance = 1337;
@@ -15,17 +17,17 @@ class RouteTest {
     Route route = new Route(distance, time, vehicle);
 
     @Test
-    void getDistance() {
+    public void getDistance() {
         assertEquals(distance, route.getDistance());
     }
 
     @Test
-    void getTime() {
+    public void getTime() {
         assertEquals(time, route.getTime());
     }
 
     @Test
-    void getModeOfTransport() {
+    public void getModeOfTransport() {
         assertTrue(route.getModeOfTransport().equals(vehicle));
     }
 
