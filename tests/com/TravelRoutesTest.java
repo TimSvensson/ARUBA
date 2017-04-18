@@ -9,38 +9,38 @@ import static org.testng.AssertJUnit.*;
  */
 public class TravelRoutesTest {
 
-    public Position p0;
-    public Position p1;
+    Position p0;
+    Position p1;
 
-    public Agent ag = new Agent(p0, "agent", "A", "Gent", -1, -1);
+    Agent ag = new Agent(p0, "agent", "A", "Gent", -1, -1);
 
-    public Assignment as = new Assignment(p1, "assignment", "Ass Ignment", -1, -1);
+    Assignment as = new Assignment(p1, "assignment", "Ass Ignment", -1, -1);
 
-    public double d0 = 1000;
-    public double d1 = 2000;
-    public double d2 = 3000;
+    double d0 = 1000;
+    double d1 = 2000;
+    double d2 = 3000;
 
-    public long t0 = 150;
-    public long t1 = 300;
-    public long t2 = 450;
+    long t0 = 150;
+    long t1 = 300;
+    long t2 = 450;
 
-    public String v0 = "bike";
-    public String v1 = "car";
-    public String v2 = "foot";
+    String v0 = "bike";
+    String v1 = "car";
+    String v2 = "foot";
 
-    public Route r0 = new Route(d0, t0, v0);
-    public Route r1 = new Route(d1, t1, v1);
-    public Route r2 = new Route(d2, t2, v2);
+    Route r0 = new Route(d0, t0, v0);
+    Route r1 = new Route(d1, t1, v1);
+    Route r2 = new Route(d2, t2, v2);
 
-    public ArrayList<Route> rs0 = new ArrayList<>(); // empty
-    public ArrayList<Route> rs1 = new ArrayList<>();
-    public ArrayList<Route> rs2 = new ArrayList<>();
-    public ArrayList<Route> rs3 = new ArrayList<>();
+    ArrayList<Route> rs0 = new ArrayList<>(); // empty
+    ArrayList<Route> rs1 = new ArrayList<>();
+    ArrayList<Route> rs2 = new ArrayList<>();
+    ArrayList<Route> rs3 = new ArrayList<>();
 
-    public TravelRoutes tr0; // no routes
-    public TravelRoutes tr1;
-    public TravelRoutes tr2;
-    public TravelRoutes tr3;
+    TravelRoutes tr0; // no routes
+    TravelRoutes tr1;
+    TravelRoutes tr2;
+    TravelRoutes tr3;
 
     public TravelRoutesTest() {
 
