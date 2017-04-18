@@ -55,6 +55,7 @@ public class DirectionsGoogle implements DirectionsInterface {
      */
     @Override
     public boolean CalculateDistances() {
+        System.out.println("Entering CalculateDistances");
         for (Agent a : this.agents) {
             for (Assignment ass : this.assignments) {
                 try {
@@ -79,7 +80,7 @@ public class DirectionsGoogle implements DirectionsInterface {
             }
         }
 
-        return ((this.agents.size() + this.assignments.size()) == this.travelRoutes.size());
+        return ((this.agents.size() * this.assignments.size()) == this.travelRoutes.size());
     }
 
     /**

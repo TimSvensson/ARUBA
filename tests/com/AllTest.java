@@ -16,8 +16,8 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        GoogleDirectionsAPITest.class,
-        GoogleGeocodingAPITest.class,
+        DirectionsGoogleTest.class,
+        GeocodingGoogleTest.class,
 
         GHMatrixAPITest.class,
 

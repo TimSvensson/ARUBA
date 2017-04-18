@@ -1,8 +1,7 @@
 package com;
 
 import com.Debug.Debugger;
-import com.GoogleAPI.DirectionsGoogle;
-import com.google.gson.Gson;
+import com.GoogleAPI.GeocodingGoogle;
 import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
 
@@ -18,16 +17,14 @@ public class ARUBA implements Runnable {
 
     @Override
     public void run() {
-
+/*
         try {
             Debugger.setup();
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("Problems with creating the log files");
         }
-
-
-
+*/
         System.out.println("Hello world.");
 
 		/* Agent and mission data is received from Semantix */
@@ -54,26 +51,13 @@ public class ARUBA implements Runnable {
 
 
         // Google Maps Directions API test
-        String destAddress = "751 45";
+        String destAddress = "Dragarbrunn";
 
         String [] firstNames        = {    "Haubir",               "Desireé",              "Tim"};
         String [] lastNames         = {    "Mariwani",             "Björkman",             "Svensson"};
 
 
         // Google Maps Geocoding API test
-        GeocodeLocation geocodeLocation = null;
-        try {
-            geocodeLocation = new GeocodeLocation(context, destAddress);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ApiException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("\nGeocodeLocation: ");
-        System.out.println("Latitude: " + geocodeLocation.getDestLatitude() + "\n" + "Longitude: " + geocodeLocation.getDestLongitude());
 
         // JSON test
 /*        Gson g = new Gson();
