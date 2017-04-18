@@ -40,6 +40,7 @@ public class GeocodingGoogle implements GeocodingInterface {
     private double latitude;
     private double longitude;
     private String formattedAddress;
+    private String inputString;
     private GeocodingResult[] results;
 
     /**
@@ -53,6 +54,15 @@ public class GeocodingGoogle implements GeocodingInterface {
      */
     public GeocodingGoogle(String address) throws InterruptedException, ApiException, IOException {
         this.modify(address);
+    }
+
+    /**
+     * Returns the original address string that was geocoded
+     *
+     * @return inputString
+     */
+    public String getInputString() {
+        return inputString;
     }
 
     /**
@@ -100,6 +110,7 @@ public class GeocodingGoogle implements GeocodingInterface {
     // TODO!! Måste kunna spara alla resultat i result-arrayen.
     public void modify(String address) throws InterruptedException, ApiException, IOException {
         this.results = GeocodingApi.geocode(this.context, address).await();
+        this.inputString = address;
         this.formattedAddress = this.results[0].formattedAddress;
         this.latitude = this.results[0].geometry.location.lat;
         this.longitude = this.results[0].geometry.location.lng;
