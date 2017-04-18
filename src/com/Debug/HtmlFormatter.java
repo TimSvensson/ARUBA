@@ -29,7 +29,8 @@ import java.util.logging.LogRecord;
  * @version JDK 1.8
  * @since JDK 1.8
  */
-public class HtmlFormatter extends Formatter {
+public class HtmlFormatter { // extends Formatter {
+/*
     // this method is called for every log records
     public String format(LogRecord rec) {
         StringBuffer buf = new StringBuffer(1000);
@@ -89,4 +90,5 @@ public class HtmlFormatter extends Formatter {
     public String getTail(Handler h) {
         return "</table>\n</body>\n</html>";
     }
+*/
 }
