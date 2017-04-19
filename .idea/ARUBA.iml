@@ -41,5 +41,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="com.mapbox.mapboxsdk:mapbox-java-services-rx:2.0.0" level="project" />
+    <orderEntry type="library" name="com.mapbox.mapboxsdk:mapbox-java-geojson:2.0.0" level="project" />
   </component>
 </module>
