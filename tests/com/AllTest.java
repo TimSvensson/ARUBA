@@ -23,6 +23,7 @@ import org.junit.runners.Suite;
 
         AgentTest.class,
         AssignmentTest.class,
+        JsonObjectTest.class,
         OrderTest.class,
         PositionTest.class,
         RouteTest.class,

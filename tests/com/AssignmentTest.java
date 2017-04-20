@@ -19,15 +19,13 @@ public class AssignmentTest {
 
     @Test
     public void setId() throws Exception {
+        assTest.setId("12");
         assTest.setId("55");
         assertEquals("55", assTest.getId());
     }
 
     @Test
     public void getPosition() throws Exception {
-        Geocoordinate geoHelp = new Geocoordinate(2222, 6666);
-        Position posHelp = new Position(geoTestHelp, "", "", "", "", "", "");
-
         assertTrue(assTest.getPosition().getAddress() == "");
         assertTrue(assTest.getPosition().getCity() == "");
         assertTrue(assTest.getPosition().getCountry() == "");
@@ -38,7 +36,7 @@ public class AssignmentTest {
     @Test
     public void setPosition() throws Exception {
         Geocoordinate geoHelp = new Geocoordinate(2222, 6666);
-        Position newPosition = new Position(geoTestHelp, "", "Uppsala", "", "", "", "");
+        Position newPosition = new Position(geoHelp, "", "Uppsala", "", "", "", "");
         assTest.setPosition(newPosition);
 
         assertTrue(assTest.getPosition().getAddress() == "");
@@ -46,6 +44,7 @@ public class AssignmentTest {
         assertTrue(assTest.getPosition().getCountry() == "");
         assertTrue(assTest.getPosition().getPostcode() == "");
         assertTrue(assTest.getPosition().getZip() == "");
+        assertEquals(geoHelp, assTest.getPosition().getGeocoordinate());
     }
 
     @Test
