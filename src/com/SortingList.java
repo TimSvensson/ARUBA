@@ -17,6 +17,7 @@ package com;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class SortingList {
     private List<Agent> listOfAgents = new ArrayList<Agent>();
@@ -27,7 +28,6 @@ public class SortingList {
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
      *                              jagheterhaubir@gmail.com
      * The constructor creates a new SortingList object by taking a list and adding it's elements onto it's own list
-     * @param list - a list of Agents
      */
     public SortingList(List<Agent> list) {
         this.size = 0;
@@ -36,6 +36,15 @@ public class SortingList {
         }
     }
 
+    /**
+     * @author Created by Desireé Björkman -  desiree.bjorkman@fasbros.it
+     *                              desiree.bjorkman@fasbros.it
+     * The constructor creates a new SortingList object
+     */
+    public SortingList(){
+        this.listOfAgents = new ArrayList<Agent>();
+        this.size = 0;
+    }
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
      *                              jagheterhaubir@gmail.com
@@ -96,9 +105,37 @@ public class SortingList {
      * @param a - an Agent
      */
     public void addAgent(Agent a) {
-        this.listOfAgents.add(a);
-        this.size++;
-        Collections.sort(listOfAgents);
+        if (this.findID(a)) {
+            return;
+        }
+        else {
+            this.listOfAgents.add(a);
+            this.size++;
+            Collections.sort(listOfAgents);
+        }
+    }
+
+    /**
+     * @author Created by Desiree Bjorkman -  desiree.bjorkman@fasbros.it
+     *                              desiree.bjorkman@fasbros.it
+     * Checks to see if the agent already excist in the sorting list by ID.
+     * @param a - an Agent
+     * @return idExists - an boolean
+     */
+    public boolean findID(Agent a) {
+        boolean idExists = false;
+        if (this.getSize() == 0) {
+            idExists = false;
+        }
+        else {
+            for (int i = 0; i < this.getSize(); i++) {
+                if (this.getAgent(i).getId().equals(a.getId())) {
+                    idExists = true;
+                    break;
+                }
+            }
+        }
+        return idExists;
     }
 
     /**

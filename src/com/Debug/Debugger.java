@@ -26,6 +26,7 @@ import java.util.logging.*;
  * @since JDK 1.8
  */
 public class Debugger {
+/*
     static private FileHandler fileTxt;
     static private SimpleFormatter formatterTxt;
 
@@ -58,4 +59,5 @@ public class Debugger {
         fileHTML.setFormatter(formatterHTML);
         logger.addHandler(fileHTML);
     }
+*/
 }
