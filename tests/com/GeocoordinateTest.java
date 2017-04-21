@@ -1,8 +1,8 @@
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
+package com;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
@@ -10,13 +10,49 @@ import static org.junit.Assert.*;
 /**
  * Created by timsvensson on 20/04/17.
  */
-@RunWith(Arquillian.class)
 public class GeocoordinateTest {
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addClass(com.Geocoordinate.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+
+    Geocoordinate g;
+
+    double lat;
+    double lon;
+    double tmp;
+
+    @Before
+    public void setUp() throws Exception {
+        lat = 1;
+        lon = 2;
+        tmp = 3;
+
+        g = new Geocoordinate(lat, lon);
     }
+
+    @After
+    public void tearDown() throws Exception {
+    }
+
+    @Test
+    public void getLatitude() throws Exception {
+        assertEquals(lat, g.getLatitude(), 0);
+    }
+
+    @Test
+    public void setLatitude() throws Exception {
+        g.setLatitude(tmp);
+        assertEquals(tmp, g.getLatitude(),0);
+    }
+
+    @Test
+    public void getLongitude() throws Exception {
+        assertEquals(lon, g.getLongitude(), 0);
+    }
+
+    @Test
+    public void setLongitude() throws Exception {
+        g.setLongitude(tmp);
+        assertEquals(tmp, g.getLongitude(), 0);
+    }
+
+
 
 }

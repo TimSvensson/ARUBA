@@ -12,6 +12,9 @@
 
 package com.GraphHopperDirectionsAPI;
 
+import com.Interface.GeocodingInterface;
+import com.Position;
+
 /**
  * Class summary.
  * <p>
@@ -22,7 +25,15 @@ package com.GraphHopperDirectionsAPI;
  * @version JDK 1.8
  * @since JDK 1.8
  */
-public class GHGeocodingAPI {
+public class GHGeocodingAPI implements GeocodingInterface {
 
+    @Override
+    public boolean geocode(Position position) {
+        return false;
+    }
 
+    @Override
+    public boolean reverseGeocode(Position position) {
+        return false;
+    }
 }

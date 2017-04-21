@@ -31,7 +31,7 @@ public interface DirectionsInterface {
      *
      * @return True if call was successful, otherwise false.
      */
-    boolean doCalculation();
+    boolean CalculateDistances();
 
     /**
      * Returns all routes saved in the objects member variables.
@@ -56,12 +56,19 @@ public interface DirectionsInterface {
      */
     ArrayList<TravelRoutes> getRoutes(Assignment assignment);
 
-    void addAgent(Agent agent);
+    void AddAgent(Agent agent);
 
-    void addAgents(List<Agent> agents);
+    void AddAgents(List<Agent> agents);
 
-    void addAssignment(Assignment assignment);
+    void AddAssignment(Assignment assignment);
 
-    void addAssignments(List<Assignment> assignments);
+    void AddAssignments(List<Assignment> assignments);
+
+    /**
+     * Sets the mode of transportation to be used in the API call when calculating the routes.
+     *
+     * @param modeOfTransport
+     */
+    void setModeOfTransport(String modeOfTransport);
 
 }

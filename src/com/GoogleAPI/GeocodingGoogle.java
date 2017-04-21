@@ -1,6 +1,7 @@
 package com.GoogleAPI;
 
 import com.Interface.GeocodingInterface;
+import com.Position;
 
 /**
  * Created by timsvensson on 11/04/17.
@@ -8,5 +9,13 @@ import com.Interface.GeocodingInterface;
 public class GeocodingGoogle implements GeocodingInterface {
 
 
+    @Override
+    public boolean geocode(Position position) {
+        return false;
+    }
 
+    @Override
+    public boolean reverseGeocode(Position position) {
+        return false;
+    }
 }

@@ -1,22 +1,29 @@
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.runner.RunWith;
+package com.GraphHopperDirectionsAPI;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 /**
  * Created by timsvensson on 21/04/17.
  */
-@RunWith(Arquillian.class)
 public class GHGeocodingAPITest {
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addClass(com.GraphHopperDirectionsAPI.GHGeocodingAPI.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
+
+    @Test
+    public void geocode() throws Exception {
+    }
+
+    @Test
+    public void reverseGeocode() throws Exception {
     }
 
 }

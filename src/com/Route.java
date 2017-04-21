@@ -29,6 +29,7 @@ public class Route {
     private double distance;
     private long time;
     private String modeOfTransport;
+    // TODO Add unit variable for time and distance
 
     //</editor-fold>
 

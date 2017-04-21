@@ -24,24 +24,32 @@ import static org.junit.Assert.assertTrue;
 public class GHMatrixAPITest {
 
     private String apiKey = "7992858f-c567-4ae8-b47c-f409b65f91f4";
-    private GHMatrixAPI ghm = new GHMatrixAPI(apiKey);
-
-    private Geocoordinate agGC1 = new Geocoordinate(49.6724, 11.3494);
-    private Position agPos1 = new Position(agGC1, "", "", "", "","", "");
-    private Agent ag1 = new Agent(agPos1, "", "Haubir", "Mariwani", -1, -1);
-
-    private Geocoordinate asGC1 = new Geocoordinate(49.6550, 11.4180);
-    private Position asPos1 = new Position(asGC1, "", "", "", "", "", "");
-    private Assignment as1 = new Assignment(asPos1, "", "Tim", 1200, 1200);
 
     @Test
     public void oneAgentOneAssignment() {
 
-        ghm.addAgent(ag1);
-        ghm.addAssignment(as1);
+        GHMatrixAPI ghm = new GHMatrixAPI(apiKey);
+
+        Geocoordinate agGC = new Geocoordinate(49.6724, 11.3494);
+        Position agPos = new Position(agGC, "", "", "", "","", "");
+        Agent agent = new Agent(agPos, "1", "Haubir", "Mariwani", -1, -1);
+
+        Geocoordinate asGC = new Geocoordinate(49.6550, 11.4180);
+        Position asPos = new Position(asGC, "", "", "", "", "", "");
+        Assignment assignment = new Assignment(asPos, "0", "Tim", 1200, 1200);
+
+        ArrayList<Agent> agents = new ArrayList<>();
+        agents.add(agent);
+
+        ArrayList<Assignment> assignments = new ArrayList<>();
+        assignments.add(assignment);
+
+        ghm.AddAgents(agents);
+        ghm.AddAssignments(assignments);
+        ghm.setModeOfTransport("car");
 
         // Check Calculations were done without error
-        assertTrue(ghm.doCalculation());
+        assertTrue(ghm.CalculateDistances());
 
         // Check that there are TravelsRoutes in ghm
         ArrayList<TravelRoutes> travelRoutes = ghm.getRoutes();
@@ -50,8 +58,8 @@ public class GHMatrixAPITest {
         // Check that the correct info was received
         TravelRoutes tr = travelRoutes.get(0);
 
-        assertTrue(tr.getAgent().equals(ag1));
-        assertTrue(tr.getAssignment().equals(as1));
+        assertTrue(tr.getAgent().equals(agent));
+        assertTrue(tr.getAssignment().equals(assignment));
 
         assertTrue(tr.getRoute(0).getModeOfTransport().equals("car"));
         assertEquals(tr.getRoute(0).getDistance(), 9736.0, 0.1);
@@ -59,33 +67,49 @@ public class GHMatrixAPITest {
     }
 
     @Test
-    public void oneAgentManyAssignments() {
-
-    }
-
-    @Test
     public void manyAgentsOneAssignment() {
 
+        GHMatrixAPI ghm = new GHMatrixAPI(apiKey);
+
+        Geocoordinate asGC = new Geocoordinate(59.840983, 17.649454);
+        Position asPos = new Position(asGC, "", "", "", "", "", "");
+        Assignment assignment = new Assignment(asPos, "0", "Polhacksbacken", 1200, 1200);
+
+        ghm.AddAssignment(assignment);
+
+        Geocoordinate haubirGC = new Geocoordinate(59.850672, 17.590611);
+        Position haubirPos = new Position(haubirGC, "", "", "", "","", "");
+        Agent haubir = new Agent(haubirPos, "1", "Haubir", "Mariwani", -1, -1);
+
+        Geocoordinate timGC = new Geocoordinate(59.850355, 17.584581);
+        Position timPos = new Position(timGC, "", "", "", "","", "");
+        Agent tim = new Agent(timPos, "2", "Tim", "Svensson", -1, -1);
+
+        Geocoordinate dessGC = new Geocoordinate(59.850171, 17.582500);
+        Position dessPos = new Position(dessGC, "", "", "", "","", "");
+        Agent dess = new Agent(dessPos, "3", "Dessireé", "Björkman", -1, -1);
+
+        Geocoordinate chrilleGC = new Geocoordinate(59.853686, 17.599512);
+        Position chrillePos = new Position(chrilleGC, "", "", "", "","", "");
+        Agent chrille = new Agent(chrillePos, "4", "Christian", "Gullberg", -1, -1);
+
+        ArrayList<Agent> agents = new ArrayList<>();
+        agents.add(haubir);
+        agents.add(tim);
+        agents.add(dess);
+        agents.add(chrille);
+
+        ghm.AddAgents(agents);
+
+        ghm.setModeOfTransport("car");
+
+        assertTrue(ghm.CalculateDistances());
+
+        ArrayList<TravelRoutes> tr = ghm.getRoutes();
+
+        assertEquals(haubir, tr.get(0).getAgent());
+        assertEquals(tim, tr.get(1).getAgent());
+        assertEquals(dess, tr.get(2).getAgent());
+        assertEquals(chrille, tr.get(3).getAgent());
     }
-
-    @Test
-    public void manyAgentsManyAssignments() {
-
-    }
-
-    @Test
-    public void getRoutes() {
-//        assertTrue(false);
-    }
-
-    @Test
-    public void getRoutes1() {
-//        assertTrue(false);
-    }
-
-    @Test
-    public void getRoutes2() {
-//        assertTrue(false);
-    }
-
 }

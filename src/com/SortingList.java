@@ -1,4 +1,13 @@
 
+
+
+package com;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+
 /**
  *
  * A sorted list based on the least amount of travelTime that each Agent has.
@@ -11,14 +20,6 @@
  * @version //What version of java is current
  * @since April 11th of 2017
  */
-
-package com;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-
 public class SortingList {
     private List<Agent> listOfAgents = new ArrayList<Agent>();
     private int size;

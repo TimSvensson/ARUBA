@@ -19,7 +19,6 @@ import com.Route;
 import com.TravelRoutes;
 import com.graphhopper.api.*;
 import com.graphhopper.util.shapes.GHPoint;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +41,7 @@ public class GHMatrixAPI implements DirectionsInterface {
     private final String APIkey;
     GraphHopperMatrixWeb matrixClient;
 
-
+    private String modeOfTransport;
     private ArrayList<Agent> agents = new ArrayList<>();
     private ArrayList<Assignment> assignments = new ArrayList<>();
 
@@ -66,27 +65,27 @@ public class GHMatrixAPI implements DirectionsInterface {
     //<editor-fold desc="Public Mathods">
 
     @Override
-    public void addAgent(Agent agent) {
-        agents.add(agent);
-    }
-
-    @Override
-    public void addAgents(List<Agent> agents) {
+    public void AddAgents(List<Agent> agents) {
         this.agents.addAll(agents);
     }
 
     @Override
-    public void addAssignment(Assignment assignment) {
-        assignments.add(assignment);
+    public void AddAssignment(Assignment assignment) {
+        this.assignments.add(assignment);
     }
 
     @Override
-    public void addAssignments(List<Assignment> assignments) {
+    public void AddAssignments(List<Assignment> assignments) {
         this.assignments.addAll(assignments);
     }
 
     @Override
-    public boolean doCalculation() {
+    public void setModeOfTransport(String modeOfTransport) {
+        this.modeOfTransport = modeOfTransport;
+    }
+
+    @Override
+    public boolean CalculateDistances() {
 
         GHMRequest ghmRequest = new GHMRequest();
 
@@ -94,16 +93,18 @@ public class GHMatrixAPI implements DirectionsInterface {
         ghmRequest.addOutArray("distances");
         ghmRequest.addOutArray("times");
 
-        String modeOfTransport = "car";
-
-        ghmRequest.setVehicle(modeOfTransport);
-
         for( Agent a : agents ) {
             ghmRequest.addFromPoint(ToGHPoint(a));
         }
 
         for (Assignment a : assignments ) {
             ghmRequest.addToPoint(ToGHPoint(a));
+        }
+
+        if (this.modeOfTransport == null || this.modeOfTransport.isEmpty() || this.modeOfTransport.equals("")) {
+            ghmRequest.setVehicle("car");
+        } else {
+            ghmRequest.setVehicle(this.modeOfTransport);
         }
 
         matrixResponse = matrixClient.route(ghmRequest);
@@ -114,19 +115,18 @@ public class GHMatrixAPI implements DirectionsInterface {
 
         travelRoutes = new ArrayList<>();
 
-        int index = 0;
+        int toIndex = 0;
+        int fromIndex = 0;
         for (Assignment assignment : assignments) {
-
             for (Agent agent : agents) {
-
-                GHMResponse response = matrixResponse.get(index, index);
-
+                GHMResponse response = matrixResponse.get(fromIndex, toIndex);
                 Route route = new Route(response.getDistance(), response.getTime(), modeOfTransport);
 
                 travelRoutes.add(new TravelRoutes(agent, assignment, route));
-                index++;
-            }
 
+                fromIndex++;
+            }
+            toIndex++;
         }
 
         return true;
@@ -140,14 +140,17 @@ public class GHMatrixAPI implements DirectionsInterface {
 
     @Override
     public ArrayList<TravelRoutes> getRoutes(Agent agent) {
-        // TODO
-        throw new NotImplementedException();
+        return null;
     }
 
     @Override
     public ArrayList<TravelRoutes> getRoutes(Assignment assignment) {
-        // TODO
-        throw new NotImplementedException();
+        return null;
+    }
+
+    @Override
+    public void AddAgent(Agent agent) {
+
     }
 
     public String getError() {
