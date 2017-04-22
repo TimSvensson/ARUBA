@@ -11,6 +11,8 @@
 
 package com.Interface;
 
+import java.util.List;
+
 /**
  * Interface for the functionalities and duties of the sorting algorithm in this system.
  * <p>
@@ -21,21 +23,21 @@ package com.Interface;
  * @version JDK 1.8
  * @since JDK 1.8
  */
-public interface SortingInterface {
+public interface SortingInterface<T> {
 
     /**
      * Adds an element to the list.
      *
      * @return true if the element was successfully added, otherwise false.
      */
-    boolean addToList();
+    boolean addToList(T object);
 
     /**
      * Returns the list.
      *
      * @return The list.
      */
-    SortingList<T> getList();
+    List<T> getList();
 
     /**
      * Sorts the list according to the criteria.
@@ -43,5 +45,5 @@ public interface SortingInterface {
      * @return true if the list was successfully sorted, otherwise false.
      */
     boolean sortList();
-
 }
+
