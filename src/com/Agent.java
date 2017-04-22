@@ -14,16 +14,13 @@
 
 package com;
 
-public class Agent implements Comparable<Agent> {
+public class Agent {
     private Position position;
     private String id;
     private String firstName;
     private String surName;
-    private long travelTime;
-    private long distance;
 
     /*
-    roadDirections;
     travelMode;
     Boolean isWorking;
     ArrayList<Assignment> assignments;
@@ -38,16 +35,12 @@ public class Agent implements Comparable<Agent> {
      * @param id
      * @param firstName
      * @param surName
-     * @param travelTime
-     * @param distance
      */
-    public Agent(Position position, String id, String firstName, String surName, long travelTime, long distance) {
+    public Agent(Position position, String id, String firstName, String surName) {
         this.position = position;
         this.id = id;
         this.firstName = firstName;
         this.surName = surName;
-        this.travelTime = travelTime;
-        this.distance = distance;
     }
 
     /**
@@ -70,13 +63,6 @@ public class Agent implements Comparable<Agent> {
         this.position = position;
     }
 
-    /*public int getDistance() {
-        return distance;
-    }
-
-    public void setDistance(int distance) {
-        this.distance = distance;
-    }*/
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
@@ -118,45 +104,6 @@ public class Agent implements Comparable<Agent> {
         this.surName = surName;
     }
 
-    /**
-     * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *                              jagheterhaubir@gmail.com
-     * Returns the Agents traveltime to the Assignment
-     * @return travelTime
-     */
-    public long getTravelTime() {
-        return travelTime;
-    }
-
-    /**
-     * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *                              jagheterhaubir@gmail.com
-     * Sets the Agents traveltime to the Assignment, to the parameter
-     * @param travelTime
-     */
-    public void setTravelTime(int travelTime) {
-        this.travelTime = travelTime;
-    }
-
-    /**
-     * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *                              jagheterhaubir@gmail.com
-     * Returns the Agents distance to the Assignment
-     * @return distance
-     */
-    public long getDistance() {
-        return distance;
-    }
-
-    /**
-     * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *                              jagheterhaubir@gmail.com
-     * Sets the Agents distance to the Assignment, to the parameter
-     * @param distance
-     */
-    public void setDistance(long distance) {
-        this.distance = distance;
-    }
 
     public String getId() {
         return id;
@@ -186,27 +133,6 @@ public class Agent implements Comparable<Agent> {
     /*public void setWorking(Boolean working) {
         isWorking = working;
     }*/
-
-    /**
-     * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *                              jagheterhaubir@gmail.com
-     * This method decides the criteria on which the SortingList object sorts the list of Agents.
-     * Based on the traveltimes of this object and Agent o, the value that is returned can be:
-     *
-     *      < 0 - if this objects travelTime is a smaller value than the one of the Agent o.
-     *      = 0 - if this objects travelTime is the same value than the one of the Agent o.
-     *      > 0 - if this objects travelTime is a bigger value than the one of the Agent o.
-     *
-     * It overrides the compareTo() method in the Comparable interface.
-     * @param o
-     * @return the difference of the two traveltimes.
-     */
-    @Override
-    public int compareTo(Agent o) {
-        if (this.travelTime - o.travelTime < 0)         return -1;
-        else if (this.travelTime - o.travelTime == 0)   return 0;
-        else                                            return 1;
-    }
 
     @Override
     public String toString() {
