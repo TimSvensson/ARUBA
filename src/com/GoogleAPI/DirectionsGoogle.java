@@ -186,4 +186,9 @@ public class DirectionsGoogle implements DirectionsInterface {
     public void AddAssignments(List<Assignment> assignments) {
         this.assignments.addAll(assignments);
     }
+
+    @Override
+    public void setModeOfTransport(String modeOfTransport) {
+
+    }
 }

@@ -9,13 +9,19 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 /**
- * Created by timsvensson on 11/04/17.
+ * The Main entry point of the ARUBA application.
+ * <p>
+ * To be written.
+ * </p>
+ *
+ * @author Tim Svensson <tim.svensson@fasbros.it>
+ * @version JDK 1.8
+ * @since JDK 1.8
  */
-public class ARUBA implements Runnable {
+public class ARUBA {
     // use the classname for the logger, this way you can refactor
     public final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    @Override
     public void run() {
 /*
         try {

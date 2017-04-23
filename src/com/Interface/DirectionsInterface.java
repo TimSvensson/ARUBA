@@ -64,4 +64,11 @@ public interface DirectionsInterface {
 
     void AddAssignments(List<Assignment> assignments);
 
+    /**
+     * Sets the mode of transportation to be used in the API call when calculating the routes.
+     *
+     * @param modeOfTransport
+     */
+    void setModeOfTransport(String modeOfTransport);
+
 }
