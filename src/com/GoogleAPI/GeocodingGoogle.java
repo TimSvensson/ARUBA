@@ -10,10 +10,10 @@
  * Property of Fasbros IT. Do not copy, alter, distribute, or sell in any way unless given explicit permission.
  */
 
-
 package com.GoogleAPI;
 
 import com.Interface.GeocodingInterface;
+import com.Position;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
@@ -54,6 +54,16 @@ public class GeocodingGoogle implements GeocodingInterface {
      */
     public GeocodingGoogle(String address) throws InterruptedException, ApiException, IOException {
         this.modify(address);
+    }
+
+    @Override
+    public boolean geocode(Position position) {
+        return false;
+    }
+
+    @Override
+    public boolean reverseGeocode(Position position) {
+        return false;
     }
 
     /**
