@@ -1,53 +1,115 @@
 package com.GraphHopperDirectionsAPITests;
 
-import com.Agent;
-import com.Assignment;
-import com.Geocoordinate;
+import com.*;
 import com.GraphHopperDirectionsAPI.GHMatrixAPI;
-import com.Position;
 import org.junit.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 /**
- * Created by timsvensson on 12/04/17.
+ * Tests for GHMatrixAPI.java.
+ * <p>
+ * Class Description.
+ * </p>
+ *
+ * @author Tim Svensson <tim.svensson@fasbros.it>
+ * @version JDK 1.8
+ * @since JDK 1.8
  */
 public class GHMatrixAPITest {
 
-    public String apiKey = "7992858f-c567-4ae8-b47c-f409b65f91f4";
-    public GHMatrixAPI ghm = new GHMatrixAPI(apiKey);
-
-    public Geocoordinate geoCoord1 = new Geocoordinate(49.6724, 11.3494);
-    public Position pos1 = new Position(geoCoord1, "", "", "", "","", "");
-    public Agent ag1 = new Agent(pos1, "", "Haubir", "Mariwani", -1, -1);
-
-    public Geocoordinate asGeoCoord1 = new Geocoordinate(49.6550, 11.4180);
-    public Position asPos1 = new Position(asGeoCoord1, "", "", "", "", "", "");
-    public Assignment as1 = new Assignment(asPos1, "", "Tim", 1200, 1200);
+    private String apiKey = "7992858f-c567-4ae8-b47c-f409b65f91f4";
 
     @Test
-    public void calculateDistances() {
+    public void oneAgentOneAssignment() {
 
-        ghm.AddAgent(ag1);
-        ghm.AddAssignment(as1);
+        GHMatrixAPI ghm = new GHMatrixAPI(apiKey);
 
-        if (ghm.CalculateDistances()) {
-            System.out.println(ghm.getRoutes().toString());
-        } else {
-            System.out.println(ghm.getError());
-        }
+        Geocoordinate agGC = new Geocoordinate(49.6724, 11.3494);
+        Position agPos = new Position(agGC, "", "", "", "","", "");
+        Agent agent = new Agent(agPos, "1", "Haubir", "Mariwani", -1, -1);
 
+        Geocoordinate asGC = new Geocoordinate(49.6550, 11.4180);
+        Position asPos = new Position(asGC, "", "", "", "", "", "");
+        Assignment assignment = new Assignment(asPos, "0", "Tim", 1200, 1200);
+
+        ArrayList<Agent> agents = new ArrayList<>();
+        agents.add(agent);
+
+        ArrayList<Assignment> assignments = new ArrayList<>();
+        assignments.add(assignment);
+
+        ghm.AddAgents(agents);
+        ghm.AddAssignments(assignments);
+        ghm.setModeOfTransport("car");
+
+        // Check Calculations were done without error
+        assertTrue(ghm.CalculateDistances());
+
+        // Check that there are TravelsRoutes in ghm
+        ArrayList<TravelRoutes> travelRoutes = ghm.getRoutes();
+        assertFalse(travelRoutes.isEmpty());
+
+        // Check that the correct info was received
+        TravelRoutes tr = travelRoutes.get(0);
+
+        assertTrue(tr.getAgent().equals(agent));
+        assertTrue(tr.getAssignment().equals(assignment));
+
+        assertTrue(tr.getRoute(0).getModeOfTransport().equals("car"));
+        assertEquals(tr.getRoute(0).getDistance(), 9736.0, 0.1);
+        assertEquals(tr.getRoute(0).getTime(), 634000);
     }
 
     @Test
-    public void getRoutes() {
-    }
+    public void manyAgentsOneAssignment() {
 
-    @Test
-    public void getRoutes1() {
-    }
+        GHMatrixAPI ghm = new GHMatrixAPI(apiKey);
 
-    @Test
-    public void getRoutes2() {
-    }
+        Geocoordinate asGC = new Geocoordinate(59.840983, 17.649454);
+        Position asPos = new Position(asGC, "", "", "", "", "", "");
+        Assignment assignment = new Assignment(asPos, "0", "Polhacksbacken", 1200, 1200);
 
+        ghm.AddAssignment(assignment);
+
+        Geocoordinate haubirGC = new Geocoordinate(59.850672, 17.590611);
+        Position haubirPos = new Position(haubirGC, "", "", "", "","", "");
+        Agent haubir = new Agent(haubirPos, "1", "Haubir", "Mariwani", -1, -1);
+
+        Geocoordinate timGC = new Geocoordinate(59.850355, 17.584581);
+        Position timPos = new Position(timGC, "", "", "", "","", "");
+        Agent tim = new Agent(timPos, "2", "Tim", "Svensson", -1, -1);
+
+        Geocoordinate dessGC = new Geocoordinate(59.850171, 17.582500);
+        Position dessPos = new Position(dessGC, "", "", "", "","", "");
+        Agent dess = new Agent(dessPos, "3", "Dessireé", "Björkman", -1, -1);
+
+        Geocoordinate chrilleGC = new Geocoordinate(59.853686, 17.599512);
+        Position chrillePos = new Position(chrilleGC, "", "", "", "","", "");
+        Agent chrille = new Agent(chrillePos, "4", "Christian", "Gullberg", -1, -1);
+
+        ArrayList<Agent> agents = new ArrayList<>();
+        agents.add(haubir);
+        agents.add(tim);
+        agents.add(dess);
+        agents.add(chrille);
+
+        ghm.AddAgents(agents);
+
+        ghm.setModeOfTransport("car");
+
+        assertTrue(ghm.CalculateDistances());
+
+        ArrayList<TravelRoutes> tr = ghm.getRoutes();
+
+        assertEquals(haubir, tr.get(0).getAgent());
+        assertEquals(tim, tr.get(1).getAgent());
+        assertEquals(dess, tr.get(2).getAgent());
+        assertEquals(chrille, tr.get(3).getAgent());
+    }
 }

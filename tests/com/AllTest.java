@@ -27,6 +27,7 @@ import org.junit.runners.Suite;
         PositionTest.class,
         RouteTest.class,
         TravelRoutesTest.class,
+        GeocoordinateTest.class,
 })
 
 public final class AllTest {}
