@@ -36,7 +36,7 @@ public class DirectionsGoogleTest {
         for (double i = 0; i < agentAddresses.length; i++) {
             Geocoordinate geoCoord = new Geocoordinate(49.6724 + i, 11.3494 + i);
             Position pos = new Position(geoCoord, agentAddresses[(int) i], "Uppsala", "Uppsala län", "Sweden", agentPostcodes[(int) i], "75");
-            Agent agent = new Agent(pos, agentIDs[(int) i], agentFirstNames[(int) i], agentLastNames[(int) i], (long) i, (long) i);
+            Agent agent = new Agent(pos, agentIDs[(int) i], agentFirstNames[(int) i], agentLastNames[(int) i]);
             agents.add(agent);
 
             // if (i == agentAddresses.length - 1) i = 0;
@@ -67,7 +67,7 @@ public class DirectionsGoogleTest {
     public void addAgent() {
         Geocoordinate geoCoord = new Geocoordinate(49.6724 , 11.3494 );
         Position pos = new Position(geoCoord, "Drottninggatan 19", "Uppsala", "Uppsala län", "Sweden", "117 56", "75");
-        Agent agent = new Agent(pos, "666", "Haidar", "Smith", 55, 44);
+        Agent agent = new Agent(pos, "666", "Haidar", "Smith");
 
         DirectionsGoogle directionsGoogle = init();
 

@@ -32,7 +32,7 @@ public class GHMatrixAPITest {
 
         Geocoordinate agGC = new Geocoordinate(49.6724, 11.3494);
         Position agPos = new Position(agGC, "", "", "", "","", "");
-        Agent agent = new Agent(agPos, "1", "Haubir", "Mariwani", -1, -1);
+        Agent agent = new Agent(agPos, "1", "Haubir", "Mariwani");
 
         Geocoordinate asGC = new Geocoordinate(49.6550, 11.4180);
         Position asPos = new Position(asGC, "", "", "", "", "", "");
@@ -79,19 +79,19 @@ public class GHMatrixAPITest {
 
         Geocoordinate haubirGC = new Geocoordinate(59.850672, 17.590611);
         Position haubirPos = new Position(haubirGC, "", "", "", "","", "");
-        Agent haubir = new Agent(haubirPos, "1", "Haubir", "Mariwani", -1, -1);
+        Agent haubir = new Agent(haubirPos, "1", "Haubir", "Mariwani");
 
         Geocoordinate timGC = new Geocoordinate(59.850355, 17.584581);
         Position timPos = new Position(timGC, "", "", "", "","", "");
-        Agent tim = new Agent(timPos, "2", "Tim", "Svensson", -1, -1);
+        Agent tim = new Agent(timPos, "2", "Tim", "Svensson");
 
         Geocoordinate dessGC = new Geocoordinate(59.850171, 17.582500);
         Position dessPos = new Position(dessGC, "", "", "", "","", "");
-        Agent dess = new Agent(dessPos, "3", "Dessireé", "Björkman", -1, -1);
+        Agent dess = new Agent(dessPos, "3", "Dessireé", "Björkman");
 
         Geocoordinate chrilleGC = new Geocoordinate(59.853686, 17.599512);
         Position chrillePos = new Position(chrilleGC, "", "", "", "","", "");
-        Agent chrille = new Agent(chrillePos, "4", "Christian", "Gullberg", -1, -1);
+        Agent chrille = new Agent(chrillePos, "4", "Christian", "Gullberg");
 
         ArrayList<Agent> agents = new ArrayList<>();
         agents.add(haubir);

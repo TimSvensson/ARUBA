@@ -12,7 +12,7 @@ public class TravelRoutesTest {
     Position p0;
     Position p1;
 
-    Agent ag = new Agent(p0, "agent", "A", "Gent", -1, -1);
+    Agent ag = new Agent(p0, "agent", "A", "Gent");
 
     Assignment as = new Assignment(p1, "assignment", "Ass Ignment", -1, -1);
 
