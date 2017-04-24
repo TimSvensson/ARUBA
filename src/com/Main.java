@@ -1,11 +1,15 @@
 package com;
 
+import com.google.gson.Gson;
+
 /**
  *
  */
 public class Main {
 
     public static void main(String [] args){
+        Parser p = new Parser();
+        String jsonInput = p.JsonParserToJava();
         ARUBA aruba = new ARUBA();
         aruba.run();
     }
