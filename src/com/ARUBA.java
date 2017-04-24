@@ -1,11 +1,9 @@
 package com;
 
-import com.Debug.Debugger;
-import com.GoogleAPI.GeocodingGoogle;
-import com.google.maps.GeoApiContext;
-import com.google.maps.errors.ApiException;
+import com.GraphHopperDirectionsAPI.GHMatrixAPI;
+import com.Sorting.SortingList;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 /**
@@ -22,8 +20,67 @@ public class ARUBA {
     // use the classname for the logger, this way you can refactor
     public final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    public void run() {
-/*
+    private enum APIs {GraphHopper, Google, MapBox}
+
+    private final String JSONInput;
+
+    // TODO Move these to files which are imported locally in the different APIs
+    private final String GraphHopperKey;
+    private final String GoogleKey; // TODO Add
+    private final String MapBoxKey; // TODO Add
+
+    public ARUBA(String JSONInput, String graphHopperKey, String googleKey, String mapBoxKey) {
+        this.JSONInput = JSONInput;
+        GraphHopperKey = graphHopperKey;
+        GoogleKey = googleKey;
+        MapBoxKey = mapBoxKey;
+    }
+
+    public String getSortedJSON() {
+
+        // PARSER
+        Parser parser = new Parser();
+        ArrayList<Object> l = new ArrayList<>();
+
+//        l = parser.fromJson(JSONInput, l.getClass());
+
+        ArrayList<Agent> agents = new ArrayList<>();
+        ArrayList<Assignment> assignments = new ArrayList<>();
+
+        // API Calls
+
+        // TODO Create logic for choosing API
+
+        // GH API
+
+        // TODO Check if geocoding is needed
+        // TODO Implement geocoding
+
+        GHMatrixAPI ghm = new GHMatrixAPI(this.GraphHopperKey);
+
+        ghm.addAgents(agents);
+        ghm.addAssignments(assignments);
+        ghm.setModeOfTransport("car");
+
+        if (!ghm.calculateRoutes()) {
+            System.out.println("ERRORS IN GHM:\r\n" + ghm.getError().toString());
+            // TODO Handle errors
+        }
+
+        ArrayList<TravelRoutes> tr = ghm.getRoutes();
+
+        // Sorting
+
+        SortingList<TravelRoutes> sortedList = new SortingList<>(tr);
+        sortedList.sortList();
+
+        // PARSER
+
+        String output = parser.toJson(sortedList);
+
+        return output;
+
+        /*
         try {
             Debugger.setup();
         } catch (IOException e) {
@@ -31,23 +88,25 @@ public class ARUBA {
             throw new RuntimeException("Problems with creating the log files");
         }
 */
-        System.out.println("Hello world.");
+//        System.out.println("Hello world.");
 
 		/* Agent and mission data is received from Semantix */
 
 		/* Conversion of the data to Java Objects */
-        Parser parser = new Parser();
+//        Parser parser = new Parser();
 
 		/* Initiate the API(s) */
-        String apiKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
-        GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
+//        String apiKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
+//        GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
 
 		/* Send requests for the travel times between each agents address and the mission address */
 
-		/* Extract the relevant data from the API responses, put the traveltime in the Agent Objects and create
+		/* Extract the relevant data from the API responses, put the traveltime in the Agent Objects
+		 and create
 		 * a list/array of agents */
 
-		/* Send the list/array to the Sorting Algorithm that will sort the agents based on the least amount of
+		/* Send the list/array to the Sorting Algorithm that will sort the agents based on the least
+		 amount of
 		 * traveltime */
 
 		/* Conversion of this list to Semantix's code format */
@@ -57,10 +116,11 @@ public class ARUBA {
 
 
         // Google Maps Directions API test
-        String destAddress = "Dragarbrunn";
+//        String destAddress = "Dragarbrunn";
 
-        String [] firstNames        = {    "Haubir",               "Desireé",              "Tim"};
-        String [] lastNames         = {    "Mariwani",             "Björkman",             "Svensson"};
+//        String [] firstNames        = {    "Haubir",               "Desireé",              "Tim"};
+//        String [] lastNames         = {    "Mariwani",             "Björkman",
+        // "Svensson"};
 
 
         // Google Maps Geocoding API test

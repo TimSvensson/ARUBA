@@ -54,8 +54,8 @@ public class DirectionsGoogle implements DirectionsInterface {
      * @return true
      */
     @Override
-    public boolean CalculateDistances() {
-        System.out.println("Entering CalculateDistances");
+    public boolean calculateRoutes() {
+        System.out.println("Entering calculateRoutes");
         for (Agent a : this.agents) {
             for (Assignment ass : this.assignments) {
                 try {
@@ -153,7 +153,7 @@ public class DirectionsGoogle implements DirectionsInterface {
      * @param agent - The Agent that is to be added
      */
     @Override
-    public void AddAgent(Agent agent) {
+    public void addAgent(Agent agent) {
         this.agents.add(agent);
     }
 
@@ -163,7 +163,7 @@ public class DirectionsGoogle implements DirectionsInterface {
      * @param agents - The list of Agents.
      */
     @Override
-    public void AddAgents(List<Agent> agents) {
+    public void addAgents(List<Agent> agents) {
         this.agents.addAll(agents);
     }
 
@@ -173,7 +173,7 @@ public class DirectionsGoogle implements DirectionsInterface {
      * @param assignment - The Assignment to be added.
      */
     @Override
-    public void AddAssignment(Assignment assignment) {
+    public void addAssignment(Assignment assignment) {
         this.assignments.add(assignment);
     }
 
@@ -183,7 +183,7 @@ public class DirectionsGoogle implements DirectionsInterface {
      * @param assignments - The list of Agents.
      */
     @Override
-    public void AddAssignments(List<Assignment> assignments) {
+    public void addAssignments(List<Assignment> assignments) {
         this.assignments.addAll(assignments);
     }
 

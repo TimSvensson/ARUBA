@@ -44,12 +44,12 @@ public class GHMatrixAPITest {
         ArrayList<Assignment> assignments = new ArrayList<>();
         assignments.add(assignment);
 
-        ghm.AddAgents(agents);
-        ghm.AddAssignments(assignments);
+        ghm.addAgents(agents);
+        ghm.addAssignments(assignments);
         ghm.setModeOfTransport("car");
 
         // Check Calculations were done without error
-        assertTrue(ghm.CalculateDistances());
+        assertTrue(ghm.calculateRoutes());
 
         // Check that there are TravelsRoutes in ghm
         ArrayList<TravelRoutes> travelRoutes = ghm.getRoutes();
@@ -75,7 +75,7 @@ public class GHMatrixAPITest {
         Position asPos = new Position(asGC, "", "", "", "", "", "");
         Assignment assignment = new Assignment(asPos, "0", "Polhacksbacken", 1200, 1200);
 
-        ghm.AddAssignment(assignment);
+        ghm.addAssignment(assignment);
 
         Geocoordinate haubirGC = new Geocoordinate(59.850672, 17.590611);
         Position haubirPos = new Position(haubirGC, "", "", "", "","", "");
@@ -99,11 +99,11 @@ public class GHMatrixAPITest {
         agents.add(dess);
         agents.add(chrille);
 
-        ghm.AddAgents(agents);
+        ghm.addAgents(agents);
 
         ghm.setModeOfTransport("car");
 
-        assertTrue(ghm.CalculateDistances());
+        assertTrue(ghm.calculateRoutes());
 
         ArrayList<TravelRoutes> tr = ghm.getRoutes();
 

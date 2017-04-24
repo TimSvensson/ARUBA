@@ -65,17 +65,17 @@ public class GHMatrixAPI implements DirectionsInterface {
     //<editor-fold desc="Public Mathods">
 
     @Override
-    public void AddAgents(List<Agent> agents) {
+    public void addAgents(List<Agent> agents) {
         this.agents.addAll(agents);
     }
 
     @Override
-    public void AddAssignment(Assignment assignment) {
+    public void addAssignment(Assignment assignment) {
         this.assignments.add(assignment);
     }
 
     @Override
-    public void AddAssignments(List<Assignment> assignments) {
+    public void addAssignments(List<Assignment> assignments) {
         this.assignments.addAll(assignments);
     }
 
@@ -85,7 +85,7 @@ public class GHMatrixAPI implements DirectionsInterface {
     }
 
     @Override
-    public boolean CalculateDistances() {
+    public boolean calculateRoutes() {
 
         GHMRequest ghmRequest = new GHMRequest();
 
@@ -149,7 +149,7 @@ public class GHMatrixAPI implements DirectionsInterface {
     }
 
     @Override
-    public void AddAgent(Agent agent) {
+    public void addAgent(Agent agent) {
 
     }
 

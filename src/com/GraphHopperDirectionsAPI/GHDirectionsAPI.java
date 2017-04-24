@@ -50,7 +50,7 @@ public class GHDirectionsAPI implements DirectionsInterface, GeocodingInterface 
 
     //<editor-fold desc="Routing">
     @Override
-    public boolean CalculateDistances() {
+    public boolean calculateRoutes() {
         return false;
     }
 
@@ -70,22 +70,22 @@ public class GHDirectionsAPI implements DirectionsInterface, GeocodingInterface 
     }
 
     @Override
-    public void AddAgent(Agent agent) {
+    public void addAgent(Agent agent) {
 
     }
 
     @Override
-    public void AddAgents(List<Agent> agents) {
+    public void addAgents(List<Agent> agents) {
 
     }
 
     @Override
-    public void AddAssignment(Assignment assignment) {
+    public void addAssignment(Assignment assignment) {
 
     }
 
     @Override
-    public void AddAssignments(List<Assignment> assignments) {
+    public void addAssignments(List<Assignment> assignments) {
 
     }
 

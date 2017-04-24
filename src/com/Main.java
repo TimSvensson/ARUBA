@@ -6,8 +6,16 @@ package com;
 public class Main {
 
     public static void main(String [] args){
-        ARUBA aruba = new ARUBA();
-        aruba.run();
+
+        // TODO Move to file
+        final String graphHopperKey = "7992858f-c567-4ae8-b47c-f409b65f91f4";
+        final String mapBoxKey = "";
+        final String googleKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
+
+        ARUBA aruba = new ARUBA(args[0], graphHopperKey, googleKey, mapBoxKey);
+
+        // TODO return this to outside the application
+        System.out.println(aruba.getSortedJSON());
     }
 }
 
