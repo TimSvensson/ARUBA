@@ -106,7 +106,7 @@ public class Parser {
         Position positionTestHelp4 = new Position(geoTestHelp3, "Flogstavägen 77B", "Uppsala",
                                                   "Uppsala län", "Sweden",
                                                   "", "73");
-        Agent interpreter3 = new Agent(positionTestHelp3, "930529-0158", "Tim","Svensson");
+        Agent interpreter3 = new Agent(positionTestHelp3, "939393", "Tim","Svensson");
 
         ArrayList<Agent> list = new ArrayList<Agent>();
         list.add(interpreter1);
