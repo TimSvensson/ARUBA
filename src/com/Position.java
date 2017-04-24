@@ -51,6 +51,23 @@ public class Position {
         this.zip = zip;
     }
 
+    public Position() {
+    }
+
+    public Position(String address, String city, String county, String country, String postcode, String zip) {
+        this.address = address;
+        this.city = city;
+        this.county = county;
+        this.country = country;
+        this.postcode = postcode;
+        this.zip = zip;
+    }
+
+    public Position(Geocoordinate geocoordinate) {
+
+        this.geocoordinate = geocoordinate;
+    }
+
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
      *                              jagheterhaubir@gmail.com
@@ -216,5 +233,60 @@ public class Position {
      */
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+
+        // Coordinate
+        if (this.getGeocoordinate() != null) {
+            s += this.getGeocoordinate().toString();
+        }
+        // Address
+        if ( !(this.getAddress() == null || this.getAddress().isEmpty() || this.getAddress().equals("")) ) {
+            if (!s.equals("")) {
+                s += " ";
+            }
+            s += this.getAddress();
+        }
+        // Postal code
+        if ( !(this.getPostcode() == null || this.getPostcode().isEmpty()|| this.getPostcode().equals("")) ) {
+            if (!s.equals("")) {
+                s += " ";
+            }
+            s += this.getPostcode();
+        }
+        // City
+        if ( !(this.getCity() == null || this.getCity().isEmpty() || this.getCity().equals("")) ) {
+            if (!s.equals("")) {
+                s += " ";
+            }
+            s += this.getCity();
+        }
+        // County
+        if ( !(this.getCounty() == null || this.getCounty().isEmpty() || this.getCounty().equals("")) ) {
+            if (!s.equals("")) {
+                s += " ";
+            }
+            s += this.getCounty();
+        }
+        // Zip
+        if ( !(this.getZip() == null || this.getZip().isEmpty() || this.getZip().equals("")) &&
+                (this.getPostcode() == null || this.getPostcode().isEmpty() || this.getPostcode().equals("")) ) {
+            if (!s.equals("")) {
+                s += " ";
+            }
+            s += this.getZip();
+        }
+        // Country
+        if ( !(this.getCountry() == null || this.getCountry().isEmpty() || this.getCountry().equals("")) ) {
+            if (!s.equals("")) {
+                s += " ";
+            }
+            s += this.getCountry();
+        }
+
+        return s;
     }
 }
