@@ -20,6 +20,7 @@ import org.junit.runners.Suite;
         GeocodingGoogleTest.class,
 
         GHMatrixAPITest.class,
+        GHGeocodingAPITest.class,
 
         AgentTest.class,
         AssignmentTest.class,
