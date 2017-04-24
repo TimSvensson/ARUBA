@@ -65,7 +65,7 @@ public class JsonObjectTest {
         //Order receivedOrder = g.fromJson(jsonOrder, Order.class);
 
         // Change the name of the FileOutPutStream to determine what file it's saved in.
-        try (Writer writer = new OutputStreamWriter(new FileOutputStream("Input.json"), "UTF-8")) {
+        try (Writer writer = new OutputStreamWriter(new FileOutputStream("ExampleInput.json"), "UTF-8")) {
 
             Gson gson = new GsonBuilder().create();
 

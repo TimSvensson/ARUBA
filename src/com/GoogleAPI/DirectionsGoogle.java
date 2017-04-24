@@ -60,7 +60,8 @@ public class DirectionsGoogle implements DirectionsInterface {
             for (Assignment ass : this.assignments) {
                 try {
                     DirectionsResult dirResult =
-                            DirectionsApi.getDirections(this.context, a.getPosition().getAddress(), ass.getPosition().getAddress()).await();
+                            DirectionsApi.getDirections(this.context, a.getPosition().getAddress
+                                    (), ass.getPosition().getAddress()).await();
 
                     // TODO All routes and legs must be uncovered here.
                     double distance = (double)  dirResult.routes[0].legs[0].distance.inMeters;
