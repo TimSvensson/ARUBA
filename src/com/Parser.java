@@ -100,11 +100,18 @@ public class Parser {
 
         Geocoordinate geoTestHelp3 = new Geocoordinate(59.9208594, 16.606327999999962);
         Position positionTestHelp3 = new Position(geoTestHelp3, "", "Sala", "", "Sweden", "", "73");
-        Agent interpreter2 = new Agent(positionTestHelp3, "333", "Bengt", "Göteborg");
+        Agent interpreter2 = new Agent(positionTestHelp3, "666", "Bengt", "Göteborg");
+
+        Geocoordinate geoTestHelp4 = new Geocoordinate(59.850354, 17.584603);
+        Position positionTestHelp4 = new Position(geoTestHelp3, "Flogstavägen 77B", "Uppsala",
+                                                  "Uppsala län", "Sweden",
+                                                  "", "73");
+        Agent interpreter3 = new Agent(positionTestHelp3, "930529-0158", "Tim","Svensson");
 
         ArrayList<Agent> list = new ArrayList<Agent>();
         list.add(interpreter1);
         list.add(interpreter2);
+        list.add(interpreter3);
         Order jsonObjectEnd = new Order(interpretationSite, list);
         Gson g = new Gson();
         String jsonOrder = g.toJson(jsonObjectEnd);
