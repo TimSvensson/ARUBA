@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class AgentTest {
     public Geocoordinate geoTestHelp = new Geocoordinate(2222, 6666);
     public Position positionTestHelp = new Position(geoTestHelp, "", "", "", "", "", "");
-    public Agent agentTest = new Agent(positionTestHelp , "333", "Carl", "Eriksson", 22, 657);
+    public Agent agentTest = new Agent(positionTestHelp , "333", "Carl", "Eriksson");
 
     @Test
     public void getPosition() throws Exception {
@@ -55,33 +55,4 @@ public class AgentTest {
         agentTest.setSurName("Svensson");
         assertEquals("Svensson", agentTest.getSurName());
     }
-
-    @Test
-    public void getTravelTime() throws Exception {
-        assertEquals(22, agentTest.getTravelTime());
-    }
-
-    @Test
-    public void setTravelTime() throws Exception {
-        agentTest.setTravelTime(333);
-        assertEquals(333, agentTest.getTravelTime());
-    }
-
-    @Test
-    public void compareTo() throws Exception {
-        Agent agentHelp = new Agent(positionTestHelp , "323", "Bert", "Carlsson", 5, 50);
-        assertEquals(1,agentTest.compareTo(agentHelp));
-    }
-
-    @Test
-    public void getDistance() throws Exception {
-        assertEquals(657, agentTest.getDistance());
-    }
-
-    @Test
-    public void setDistance() throws Exception {
-        agentTest.setDistance(444);
-        assertEquals(444, agentTest.getDistance());
-    }
-
 }
