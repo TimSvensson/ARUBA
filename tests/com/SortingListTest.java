@@ -11,61 +11,37 @@ import static org.testng.Assert.*;
  * Created by desiree on 2017-04-18.
  */
 public class SortingListTest {
+
     public Geocoordinate geoTestHelp = new Geocoordinate(2222, 6666);
     public Position positionTestHelp = new Position(geoTestHelp, "", "", "", "", "", "");
-    public Agent agentTest = new Agent(positionTestHelp , "333", "Carl", "Eriksson", 22, 657);
-    public Agent agentTest2 = new Agent(positionTestHelp, "334", "Johan", "Back", 55, 1000);
-    public Agent agentTest3 = new Agent(positionTestHelp, "335", "Axel", "Holland", 6, 100);
+    public Agent agentTest = new Agent(positionTestHelp , "333", "Carl", "Eriksson");
+    public Agent agentTest2 = new Agent(positionTestHelp, "334", "Johan", "Back");
+    public Agent agentTest3 = new Agent(positionTestHelp, "335", "Axel", "Holland");
 
     public SortingList sortListTest = new SortingList();
 
     public SortingList sortListTest2 = new SortingList();
 
+   // Ska jag göra tester för detta? Vad menas i såna fall med criteria?
+
     @Test
-    public void testGetListOfAgents() throws Exception {
+    public void testgetList() throws Exception {
         List<Agent> listOfAgentsTest = new ArrayList<Agent>();
-        assertEquals( sortListTest.getListOfAgents(), listOfAgentsTest);
+        assertEquals( sortListTest.getList(), listOfAgentsTest);
 
         listOfAgentsTest.add(agentTest);
-        sortListTest.addAgent(agentTest);
-        assertEquals( sortListTest.getListOfAgents(), listOfAgentsTest);
+        sortListTest.addToList(agentTest);
+        assertEquals( sortListTest.getList(), listOfAgentsTest);
 
         listOfAgentsTest.add(agentTest2);
-        sortListTest.addAgent(agentTest2);
-        assertEquals( sortListTest.getListOfAgents(), listOfAgentsTest);
+        sortListTest.addToList(agentTest2);
+        assertEquals( sortListTest.getList(), listOfAgentsTest);
     }
 
+    // Jag förstår inte hur jag påverkar Taget
     @Test
-    public void testGetAgent() throws Exception {
-        sortListTest.addAgent(agentTest);
-        sortListTest.addAgent(agentTest2);
-        assertEquals(sortListTest.getAgent(1), agentTest2);
-    }
+    public void testgetTarget() throws Exception {
 
-    @Test
-    public void testGetSize() throws Exception {
-        sortListTest.addAgent(agentTest);
-        sortListTest.addAgent(agentTest2);
-        sortListTest.addAgent(agentTest3);
-
-        assertTrue(sortListTest.getSize() == 3);
-        assertTrue(sortListTest2.getSize() == 0);
-    }
-
-    @Test
-    public void testAddAgent() throws Exception {
-        sortListTest.addAgent(agentTest);
-        sortListTest.addAgent(agentTest2);
-        sortListTest.addAgent(agentTest2);
-        sortListTest.addAgent(agentTest2);
-        sortListTest.addAgent(agentTest2);
-        sortListTest.addAgent(agentTest3);
-
-        assertTrue(sortListTest.getSize() == 3);
-        }
-
-  @Test
-    public void testPrintList() throws Exception {
     }
 
 }

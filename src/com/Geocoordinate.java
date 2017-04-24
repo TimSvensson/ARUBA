@@ -39,6 +39,6 @@ public class Geocoordinate {
 
     @Override
     public String toString() {
-        return "lat " + getLatitude() + ", lon " + getLongitude();
+        return "Geocoodrinate [lat=" + getLatitude() + ", lon:=" + getLongitude() + "]";
     }
 }
