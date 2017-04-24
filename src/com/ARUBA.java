@@ -2,6 +2,7 @@ package com;
 
 import com.GraphHopperDirectionsAPI.GHMatrixAPI;
 import com.Sorting.SortingList;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -39,14 +40,13 @@ public class ARUBA {
     public String getSortedJSON() {
 
         // PARSER
-        Parser parser = new Parser();
-        ArrayList<Object> l = new ArrayList<>();
+        Gson g = new Gson();
 
-//        l = parser.fromJson(JSONInput, l.getClass());
+        Order received = g.fromJson(JSONInput, Order.class);
 
-        ArrayList<Agent> agents = new ArrayList<>();
+        ArrayList<Agent> agents = received.getAgents();
         ArrayList<Assignment> assignments = new ArrayList<>();
-
+        assignments.add(received.getAssignment());
         // API Calls
 
         // TODO Create logic for choosing API
@@ -76,7 +76,7 @@ public class ARUBA {
 
         // PARSER
 
-        String output = parser.toJson(sortedList);
+        String output = g.toJson(sortedList);
 
         return output;
 

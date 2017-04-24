@@ -61,11 +61,10 @@ public class Order {
      * Returns the array of Agents.
      * @return agents
      */
-/*
-    public Agent[] getAgents() {
+    public ArrayList<Agent> getAgents() {
         return agents;
     }
-*/
+
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
      *                              jagheterhaubir@gmail.com

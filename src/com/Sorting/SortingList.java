@@ -46,21 +46,24 @@ public class SortingList<T> implements SortingInterface {
      * @since JDK 1.8
      */
     private class ListElement implements Comparable<ListElement> {
-        private double criteria;
+        //private double criteria;
+        private double travelTime;
         private Object object;
 
         protected ListElement(double criteria, Object object) {
-            this.criteria = criteria;
+            //this.criteria = criteria;
+            this.travelTime = criteria;
             this.object = object;
         }
 
-        protected double getCriteria() {
+        /* protected double getCriteria() {
             return criteria;
         }
 
         protected void setCriteria(double criteria) {
             this.criteria = criteria;
         }
+        */
 
         protected Object getObject() {
             return object;
@@ -81,10 +84,18 @@ public class SortingList<T> implements SortingInterface {
          *          0  - if this element's criteria has the same value as the one of the parameter element.
          *          1  - if this element's criteria has a bigger value than the one of the parameter element.
          */
+/*
         @Override
         public int compareTo(ListElement o) {
             if (this.criteria - o.criteria < 0)             return -1;
             else if (this.criteria - o.criteria == 0)       return  0;
+            else                                            return  1;
+        }
+*/
+        @Override
+        public int compareTo(ListElement o) {
+            if (this.travelTime - o.travelTime < 0)             return -1;
+            else if (this.travelTime - o.travelTime == 0)       return  0;
             else                                            return  1;
         }
     }
