@@ -1,17 +1,23 @@
 package com;
 
-import com.google.gson.Gson;
-
 /**
  *
  */
 public class Main {
 
     public static void main(String [] args){
+        // TODO Move to file
+        final String graphHopperKey = "7992858f-c567-4ae8-b47c-f409b65f91f4";
+        final String mapBoxKey = "";
+        final String googleKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
+
         Parser p = new Parser();
         String jsonInput = p.JsonParserToJava();
-        ARUBA aruba = new ARUBA();
-        aruba.run();
+
+        ARUBA aruba = new ARUBA(jsonInput, graphHopperKey, googleKey, mapBoxKey);
+
+        // TODO return this to outside the application
+        System.out.println(aruba.getSortedJSON());
     }
 }
 

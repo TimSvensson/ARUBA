@@ -71,7 +71,7 @@ public class DirectionsGoogleTest {
 
         DirectionsGoogle directionsGoogle = init();
 
-        directionsGoogle.AddAgent(agent);
+        directionsGoogle.addAgent(agent);
         int size = directionsGoogle.getAgents().size();
 
         assert(agent.getId().equals(directionsGoogle.getAgents().get(size - 1).getId()));
@@ -80,7 +80,7 @@ public class DirectionsGoogleTest {
     @Test
     public void addAgents() {
         DirectionsGoogle directionsGoogle = new DirectionsGoogle(new ArrayList<Agent>(), new ArrayList<Assignment>());
-        directionsGoogle.AddAgents(agents);
+        directionsGoogle.addAgents(agents);
 
         assert(agents.equals(directionsGoogle.getAgents()));
     }
@@ -100,7 +100,7 @@ public class DirectionsGoogleTest {
 
         DirectionsGoogle directionsGoogle = init();
 
-        directionsGoogle.AddAssignment(assignment);
+        directionsGoogle.addAssignment(assignment);
         int size = directionsGoogle.getAssignments().size();
 
         assert(assignment.getId().equals(directionsGoogle.getAssignments().get(size - 1).getId()));
@@ -109,7 +109,7 @@ public class DirectionsGoogleTest {
     @Test
     public void addAssignments() {
         DirectionsGoogle directionsGoogle = new DirectionsGoogle(new ArrayList<Agent>(), new ArrayList<Assignment>());
-        directionsGoogle.AddAssignments(assignments);
+        directionsGoogle.addAssignments(assignments);
 
         assert(assignments.equals(directionsGoogle.getAssignments()));
     }
@@ -133,7 +133,7 @@ public class DirectionsGoogleTest {
     public void calculateDistances() throws InterruptedException, ApiException, IOException {
         DirectionsGoogle directionsGoogle = init();
 
-        assert(directionsGoogle.CalculateDistances());
+        assert(directionsGoogle.calculateRoutes());
     }
 
 }

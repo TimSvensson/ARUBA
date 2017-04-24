@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 public class ARUBATest {
     /**
      * Should do the following:
-     * Take in a JSON object simulationsly as beginning the run
+     * Take in a JSON object simulationsly as beginning the getSortedJSON
      * Translate in with its interpreter
      * Process the data
      * Return a result list that looks at the expected test lite
