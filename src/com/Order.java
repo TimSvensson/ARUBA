@@ -11,9 +11,12 @@
  */
 package com;
 
+import javax.management.openmbean.ArrayType;
+import java.util.ArrayList;
+
 public class Order {
     private Assignment assignment;
-    private Agent [] agents;
+    private ArrayList<Agent> agents;
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
@@ -23,12 +26,9 @@ public class Order {
      * @param assignment - the Assignment of the order
      * @param agentArray - the array of Agents that are available
      */
-    public Order(Assignment assignment, Agent [] agentArray) {
+    public Order(Assignment assignment, ArrayList<Agent> agentArray) {
         this.assignment = assignment;
-        this.agents = new Agent[agentArray.length];
-        for (int i = 0; i < this.agents.length; i++) {
-            this.agents[i] = agentArray[i];
-        }
+        this.agents = agentArray;
     }
 
     /**
@@ -53,6 +53,7 @@ public class Order {
         this.assignment = assignment;
     }
 
+
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
      *                              jagheterhaubir@gmail.com
@@ -60,10 +61,11 @@ public class Order {
      * Returns the array of Agents.
      * @return agents
      */
+/*
     public Agent[] getAgents() {
         return agents;
     }
-
+*/
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
      *                              jagheterhaubir@gmail.com
@@ -71,7 +73,14 @@ public class Order {
      * Sets the array of Agents to the parameter.
      * @param agents - the array of Agents to be set.
      */
+  /*
     public void setAgents(Agent[] agents) {
         this.agents = agents;
     }
+*/
+  @Override
+    public String toString(){
+      return this.assignment + "\n" + this.agents;
+    }
+
 }
