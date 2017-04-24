@@ -1,5 +1,6 @@
 package com;
 
+import com.Sorting.SortingList;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,6 @@ import static org.testng.Assert.*;
  * Created by desiree on 2017-04-18.
  */
 public class SortingListTest {
-
     public Geocoordinate geoTestHelp = new Geocoordinate(2222, 6666);
     public Position positionTestHelp = new Position(geoTestHelp, "", "", "", "", "", "");
     public Agent agentTest = new Agent(positionTestHelp , "333", "Carl", "Eriksson", 22, 657);
