@@ -36,7 +36,7 @@ import com.google.gson.GsonBuilder;
 public class Parser {
  /*
     public static void main(String[] args) throws IOException {
-        try (Reader reader = new InputStreamReader(Parser.class.getResourceAsStream("Input.json"), "UTF-8")) {
+        try (Reader reader = new InputStreamReader(Parser.class.getResourceAsStream("ExampleInput.json"), "UTF-8")) {
             Gson gson = new GsonBuilder().create();
             Order orderTest = gson.fromJson(reader, Order.class);
             System.out.println("Ok");

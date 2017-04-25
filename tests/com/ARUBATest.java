@@ -17,7 +17,7 @@ public class ARUBATest {
      * @throws Exception
      */
     @Test
-    public void/*Output.json*/ testRun(/*Input.json*/) throws Exception {
+    public void/*ExampleOutput.json*/ testRun(/*ExampleInput.json*/) throws Exception {
 
     }
 
