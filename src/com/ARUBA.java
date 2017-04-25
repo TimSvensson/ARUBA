@@ -41,7 +41,6 @@ public class ARUBA {
     public String getSortedJSON() {
 
         // PARSER
-        Gson g = new Gson();
         Parser p = new Parser();
 
         Order received = p.fromJson(JSONInput, Order.class);
