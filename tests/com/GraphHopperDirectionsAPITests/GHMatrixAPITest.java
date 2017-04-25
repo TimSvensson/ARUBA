@@ -62,7 +62,7 @@ public class GHMatrixAPITest {
         assertTrue(tr.getAssignment().equals(assignment));
 
         assertTrue(tr.getRoute(0).getModeOfTransport().equals("car"));
-        assertEquals(tr.getRoute(0).getDistance(), 9736.0, 0.1);
+        assertEquals(tr.getRoute(0).getDistance(), 9738.0, 0.1);
         assertEquals(tr.getRoute(0).getTime(), 634000);
     }
 

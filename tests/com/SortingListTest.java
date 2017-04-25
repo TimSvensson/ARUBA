@@ -24,11 +24,14 @@ public class SortingListTest {
 
     Geocoordinate geoTestHelp3 = new Geocoordinate(59.9208594, 16.606327999999962);
     Position positionTestHelp3 = new Position(geoTestHelp3, "", "Sala", "", "Sweden", "", "73");
-    Agent interpreter2 = new Agent(positionTestHelp3, "333", "Bengt", "Göteborg");
+    Agent interpreter2 = new Agent(positionTestHelp3, "666", "Bengt", "Göteborg");
 
-    public TravelRoutes travelSortListTest = new TravelRoutes(interpreter1, interpretationSite);
+    Route route1 = new Route(535364.567, 2222, "car");
+    Route route2 = new Route(872981923, 384, "car");
 
-    public TravelRoutes travelSortListTest2 = new TravelRoutes(interpreter2, interpretationSite);
+    public TravelRoutes travelSortListTest = new TravelRoutes(interpreter1, interpretationSite, route1);
+
+    public TravelRoutes travelSortListTest2 = new TravelRoutes(interpreter2, interpretationSite, route2);
 
     public SortingList sortListTest = new SortingList();
 
@@ -37,11 +40,22 @@ public class SortingListTest {
 
     @Test
     public void testgetList() throws Exception {
-        AgentRoute agentRoute = new AgentRoute(travelSortListTest.getAgent(), travelSortListTest.getRoute(0));
+        AgentRoute agentRoute1 = new AgentRoute(travelSortListTest.getAgent(), travelSortListTest.getRoute(0));
+        AgentRoute agentRoute2 = new AgentRoute(travelSortListTest2.getAgent(), travelSortListTest2.getRoute(0));
 
-        sortListTest.addToList(interpreter1);
-        assertEquals( sortListTest.getList(),agentRoute );
+        sortListTest.addToList(travelSortListTest);
+        sortListTest.addToList(travelSortListTest2);
 
+        sortListTest.sortList();
+
+        AgentRoute listAgentRoute1 = (AgentRoute) sortListTest.getObject(0);
+        AgentRoute listAgentRoute2 = (AgentRoute) sortListTest.getObject(1);
+
+        assertEquals(listAgentRoute1.getAgent().getId() , agentRoute2.getAgent().getId());
+        assertEquals(listAgentRoute2.getAgent().getId() , agentRoute1.getAgent().getId());
+
+        assertEquals(listAgentRoute1.getRoute(), agentRoute2.getRoute());
+        assertEquals(listAgentRoute2.getRoute(), agentRoute1.getRoute());
 
        // sortListTest.addToList(agentTest2);
         //assertEquals( sortListTest.getList(), listOfAgentsTest);

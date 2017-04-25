@@ -96,7 +96,7 @@ public class SortingList<T> implements SortingInterface {
         public int compareTo(ListElement o) {
             if (this.travelTime - o.travelTime < 0)             return -1;
             else if (this.travelTime - o.travelTime == 0)       return  0;
-            else                                            return  1;
+            else                                                return  1;
         }
     }
 
@@ -222,5 +222,12 @@ public class SortingList<T> implements SortingInterface {
      */
     public boolean isEmpty() {
         return this.list.size() == 0;
+    }
+
+    /*
+     * Just for testing purposes
+     */
+    public Object getObject(int index) {
+        return this.list.get(index).getObject();
     }
 }
