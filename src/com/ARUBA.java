@@ -37,12 +37,19 @@ public class ARUBA {
         MapBoxKey = mapBoxKey;
     }
 
+
     public String getSortedJSON() {
 
         // PARSER
-        Gson g = new Gson();
+        Parser p = new Parser();
 
-        Order received = g.fromJson(JSONInput, Order.class);
+        Order received = p.fromJson(JSONInput, Order.class);
+        String posFormat = p.findPositionFormat(JSONInput);
+
+        // Detects the format of the Assignment's position
+        System.out.println("posFormat: " + posFormat);
+
+        System.out.println("JSONInput: " + JSONInput);
 
         ArrayList<Agent> agents = received.getAgents();
         ArrayList<Assignment> assignments = new ArrayList<>();
@@ -76,7 +83,7 @@ public class ARUBA {
 
         // PARSER
 
-        String output = g.toJson(sortedList);
+        String output = p.toJson(sortedList);
 
         return output;
 
