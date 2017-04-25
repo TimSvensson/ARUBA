@@ -17,6 +17,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -71,9 +72,7 @@ public class Parser {
      *
      * @return the desired object
      */
-    public Object fromJson(String str, Class<Object> cl) {
-
-
+    public <T> T fromJson(String str, Type cl) {
         return g.fromJson(str, cl);
     }
 
@@ -87,6 +86,46 @@ public class Parser {
         throw new NotImplementedException();
     }
 
+    public String findPositionFormat(String JSONInput) {
+        String toReturn;
+
+        Order received = g.fromJson(JSONInput, Order.class);
+
+        Position assignmentPosition = received.getAssignment().getPosition();
+
+        if (assignmentPosition.getGeocoordinate() != null) {
+            toReturn = "geocoordinate";
+        }
+        else if (!(assignmentPosition.getAddress().equals("")) ||
+                !(assignmentPosition.getAddress() == null)){
+            toReturn = "address";
+        }
+        else if (!(assignmentPosition.getPostcode().equals("")) ||
+                !(assignmentPosition.getPostcode() == null)){
+            toReturn = "postcode";
+        }
+        else if (!(assignmentPosition.getZip().equals("")) ||
+                !(assignmentPosition.getZip() == null)) {
+            toReturn = "zip";
+        }
+        else if (!(assignmentPosition.getCity().equals("")) ||
+                !(assignmentPosition.getCity() == null)){
+            toReturn = "city";
+        }
+        else if (!(assignmentPosition.getCounty().equals("")) ||
+                !(assignmentPosition.getCounty() == null)){
+            toReturn = "county";
+        }
+        else if (!(assignmentPosition.getCountry().equals("")) ||
+                !(assignmentPosition.getCountry() == null)){
+            toReturn = "country";
+        }
+        else {
+            toReturn = "";
+        }
+
+        return toReturn;
+    }
 
     public String JsonParserToJava(){
         Geocoordinate geoTestHelp1 = new Geocoordinate(59.8415562, 17.6477043);
