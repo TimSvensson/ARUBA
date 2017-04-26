@@ -141,6 +141,15 @@ public class SortList {
     }
 
     /**
+     * Return the first listelement in the sortlist
+     *
+     * @return first.
+     */
+    public AgentRoute getFirstAgentRoute() {
+        return this.first.getObject();
+    }
+
+    /**
      * Adds an element to the list.
      *
      * @param travelRoutes

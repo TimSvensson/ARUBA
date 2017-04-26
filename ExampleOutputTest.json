@@ -1,0 +1,73 @@
+{
+  "assignment": {
+    "position": {
+      "geocoordinate": {
+        "latitude": 59.8415562,
+        "longitude": 17.6477043
+      },
+      "address": "Institutionen för informationsteknologi, Lägerhyddsvägen 2",
+      "city": "Sweden",
+      "county": "",
+      "country": "Uppsala",
+      "postcode": "752 37",
+      "zip": "75"
+    },
+    "id": "42",
+    "clientName": "Göran",
+    "startTime": 4,
+    "endTime": 6
+  },
+  "agents": [
+    {
+      "position": {
+        "geocoordinate": {
+          "latitude": 59.9208594,
+          "longitude": 16.606327999999962
+        },
+        "address": "",
+        "city": "Sala",
+        "county": "",
+        "country": "Sweden",
+        "postcode": "",
+        "zip": "73"
+      },
+      "id": "123",
+      "firstName": "Bengt",
+      "surName": "Göteborg"
+    },
+    {
+      "position": {
+        "geocoordinate": {
+          "latitude": 59.8513422,
+          "longitude": 17.592865999999958
+        },
+        "address": "Flogstavägen",
+        "city": "Uppsala",
+        "county": "",
+        "country": "Sweden",
+        "postcode": "75272",
+        "zip": "75"
+      },
+      "id": "124",
+      "firstName": "Carl",
+      "surName": "Eriksson"
+    },
+    {
+      "position": {
+        "geocoordinate": {
+          "latitude": 59.60990049999999,
+          "longitude": 16.544809100000066
+        },
+        "address": "",
+        "city": "Västerås",
+        "county": "",
+        "country": "Sweden",
+        "postcode": "",
+        "zip": ""
+      },
+      "id": "125",
+      "firstName": "Lena",
+      "surName": "Skansen"
+    }
+  ]
+}
