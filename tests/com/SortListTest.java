@@ -1,6 +1,6 @@
 package com;
 
-import com.Sorting.SortingList;
+import com.Sorting.SortList;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 /**
  * Created by desiree on 2017-04-18.
  */
-public class SortingListTest {
+public class SortListTest {
 
 
     Geocoordinate geoTestHelp1 = new Geocoordinate(59.8415562, 17.6477043);
@@ -33,7 +33,7 @@ public class SortingListTest {
 
     public TravelRoutes travelSortListTest2 = new TravelRoutes(interpreter2, interpretationSite, route2);
 
-    public SortingList sortListTest = new SortingList();
+    public SortList sortListTest = new SortList();
 
 
    // Ska jag göra tester för detta? Vad menas i såna fall med criteria?
@@ -48,8 +48,8 @@ public class SortingListTest {
 
         sortListTest.sortList();
 
-        AgentRoute listAgentRoute1 = (AgentRoute) sortListTest.getObject(0);
-        AgentRoute listAgentRoute2 = (AgentRoute) sortListTest.getObject(1);
+        AgentRoute listAgentRoute1 = (AgentRoute) sortListTest.getAgentRoute(0);
+        AgentRoute listAgentRoute2 = (AgentRoute) sortListTest.getAgentRoute(1);
 
         assertEquals(listAgentRoute1.getAgent().getId() , agentRoute2.getAgent().getId());
         assertEquals(listAgentRoute2.getAgent().getId() , agentRoute1.getAgent().getId());
@@ -64,7 +64,10 @@ public class SortingListTest {
     // Jag förstår inte hur jag påverkar Taget
     @Test
     public void testgetTarget() throws Exception {
+        sortListTest.addToList(travelSortListTest);
+        sortListTest.addToList(travelSortListTest2);
 
+        assertEquals(interpretationSite.getId(), ((Assignment) sortListTest.getTarget()).getId());
     }
 
 }

@@ -3,7 +3,7 @@
  * Class:   SortList
  *
  * Version info
- * Created: 4/22/17
+ * Created: 4/25/17
  * Creator: Haubir Mariwani
  *
  * Copyright notice
@@ -12,8 +12,10 @@
 
 package com.Sorting;
 
-import com.Interface.SortingInterface;
-import com.*;
+import com.Agent;
+import com.AgentRoute;
+import com.Assignment;
+import com.TravelRoutes;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,15 +31,14 @@ import java.util.List;
  * @version JDK 1.8
  * @since JDK 1.8
  */
-
-public class SortingList<T> implements SortingInterface {
+public class SortList {
     private List<ListElement> list = new ArrayList<>();
-    private Object target;
+    private Assignment target;
     private ListElement first;
     private ListElement last;
-    
+
     /**
-     * The element that will be added to the list of the SortingList object.
+     * The element that will be added to the list of the SortList object.
      * <p>
      * This element holds the object that is inserted into the list, and also it's sorting criteria.
      * </p>
@@ -49,9 +50,9 @@ public class SortingList<T> implements SortingInterface {
     private class ListElement implements Comparable<ListElement> {
         //private double criteria;
         private double travelTime;
-        private Object object;
+        private AgentRoute object;
 
-        protected ListElement(double criteria, Object object) {
+        protected ListElement(double criteria, AgentRoute object) {
             //this.criteria = criteria;
             this.travelTime = criteria;
             this.object = object;
@@ -66,18 +67,18 @@ public class SortingList<T> implements SortingInterface {
         }
         */
 
-        protected Object getObject() {
+        protected AgentRoute getObject() {
             return object;
         }
 
-        protected void setObject(Object object) {
+        protected void setObject(AgentRoute object) {
             this.object = object;
         }
 
         /**
          * @author Created by Haubir -  haubir.mariwani@fasbros.it
          *                              jagheterhaubir@gmail.com
-         * This method decides the criteria on which the SortingList object sorts the list of Agents.
+         * This method decides the criteria on which the SortList object sorts the list of Agents.
          *
          * It overrides the compareTo() method in the Comparable interface.
          * @param o
@@ -107,7 +108,7 @@ public class SortingList<T> implements SortingInterface {
      *
      * Empty constructor. The list is created empty when this constructor is used.
      */
-    public SortingList(){}
+    public SortList(){}
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
@@ -115,8 +116,8 @@ public class SortingList<T> implements SortingInterface {
      *
      * Constructor that takes a list as argument and adds it's elements to the objects own list.
      */
-    public SortingList(List<T> newList) {
-        for (T object : newList) {
+    public SortList(List<TravelRoutes> newList) {
+        for (TravelRoutes object : newList) {
             this.addToList(object);
         }
     }
@@ -126,7 +127,6 @@ public class SortingList<T> implements SortingInterface {
      *
      * @return The list.
      */
-    @Override
     public List<ListElement> getList() {
         return this.list;
     }
@@ -136,40 +136,37 @@ public class SortingList<T> implements SortingInterface {
      *
      * @return The target.
      */
-    public Object getTarget() {
+    public Assignment getTarget() {
         return target;
     }
 
     /**
      * Adds an element to the list.
      *
-     * @param object
+     * @param travelRoutes
      *
      * @return true if the element was successfully added, otherwise false.
      */
-    @Override
-    public boolean addToList(Object object) {
+
+    public boolean addToList(TravelRoutes travelRoutes) {
         boolean added = false;
 
-        if (object instanceof TravelRoutes) {
-            TravelRoutes travelRoutes = (TravelRoutes) object;
-            Agent agent = travelRoutes.getAgent();
+        Agent agent = travelRoutes.getAgent();
 
-            if (this.findID(agent)) return false;
+        if (this.findID(agent)) return false;
 
-            if (this.isEmpty()) this.target = travelRoutes.getAssignment();
+        if (this.isEmpty()) this.target = travelRoutes.getAssignment();
 
-            AgentRoute agentRoute = new AgentRoute(travelRoutes.getAgent(), travelRoutes.getRoute(0));
-            double criteria = agentRoute.getRoute().getTime();
-            ListElement element = new ListElement(criteria, agentRoute);
-            this.list.add(element);
+        AgentRoute agentRoute = new AgentRoute(travelRoutes.getAgent(), travelRoutes.getRoute(0));
+        double criteria = agentRoute.getRoute().getTime();
+        ListElement element = new ListElement(criteria, agentRoute);
+        this.list.add(element);
 
-            if (this.list.size() == 1) this.first = element;
+        if (this.list.size() == 1) this.first = element;
 
-            this.last = element;
-            added = true;
-        }
-
+        this.last = element;
+        added = true;
+        
         return added;
     }
 
@@ -188,7 +185,7 @@ public class SortingList<T> implements SortingInterface {
         }
         else {
             for (int i = 0; i < this.list.size(); i++) {
-                AgentRoute agentRoute = (AgentRoute) this.list.get(i).getObject();
+                AgentRoute agentRoute = this.list.get(i).getObject();
                 Agent listAgent = agentRoute.getAgent();
 
                 if (listAgent.getId().equals(agent.getId())) {
@@ -207,7 +204,7 @@ public class SortingList<T> implements SortingInterface {
      *
      * @return true if the list was successfully sorted, otherwise false.
      */
-    @Override
+
     public boolean sortList() {
         if (this.isEmpty()) return false;
 
@@ -228,7 +225,7 @@ public class SortingList<T> implements SortingInterface {
     /*
      * Just for testing purposes
      */
-    public Object getObject(int index) {
+    public AgentRoute getAgentRoute(int index) {
         return this.list.get(index).getObject();
     }
 }
