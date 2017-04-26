@@ -8,9 +8,9 @@ import static org.junit.Assert.*;
  * Tests for assignment.java, at this point it's just basic.
  */
 public class AssignmentTest {
-    public Geocoordinate geoTestHelp = new Geocoordinate(2222, 6666);
-    public Position positionTestHelp = new Position(geoTestHelp, "", "", "", "", "", "");
-    public Assignment assTest = new Assignment(positionTestHelp, "42", "Carl", 4, 6);
+    Geocoordinate geoTestHelp = new Geocoordinate(2222, 6666);
+    Position positionTestHelp = new Position(geoTestHelp, "", "", "", "", "", "");
+    Assignment assTest = new Assignment(positionTestHelp, "42", "Carl", 4, 6);
 
     @Test
     public void getId() throws Exception {
