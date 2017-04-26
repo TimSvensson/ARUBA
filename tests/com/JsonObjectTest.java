@@ -20,8 +20,6 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import javax.management.openmbean.ArrayType;
-
 /**
  * Class .summary.
  * Create a json-object to use for tests.
@@ -58,11 +56,11 @@ public class JsonObjectTest {
         ArrayList<Agent> list = new ArrayList<Agent>();
         list.add(interpreter1);
         list.add(interpreter2);
-        Order jsonObjectEnd = new Order(interpretationSite, list);
+        Input jsonObjectEnd = new Input(interpretationSite, list);
         //Gson g = new Gson();
         //String jsonOrder = g.toJson(jsonObjectEnd);
 
-        //Order receivedOrder = g.fromJson(jsonOrder, Order.class);
+        //Input receivedOrder = g.fromJson(jsonOrder, Input.class);
 
         // Change the name of the FileOutPutStream to determine what file it's saved in.
         try (Writer writer = new OutputStreamWriter(new FileOutputStream("ExampleInput.json"), "UTF-8")) {
