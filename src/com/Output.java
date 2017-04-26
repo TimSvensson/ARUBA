@@ -61,6 +61,7 @@ public class Output {
     */
 
     public void JSONformat() {
+        // this.JSONrepresentation = "";
         this.JSONrepresentation = new Gson().toJson(this);
     }
 

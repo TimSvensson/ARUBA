@@ -12,27 +12,27 @@
 package com;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Input {
     private Assignment assignment;
-    private ArrayList<Agent> agents;
+    private List<Agent> agents;
     private boolean debugMode;
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
      *                              jagheterhaubir@gmail.com
      * Constructs the Input object.
-     *
-     * @param assignment - the Assignment of the order
+     *@param assignment - the Assignment of the order
      * @param agentArray - the array of Agents that are available
      */
-    public Input(Assignment assignment, ArrayList<Agent> agentArray) {
+    public Input(Assignment assignment, List<Agent> agentArray) {
         this.assignment = assignment;
         this.agents = agentArray;
         this.debugMode = false;
     }
 
-    public Input(Assignment assignment, ArrayList<Agent> agentArray, boolean debugMode) {
+    public Input(Assignment assignment, List<Agent> agentArray, boolean debugMode) {
         this.assignment = assignment;
         this.agents = agentArray;
         this.debugMode = debugMode;
@@ -68,7 +68,7 @@ public class Input {
      * Returns the array of Agents.
      * @return agents
      */
-    public ArrayList<Agent> getAgents() {
+    public List<Agent> getAgents() {
         return agents;
     }
 
@@ -80,7 +80,7 @@ public class Input {
      * @param agents - the array of Agents to be set.
      */
 
-    public void setAgents(ArrayList<Agent> agents) {
+    public void setAgents(List<Agent> agents) {
         this.agents = agents;
     }
 
