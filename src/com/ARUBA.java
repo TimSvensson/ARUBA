@@ -2,7 +2,6 @@ package com;
 
 import com.GraphHopperDirectionsAPI.GHMatrixAPI;
 import com.Sorting.SortingList;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -43,7 +42,7 @@ public class ARUBA {
         // PARSER
         Parser p = new Parser();
 
-        Order received = p.fromJson(JSONInput, Order.class);
+        Input received = p.fromJson(JSONInput, Input.class);
         String posFormat = p.findPositionFormat(JSONInput);
 
         // Detects the format of the Assignment's position
@@ -76,16 +75,11 @@ public class ARUBA {
 
         ArrayList<TravelRoutes> tr = ghm.getRoutes();
 
-        // Sorting
+        // Sorting & output
+        Output output = new Output(tr);
+        output.JSONformat();
 
-        SortingList<TravelRoutes> sortedList = new SortingList<>(tr);
-        sortedList.sortList();
-
-        // PARSER
-
-        String output = p.toJson(sortedList);
-
-        return output;
+        return output.getJSONrepresentation();
 
         /*
         try {
@@ -147,7 +141,7 @@ public class ARUBA {
         String jsonAgentArray = g.toJson(agentArray);
         System.out.println(jsonAgentArray);
 
-        Order newOrder = new Order(newAssignment, agentArray);
+        Input newOrder = new Input(newAssignment, agentArray);
         String jsonNewOrder = g.toJson(newOrder);
         System.out.println(jsonNewOrder);
 
