@@ -24,7 +24,7 @@ import org.junit.runners.Suite;
 
         AgentTest.class,
         AssignmentTest.class,
-        OrderTest.class,
+        InputTest.class,
         PositionTest.class,
         RouteTest.class,
         TravelRoutesTest.class,

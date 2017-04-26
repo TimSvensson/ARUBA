@@ -14,14 +14,9 @@ package com;
 
 import com.google.gson.Gson;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 
 /**
@@ -35,26 +30,13 @@ import com.google.gson.GsonBuilder;
  * @since 4/17/17
  */
 public class Parser {
- /*
-    public static void main(String[] args) throws IOException {
-        try (Reader reader = new InputStreamReader(Parser.class.getResourceAsStream("ExampleInput.json"), "UTF-8")) {
-            Gson gson = new GsonBuilder().create();
-            Order orderTest = gson.fromJson(reader, Order.class);
-            System.out.println("Ok");
-        }
-    }
-*/
-
-
     private Gson g = new Gson();
 
     /**
      * Constructs a Parser object that operated with a Gson parser.
      * WARNING: Not complete yet. To be extended with further parsing possibilites!
      */
-    public Parser() {
-
-    }
+    public Parser() {}
 
     /**
      * JSON output parser, converts objects to JSON strings
@@ -78,18 +60,20 @@ public class Parser {
 
     /**
      * Tells whether the user wants debugging information or not
-     * WARNING: Not yet implemented
      *
-     * @return
+     *
+     * @return true or false
      */
-    public Boolean isDebugMode() {
-        throw new NotImplementedException();
+    public boolean isDebugMode(String JSONInput) {
+        Input received = g.fromJson(JSONInput, Input.class);
+
+        return received.isDebugMode();
     }
 
     public String findPositionFormat(String JSONInput) {
         String toReturn;
 
-        Order received = g.fromJson(JSONInput, Order.class);
+        Input received = g.fromJson(JSONInput, Input.class);
 
         Position assignmentPosition = received.getAssignment().getPosition();
 
@@ -151,11 +135,11 @@ public class Parser {
         list.add(interpreter1);
         list.add(interpreter2);
         list.add(interpreter3);
-        Order jsonObjectEnd = new Order(interpretationSite, list);
+        Input jsonObjectEnd = new Input(interpretationSite, list);
         Gson g = new Gson();
         String jsonOrder = g.toJson(jsonObjectEnd);
 
-        //Order receivedOrder = g.fromJson(jsonOrder, Order.class);
+        //Input receivedOrder = g.fromJson(jsonOrder, Input.class);
         return jsonOrder;
     }
 }

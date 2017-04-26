@@ -11,24 +11,31 @@
  */
 package com;
 
-import javax.management.openmbean.ArrayType;
 import java.util.ArrayList;
 
-public class Order {
+public class Input {
     private Assignment assignment;
     private ArrayList<Agent> agents;
+    private boolean debugMode;
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
      *                              jagheterhaubir@gmail.com
-     * Constructs the Order object.
+     * Constructs the Input object.
      *
      * @param assignment - the Assignment of the order
      * @param agentArray - the array of Agents that are available
      */
-    public Order(Assignment assignment, ArrayList<Agent> agentArray) {
+    public Input(Assignment assignment, ArrayList<Agent> agentArray) {
         this.assignment = assignment;
         this.agents = agentArray;
+        this.debugMode = false;
+    }
+
+    public Input(Assignment assignment, ArrayList<Agent> agentArray, boolean debugMode) {
+        this.assignment = assignment;
+        this.agents = agentArray;
+        this.debugMode = debugMode;
     }
 
     /**
@@ -72,12 +79,34 @@ public class Order {
      * Sets the array of Agents to the parameter.
      * @param agents - the array of Agents to be set.
      */
-  /*
-    public void setAgents(Agent[] agents) {
+
+    public void setAgents(ArrayList<Agent> agents) {
         this.agents = agents;
     }
-*/
-  @Override
+
+    /**
+     * @author Created by Haubir -  haubir.mariwani@fasbros.it
+     *                              jagheterhaubir@gmail.com
+     *
+     * Tells if the user wants debugging information or not.
+     * @return true or false.
+     */
+    public boolean isDebugMode() {
+        return debugMode;
+    }
+
+    /**
+     * @author Created by Haubir -  haubir.mariwani@fasbros.it
+     *                              jagheterhaubir@gmail.com
+     *
+     * Sets the debugMode attribute to true if debugging information is wanted.
+     * @param debugMode
+     */
+    public void setDebugMode(boolean debugMode) {
+        this.debugMode = debugMode;
+    }
+
+    @Override
     public String toString(){
       return this.assignment + "\n" + this.agents;
     }

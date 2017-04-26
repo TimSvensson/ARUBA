@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 /**
  * Created by desiree on 2017-04-11.
  */
-public class OrderTest {
+public class InputTest {
     //Creates one agent or the misssion
     public Geocoordinate geoTestHelp1 = new Geocoordinate(1222, 6666);
     public Position positionTestHelp1 = new Position(geoTestHelp1, "Ringvalla", "Sala", "", "Sweden", "733 96", "");
