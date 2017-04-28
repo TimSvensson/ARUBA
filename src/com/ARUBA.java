@@ -4,6 +4,7 @@ import com.GraphHopperDirectionsAPI.GHMatrixAPI;
 import com.Sorting.SortingList;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -50,8 +51,8 @@ public class ARUBA {
 
         System.out.println("JSONInput: " + JSONInput);
 
-        ArrayList<Agent> agents = received.getAgents();
-        ArrayList<Assignment> assignments = new ArrayList<>();
+        List<Agent> agents = received.getAgents();
+        List<Assignment> assignments = new ArrayList<>();
         assignments.add(received.getAssignment());
         // API Calls
 

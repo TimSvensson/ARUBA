@@ -8,6 +8,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class AreaCalc {
 
 
+    public AreaCalc() {}
     /*
     Stöd för zip: Vad krävs? Skriv ner allt. (flytta till ARUBA 0.3)
         Hantera zip-input
@@ -16,8 +17,26 @@ public class AreaCalc {
         www.Postnummerservice.se
         http://www.cartesia.se/produkter/kartdata/postnummerkartor/
     */
-    Position GetMiddleZip(int zip) {
+    int [] getMiddleZip(int[] zips) {
+        int [] zips_half = new int[zips.length / 2];
+
+        while (zips_half.length > 2) {
+            zips_half = halfArray(zips);
+        }
+
         throw new NotImplementedException();
+    }
+
+    int [] halfArray(int [] orig) {
+        int [] dest = new int[orig.length / 2];
+
+        for (int i = 0, j = 0; i < dest.length; i++, j++) {
+            dest[i] = (orig[j] + orig[j + 1]) / orig.length;
+            j++;
+            System.out.println("dest[i] = " + dest[i] + ", i = " + i + ", j = " + j);
+        }
+
+        return dest;
     }
 
     /*
@@ -27,8 +46,16 @@ public class AreaCalc {
         Översätt till en position (en punkt)
         Ge detta som input till routing-api:t
     */
-    Position GetMiddleZone(int zone) {
+    Position getMiddleZone(int zone) {
         throw new NotImplementedException();
     }
 
+    public static void main(String [] args) {
+        AreaCalc areaCalc = new AreaCalc();
+        int [] zips = {32, 75, 43, 94, 16, 17, 11, 20, 83, 66};
+
+        int [] result = areaCalc.getMiddleZip(zips);
+
+        System.out.println(result);
+    }
 }
