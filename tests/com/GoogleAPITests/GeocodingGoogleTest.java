@@ -1,12 +1,8 @@
 package com.GoogleAPITests;
 
 
-import com.GoogleAPI.GeocodingGoogle;
-import com.Position;
 import com.google.maps.GeoApiContext;
-import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
-import com.google.maps.model.GeocodingResult;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -24,7 +20,7 @@ public class GeocodingGoogleTest {
     }
 
     @Test
-    public void reverseGeocode(){
+    public void reverseGeocode() {
     }
 
     @Test
