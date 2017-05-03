@@ -1,18 +1,39 @@
 package com;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
+
+import static com.sun.activation.registries.LogSupport.log;
+import static java.lang.System.getProperty;
+import static java.nio.file.Files.readAllLines;
+
 /**
  *
  */
 public class Main {
 
-    public static void main(String [] args){
-        // TODO Move to file
-        final String graphHopperKey = "7992858f-c567-4ae8-b47c-f409b65f91f4";
-        final String mapBoxKey = "";
-        final String googleKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
+    public static void main(String [] args) {
+
+        String graphHopperKey = "";
+        String mapBoxKey = "";
+        String googleKey = "";
 
         Parser p = new Parser();
         String jsonInput = p.JsonParserToJava();
+
+        // READ API-KEYS FROM FILE
+
+        try {
+            KeyGetter kg = new KeyGetter();
+
+            mapBoxKey = kg.getMapBoxKey();
+            graphHopperKey = kg.getGHKey();
+            googleKey = kg.getGoogleKey();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         ARUBA aruba = new ARUBA(jsonInput, graphHopperKey, googleKey, mapBoxKey);
 
@@ -21,6 +42,91 @@ public class Main {
 
         System.exit(0);
     }
+
+    private static class KeyGetter {
+
+        final String fileName = "api_keys.txt";
+        String workingDirectory;
+
+        String ghKey;
+        String googleKey;
+        String mapBoxKey;
+
+        public KeyGetter() throws IOException {
+
+            setWorkingDirectory();
+
+            System.out.println("workingDirectory=" + this.workingDirectory);
+
+            getFileContent(this.workingDirectory);
+
+            System.out.println("GraphHopper=" + this.getGHKey());
+            System.out.println("MapBox=" + this.getMapBoxKey());
+            System.out.println("Google=" + this.getGoogleKey());
+        }
+
+        private void setWorkingDirectory() {
+
+            // Code taken from
+            // http://stackoverflow.com/questions/11113974/what-is-the-cross-platform-way-of-obtaining-the-path-to-the-local-application-da
+
+            //here, we assign the name of the OS, according to Java, to a variable...
+            String OS = (System.getProperty("os.name")).toUpperCase();
+
+            //to determine what the workingDirectory is.
+            //if it is some version of Windows
+            if (OS.contains("WIN")) {
+                //it is simply the location of the "AppData" folder
+                this.workingDirectory = System.getenv("AppData");
+            }
+
+            //Otherwise, we assume Linux or Mac
+            else {
+                //in either case, we would start in the user's home directory
+                workingDirectory = System.getProperty("user.home");
+                //if we are on a Mac, we are not done, we look for "Application Support"
+                workingDirectory += "/Library";
+            }
+
+            workingDirectory += "/ARUBA/" + fileName;
+        }
+
+        private void getFileContent(String file) throws IOException {
+
+            Path path = Paths.get(file);
+
+            Scanner s = new Scanner(path);
+
+            while (s.hasNext()) {
+                switch (s.next().toLowerCase()) {
+                    case "graphhopper":
+                        ghKey = s.next();
+                        break;
+                    case "google":
+                        googleKey = s.next();
+                        break;
+                    case "mapbox":
+                        mapBoxKey = s.next();
+                        break;
+                    default:
+                }
+            }
+        }
+
+        public String getGHKey() {
+            return this.ghKey;
+        }
+
+        public String getGoogleKey() {
+            return this.googleKey;
+        }
+
+        public String getMapBoxKey() {
+            return this.mapBoxKey;
+        }
+
+    }
+
 }
 
 /*
