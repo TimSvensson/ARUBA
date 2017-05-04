@@ -21,6 +21,7 @@ package com;
 
 public class Position {
     private Geocoordinate geocoordinate;
+    //private String name;
     private String address;
     private String city;
     private String county;
@@ -62,6 +63,17 @@ public class Position {
         this.postcode = postcode;
         this.zip = zip;
     }
+
+/*    public Position(String name, String address, String city, String county, String country, String postcode, String zip) {
+        this.name = name;
+        this.address = address;
+        this.city = city;
+        this.county = county;
+        this.country = country;
+        this.postcode = postcode;
+        this.zip = zip;
+    }*/
+
 
     public Position(Geocoordinate geocoordinate) {
 

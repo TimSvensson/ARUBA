@@ -12,13 +12,16 @@
 
 package com.GoogleAPI;
 
+import com.Geocoordinate;
 import com.Interface.GeocodingInterface;
 import com.Position;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
+import com.google.maps.model.AddressComponent;
+import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.GeocodingResult;
-
+import com.google.maps.model.LatLng;
 import java.io.IOException;
 
 /**
@@ -37,93 +40,119 @@ import java.io.IOException;
 public class GeocodingGoogle implements GeocodingInterface {
     String apiKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
     GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
-    private double latitude;
-    private double longitude;
-    private String formattedAddress;
-    private String inputString;
-    private GeocodingResult[] results;
 
     /**
-     * Constructs the GeocodingGoogle object by passing the parameter string to the modify() method
-     * that makes the request to the Google Geocoding API and sets the local variables.
+     * Constructs the GeocodingGoogle object that is used for the
+     * functionalities of the Google Maps Geocoding API.
      *
-     * @param address - the address that is to be geocoded
-     * @throws InterruptedException - In case the request in modify() is interrupted
-     * @throws ApiException - In case the request in modify() is disturbed by an APIException
-     * @throws IOException - In case the request in modify() is disturbed by an IOException
      */
-    public GeocodingGoogle(String address) throws InterruptedException, ApiException, IOException {
-        this.modify(address);
-    }
+    public GeocodingGoogle() {}
 
+    /**
+     * Takes the geocoordinates of a position and gives out complete information about the location
+     *
+     * @param position
+     * @return true if the reverse geocoding was successful
+     */
     @Override
     public boolean geocode(Position position) {
-        return false;
+        Geocoordinate g = new Geocoordinate(0, 0);
+        position.setGeocoordinate(new Geocoordinate(-1, -1));
+
+        try {
+            GeocodingResult[] geocodingResults = GeocodingApi.geocode(this.context, position.getAddress()).await();
+            double newLatitude = geocodingResults[0].geometry.location.lat;
+            double newLongitude = geocodingResults[0].geometry.location.lng;
+            g = new Geocoordinate(newLatitude, newLongitude);
+            position.setGeocoordinate(g);
+
+        } catch (ApiException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return position.getGeocoordinate().equals(g);
     }
 
+    /**
+     * Takes the geocoordinates of a position and gives out complete information about the location
+     *
+     * @param position
+     * @return true if the reverse geocoding was successful
+     */
     @Override
     public boolean reverseGeocode(Position position) {
-        return false;
-    }
+        String newAddress = null;
+        Geocoordinate g = position.getGeocoordinate();
+        LatLng latLng = new LatLng(g.getLatitude(), g.getLongitude());
 
-    /**
-     * Returns the original address string that was geocoded
-     *
-     * @return inputString
-     */
-    public String getInputString() {
-        return inputString;
-    }
+        try {
+            GeocodingResult[] geocodingResults = GeocodingApi.reverseGeocode(this.context, latLng).await();
 
-    /**
-     * Returns the latitude of the location that was geocoded
-     *
-     * @return latitude
-     */
-    public double getLatitude() {
-        return latitude;
-    }
+            AddressComponent streetNoComponent = null;
+            AddressComponent routeComponent = null;
+            AddressComponent cityComponent = null;
+            AddressComponent countyComponent = null;
+            AddressComponent countryComponent = null;
+            AddressComponent postCodeComponent = null;
 
-    /**
-     * Returns the longitude of the location that was geocoded
-     *
-     * @return longitude
-     */
-    public double getLongitude() {
-        return longitude;
-    }
+            for (AddressComponent a : geocodingResults[0].addressComponents) {
+                for (AddressComponentType aType : a.types) {
+                    switch (aType) {
+                        case STREET_NUMBER:
+                            streetNoComponent = a;
+                            break;
+                        case ROUTE:
+                            routeComponent = a;
+                            break;
+                        case LOCALITY:
+                            cityComponent = a;
+                            break;
+                        case ADMINISTRATIVE_AREA_LEVEL_1:
+                            countyComponent = a;
+                            break;
+                        case COUNTRY:
+                            countryComponent = a;
+                            break;
+                        case POSTAL_CODE:
+                            postCodeComponent = a;
+                            break;
+                        default:
+                            break;
+                    }
 
-    /**
-     * Returns the address of the location that was geocoded
-     *
-     * @return formattedAddress
-     */
-    public String getFormattedAddress() {
-        return formattedAddress;
-    }
+                }
+            }
 
-    /**
-     * Returns the results that were received from the request in modify()
-     *
-     * @return results
-     */
-    public GeocodingResult[] getResults() {
-        return results;
-    }
+            String newStreetNo = streetNoComponent.longName;
+            String newRoute = routeComponent.longName;
+            newAddress = newRoute + " " + newStreetNo;
+            position.setAddress(newAddress);
 
-    /**
-     * Modifies the object by making a request to the Google Geocoding API for the geocodes
-     * of the parameter address and then storing the results in the object's attributes.
-     *
-     * @param address - the address that is to be geocoded
-     */
-    // TODO!! Måste kunna spara alla resultat i result-arrayen.
-    public void modify(String address) throws InterruptedException, ApiException, IOException {
-        this.results = GeocodingApi.geocode(this.context, address).await();
-        this.inputString = address;
-        this.formattedAddress = this.results[0].formattedAddress;
-        this.latitude = this.results[0].geometry.location.lat;
-        this.longitude = this.results[0].geometry.location.lng;
+            String newCity = cityComponent.longName;
+            position.setCity(newCity);
+
+            String newCounty = countyComponent.longName;
+            position.setCounty(newCounty);
+
+            String newCountry = countryComponent.longName;
+            position.setCountry(newCountry);
+
+            String newPostCode = postCodeComponent.longName;
+            position.setPostcode(newPostCode);
+
+        } catch (ApiException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return position.getAddress().equals(newAddress);
     }
 }
 

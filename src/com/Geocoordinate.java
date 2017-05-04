@@ -41,4 +41,8 @@ public class Geocoordinate {
     public String toString() {
         return "(lat=" + getLatitude() + ", lon=" + getLongitude() + ")";
     }
+
+    public boolean equals(Geocoordinate g) {
+        return (this.latitude == g.getLatitude() && this.longitude == g.getLongitude());
+    }
 }
