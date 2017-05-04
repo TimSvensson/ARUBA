@@ -22,7 +22,6 @@ import com.google.maps.model.AddressComponent;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
-
 import java.io.IOException;
 
 /**
@@ -47,9 +46,7 @@ public class GeocodingGoogle implements GeocodingInterface {
      * functionalities of the Google Maps Geocoding API.
      *
      */
-    public GeocodingGoogle() {
-
-    }
+    public GeocodingGoogle() {}
 
     /**
      * Takes the geocoordinates of a position and gives out complete information about the location
