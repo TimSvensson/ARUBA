@@ -5,10 +5,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-import static com.sun.activation.registries.LogSupport.log;
-import static java.lang.System.getProperty;
-import static java.nio.file.Files.readAllLines;
-
 /**
  *
  */

@@ -12,6 +12,10 @@
 
 package com.GraphHopperDirectionsAPI;
 
+import com.ARUBAExceptions.ModeOfTransportException;
+import com.ARUBAExceptions.NoAgentsExcpetions;
+import com.ARUBAExceptions.NoAssignmentsException;
+import com.ARUBAExceptions.RoutingResponsErrorsException;
 import com.Agent;
 import com.Assignment;
 import com.Interface.DirectionsInterface;
@@ -38,26 +42,12 @@ public class GHMatrixAPI implements DirectionsInterface {
 
     //<editor-fold desc="Member Variables">
 
-    private final String APIkey;
     GraphHopperMatrixWeb matrixClient;
-
-    private String modeOfTransport;
-    private ArrayList<Agent> agents = new ArrayList<>();
-    private ArrayList<Assignment> assignments = new ArrayList<>();
-
-    private ArrayList<TravelRoutes> travelRoutes;
-
-    private MatrixResponse matrixResponse;
 
     //</editor-fold>
 
     public GHMatrixAPI(String APIkey) {
 
-        this.APIkey = APIkey;
-
-        // TODO Move this to a more "general" method.
-        // Hint: create this thread safe instance only once in your application to allow the underlying library to cache
-        // the costly initial https handshake
         matrixClient = new GraphHopperMatrixWeb();
         matrixClient.setKey(APIkey);
     }
@@ -65,27 +55,10 @@ public class GHMatrixAPI implements DirectionsInterface {
     //<editor-fold desc="Public Mathods">
 
     @Override
-    public void addAgents(List<Agent> agents) {
-        this.agents.addAll(agents);
-    }
-
-    @Override
-    public void addAssignment(Assignment assignment) {
-        this.assignments.add(assignment);
-    }
-
-    @Override
-    public void addAssignments(List<Assignment> assignments) {
-        this.assignments.addAll(assignments);
-    }
-
-    @Override
-    public void setModeOfTransport(String modeOfTransport) {
-        this.modeOfTransport = modeOfTransport;
-    }
-
-    @Override
-    public boolean calculateRoutes() {
+    public List<TravelRoutes> calculateRoutes(List<Agent> agents, List<Assignment> assignments,
+                                              String modeOfTransport)
+    throws NoAgentsExcpetions, NoAssignmentsException, ModeOfTransportException,
+           RoutingResponsErrorsException {
 
         GHMRequest ghmRequest = new GHMRequest();
 
@@ -93,27 +66,34 @@ public class GHMatrixAPI implements DirectionsInterface {
         ghmRequest.addOutArray("distances");
         ghmRequest.addOutArray("times");
 
-        for( Agent a : agents ) {
+        if (agents == null || agents.isEmpty()) {
+            throw new NoAgentsExcpetions();
+        }
+        for ( Agent a : agents ) {
             ghmRequest.addFromPoint(ToGHPoint(a));
         }
 
+        if (assignments == null || assignments.isEmpty()) {
+            throw new NoAssignmentsException();
+        }
         for (Assignment a : assignments ) {
             ghmRequest.addToPoint(ToGHPoint(a));
         }
 
-        if (this.modeOfTransport == null || this.modeOfTransport.isEmpty() || this.modeOfTransport.equals("")) {
-            ghmRequest.setVehicle("car");
+        if (   modeOfTransport == null || modeOfTransport.isEmpty()
+            || modeOfTransport.equals("")) {
+            throw new ModeOfTransportException();
         } else {
-            ghmRequest.setVehicle(this.modeOfTransport);
+            ghmRequest.setVehicle(modeOfTransport);
         }
 
-        matrixResponse = matrixClient.route(ghmRequest);
+        MatrixResponse matrixResponse = matrixClient.route(ghmRequest);
 
         if (matrixResponse.hasErrors()) {
-            return false;
+            throw new RoutingResponsErrorsException(matrixResponse.getErrors().toString());
         }
 
-        travelRoutes = new ArrayList<>();
+        ArrayList<TravelRoutes> travelRoutes = new ArrayList<>();
 
         int toIndex = 0;
         int fromIndex = 0;
@@ -129,32 +109,7 @@ public class GHMatrixAPI implements DirectionsInterface {
             toIndex++;
         }
 
-        return true;
-    }
-
-    @Override
-    public ArrayList<TravelRoutes> getRoutes() {
-        // TODO Figure out how to do this without giving the recipient the possibility of modifying the original list
-        return this.travelRoutes;
-    }
-
-    @Override
-    public ArrayList<TravelRoutes> getRoutes(Agent agent) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<TravelRoutes> getRoutes(Assignment assignment) {
-        return null;
-    }
-
-    @Override
-    public void addAgent(Agent agent) {
-
-    }
-
-    public String getError() {
-        return matrixResponse.getErrors().toString();
+        return travelRoutes;
     }
 
     //</editor-fold>

@@ -12,6 +12,9 @@
 
 package com.GraphHopperDirectionsAPI;
 
+import com.ARUBAExceptions.ModeOfTransportException;
+import com.ARUBAExceptions.NoAgentsExcpetions;
+import com.ARUBAExceptions.NoAssignmentsException;
 import com.Agent;
 import com.Assignment;
 import com.Interface.DirectionsInterface;
@@ -46,53 +49,17 @@ public class GHDirectionsAPI implements DirectionsInterface, GeocodingInterface 
     public boolean reverseGeocode(Position position) {
         return false;
     }
+
     //</editor-fold>
 
     //<editor-fold desc="Routing">
     @Override
-    public boolean calculateRoutes() {
-        return false;
-    }
-
-    @Override
-    public ArrayList<TravelRoutes> getRoutes() {
+    public List<TravelRoutes> calculateRoutes(List<Agent> agents, List<Assignment> assignments,
+                                              String modeOfTransport)
+    throws NoAgentsExcpetions, NoAssignmentsException, ModeOfTransportException {
         return null;
     }
 
-    @Override
-    public ArrayList<TravelRoutes> getRoutes(Agent agent) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<TravelRoutes> getRoutes(Assignment assignment) {
-        return null;
-    }
-
-    @Override
-    public void addAgent(Agent agent) {
-
-    }
-
-    @Override
-    public void addAgents(List<Agent> agents) {
-
-    }
-
-    @Override
-    public void addAssignment(Assignment assignment) {
-
-    }
-
-    @Override
-    public void addAssignments(List<Assignment> assignments) {
-
-    }
-
-    @Override
-    public void setModeOfTransport(String string) {
-
-    }
     //</editor-fold>
 
     //</editor-fold>

@@ -1,5 +1,8 @@
 package com.GoogleAPI;
 
+import com.ARUBAExceptions.ModeOfTransportException;
+import com.ARUBAExceptions.NoAgentsExcpetions;
+import com.ARUBAExceptions.NoAssignmentsException;
 import com.Agent;
 import com.Assignment;
 import com.Interface.DirectionsInterface;
@@ -53,7 +56,7 @@ public class DirectionsGoogle implements DirectionsInterface {
      *
      * @return true
      */
-    @Override
+//    @Override
     public boolean calculateRoutes() {
         System.out.println("Entering calculateRoutes");
         for (Agent a : this.agents) {
@@ -107,7 +110,7 @@ public class DirectionsGoogle implements DirectionsInterface {
      *
      * @return travelRoutes
      */
-    @Override
+//    @Override
     public ArrayList<TravelRoutes> getRoutes() {
         return travelRoutes;
     }
@@ -118,7 +121,7 @@ public class DirectionsGoogle implements DirectionsInterface {
      * @param agent - An Agent
      * @return travelRoutes1 - The travelroutes to all the Assignments
      */
-    @Override
+//    @Override
     public ArrayList<TravelRoutes> getRoutes(Agent agent) {
         ArrayList<TravelRoutes> travelRoutes1 = new ArrayList<>();
         for (TravelRoutes travRout : this.travelRoutes) {
@@ -136,7 +139,7 @@ public class DirectionsGoogle implements DirectionsInterface {
      * @param assignment - An Assignment
      * @return travelRoutes1 - The travelroutes from all the Agents
      */
-    @Override
+//    @Override
     public ArrayList<TravelRoutes> getRoutes(Assignment assignment) {
         ArrayList<TravelRoutes> travelRoutes1 = new ArrayList<>();
         for (TravelRoutes travRout : this.travelRoutes) {
@@ -153,7 +156,7 @@ public class DirectionsGoogle implements DirectionsInterface {
      *
      * @param agent - The Agent that is to be added
      */
-    @Override
+//    @Override
     public void addAgent(Agent agent) {
         this.agents.add(agent);
     }
@@ -163,7 +166,7 @@ public class DirectionsGoogle implements DirectionsInterface {
      *
      * @param agents - The list of Agents.
      */
-    @Override
+//    @Override
     public void addAgents(List<Agent> agents) {
         this.agents.addAll(agents);
     }
@@ -173,7 +176,7 @@ public class DirectionsGoogle implements DirectionsInterface {
      *
      * @param assignment - The Assignment to be added.
      */
-    @Override
+//    @Override
     public void addAssignment(Assignment assignment) {
         this.assignments.add(assignment);
     }
@@ -183,13 +186,20 @@ public class DirectionsGoogle implements DirectionsInterface {
      *
      * @param assignments - The list of Agents.
      */
-    @Override
+//    @Override
     public void addAssignments(List<Assignment> assignments) {
         this.assignments.addAll(assignments);
     }
 
-    @Override
+//    @Override
     public void setModeOfTransport(String modeOfTransport) {
 
+    }
+
+    @Override
+    public List<TravelRoutes> calculateRoutes(List<Agent> agents, List<Assignment> assignments,
+                                              String modeOfTransport)
+    throws NoAgentsExcpetions, NoAssignmentsException, ModeOfTransportException {
+        return null;
     }
 }
