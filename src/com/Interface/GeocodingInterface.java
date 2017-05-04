@@ -14,8 +14,18 @@ import com.Position;
  */
 public interface GeocodingInterface {
 
+    /**
+     * @param position
+     *
+     * @return True if the positions object was successfully geocoded, otherwise false.
+     */
     boolean geocode(Position position);
 
+    /**
+     * @param position
+     *
+     * @return
+     */
     boolean reverseGeocode(Position position);
 
 }

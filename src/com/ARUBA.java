@@ -65,22 +65,23 @@ public class ARUBA {
 
         GHMatrixAPI ghm = new GHMatrixAPI(this.GraphHopperKey);
 
-        ghm.addAgents(agents);
-        ghm.addAssignments(assignments);
-        ghm.setModeOfTransport("car");
+//        ghm.addAgents(agents);
+//        ghm.addAssignments(assignments);
+//        ghm.setModeOfTransport("car");
 
-        if (!ghm.calculateRoutes()) {
-            System.out.println("ERRORS IN GHM:\r\n" + ghm.getError().toString());
+//        if (!ghm.calculateRoutes()) {
+//            System.out.println("ERRORS IN GHM:\r\n" + ghm.getError().toString());
             // TODO Handle errors
-        }
+//        }
 
-        ArrayList<TravelRoutes> tr = ghm.getRoutes();
+//        ArrayList<TravelRoutes> tr = ghm.getRoutes();
 
         // Sorting & output
-        Output output = new Output(tr);
-        output.JSONformat();
+//        Output output = new Output(tr);
+//        output.JSONformat();
 
-        return output.getJSONrepresentation();
+//        return output.getJSONrepresentation();
+        return null;
 
         /*
         try {

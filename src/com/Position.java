@@ -256,14 +256,16 @@ public class Position {
             s += this.getGeocoordinate().toString();
         }
         // Address
-        if ( !(this.getAddress() == null || this.getAddress().isEmpty() || this.getAddress().equals("")) ) {
+        if ( !(this.getAddress() == null || this.getAddress().isEmpty() || this.getAddress()
+                                                                               .equals("")) ) {
             if (!s.equals("")) {
                 s += " ";
             }
             s += this.getAddress();
         }
         // Postal code
-        if ( !(this.getPostcode() == null || this.getPostcode().isEmpty()|| this.getPostcode().equals("")) ) {
+        if ( !(this.getPostcode() == null || this.getPostcode().isEmpty()
+               || this.getPostcode().equals("")) ) {
             if (!s.equals("")) {
                 s += " ";
             }
@@ -277,7 +279,8 @@ public class Position {
             s += this.getCity();
         }
         // County
-        if ( !(this.getCounty() == null || this.getCounty().isEmpty() || this.getCounty().equals("")) ) {
+        if ( !(this.getCounty() == null || this.getCounty().isEmpty()
+               || this.getCounty().equals("")) ) {
             if (!s.equals("")) {
                 s += " ";
             }
@@ -285,14 +288,16 @@ public class Position {
         }
         // Zip
         if ( !(this.getZip() == null || this.getZip().isEmpty() || this.getZip().equals("")) &&
-                (this.getPostcode() == null || this.getPostcode().isEmpty() || this.getPostcode().equals("")) ) {
+                (this.getPostcode() == null || this.getPostcode().isEmpty()
+                 || this.getPostcode().equals("")) ) {
             if (!s.equals("")) {
                 s += " ";
             }
             s += this.getZip();
         }
         // Country
-        if ( !(this.getCountry() == null || this.getCountry().isEmpty() || this.getCountry().equals("")) ) {
+        if ( !(this.getCountry() == null || this.getCountry().isEmpty()
+               || this.getCountry().equals("")) ) {
             if (!s.equals("")) {
                 s += " ";
             }

@@ -10,6 +10,10 @@
 
 package com.Interface;
 
+import com.ARUBAExceptions.ModeOfTransportException;
+import com.ARUBAExceptions.NoAgentsExcpetions;
+import com.ARUBAExceptions.NoAssignmentsException;
+import com.ARUBAExceptions.RoutingResponsErrorsException;
 import com.Agent;
 import com.Assignment;
 import com.TravelRoutes;
@@ -26,49 +30,14 @@ import java.util.List;
 public interface DirectionsInterface {
 
     /**
-     * Calculates the distance between the sets of agents and assignments givens as parameters. Saves the results in
-     * member variables.
+     * Calculates the distance between the sets of agents and assignments givens as parameters.
+     * Saves the results in member variables.
      *
-     * @return True if call was successful, otherwise false.
+     * @return A list of TravelRoutes.
      */
-    boolean calculateRoutes();
-
-    /**
-     * Returns all routes saved in the objects member variables.
-     *
-     * @return A set of routes.
-     */
-    ArrayList<TravelRoutes> getRoutes();
-
-    /**
-     * Returns all routes associated with a specific agent.
-     *
-     * @param agent An agent
-     * @return A set of routes associated with the agent
-     */
-    ArrayList<TravelRoutes> getRoutes(Agent agent);
-
-    /**
-     * Returns all routes associated with a specific assignment.
-     *
-     * @param assignment An assignment
-     * @return A set of routes associated with the assignment
-     */
-    ArrayList<TravelRoutes> getRoutes(Assignment assignment);
-
-    void addAgent(Agent agent);
-
-    void addAgents(List<Agent> agents);
-
-    void addAssignment(Assignment assignment);
-
-    void addAssignments(List<Assignment> assignments);
-
-    /**
-     * Sets the mode of transportation to be used in the API call when calculating the routes.
-     *
-     * @param modeOfTransport
-     */
-    void setModeOfTransport(String modeOfTransport);
+    List<TravelRoutes> calculateRoutes(List<Agent> agents, List<Assignment> assignments, String
+            modeOfTransport) throws NoAgentsExcpetions, NoAssignmentsException,
+                                    ModeOfTransportException, RoutingResponsErrorsException;
 
 }
+
