@@ -70,6 +70,12 @@ public class Parser {
         return received.isDebugMode();
     }
 
+    /**
+     * Finds out what the format of the JSONInput was.
+     *
+     * @param JSONInput
+     * @return the position format in String representation
+     */
     public String findPositionFormat(String JSONInput) {
         String toReturn;
 
