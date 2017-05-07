@@ -1,16 +1,19 @@
 package com.GoogleAPITests;
 
-import com.Agent;
-import com.Assignment;
-import com.Geocoordinate;
+import com.*;
+import com.ARUBAExceptions.GoogleNoResultsException;
+import com.ARUBAExceptions.ModeOfTransportException;
+import com.ARUBAExceptions.NoAgentsExcpetions;
+import com.ARUBAExceptions.NoAssignmentsException;
 import com.GoogleAPI.DirectionsGoogle;
-import com.Position;
 import com.google.maps.errors.ApiException;
-import org.junit.Test;
+import org.junit.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by timsvensson on 12/04/17.
@@ -30,8 +33,7 @@ public class DirectionsGoogleTest {
     List<Agent> agents = new ArrayList<Agent>();
     List<Assignment> assignments = new ArrayList<Assignment>();
 
-    public DirectionsGoogle init() {
-
+    public List<List> init() {
 
         for (double i = 0; i < agentAddresses.length; i++) {
             Geocoordinate geoCoord = new Geocoordinate(49.6724 + i, 11.3494 + i);
@@ -51,89 +53,25 @@ public class DirectionsGoogleTest {
             // if (i == assignmentAddresses.length - 1) i = 0;
         }
 
-        DirectionsGoogle directionsGoogle = new DirectionsGoogle(agents, assignments);
+        List<List> list = new ArrayList<>();
+        list.add(agents);
+        list.add(assignments);
 
-        return directionsGoogle;
+        return list;
     }
 
     @Test
-    public void testGetAgents() {
-        DirectionsGoogle directionsGoogle = init();
+    public void calculateDistances() throws InterruptedException, ApiException, IOException, ModeOfTransportException,
+            NoAssignmentsException, NoAgentsExcpetions, GoogleNoResultsException {
+        DirectionsGoogle directionsGoogle = new DirectionsGoogle();
 
-        assert(agents.equals(directionsGoogle.getAgents()));
-    }
+        List<List> list = init();
+        List<Agent> agentList = list.get(0);
+        List<Assignment> assignmentList = list.get(1);
 
-    @Test
-    public void addAgent() {
-        Geocoordinate geoCoord = new Geocoordinate(49.6724 , 11.3494 );
-        Position pos = new Position(geoCoord, "Drottninggatan 19", "Uppsala", "Uppsala län", "Sweden", "117 56", "75");
-        Agent agent = new Agent(pos, "666", "Haidar", "Smith");
+        List<TravelRoutes> travelRoutesList = directionsGoogle.calculateRoutes(agentList, assignmentList, "car");
 
-        DirectionsGoogle directionsGoogle = init();
-
-        directionsGoogle.addAgent(agent);
-        int size = directionsGoogle.getAgents().size();
-
-        assert(agent.getId().equals(directionsGoogle.getAgents().get(size - 1).getId()));
-    }
-
-    @Test
-    public void addAgents() {
-        DirectionsGoogle directionsGoogle = new DirectionsGoogle(new ArrayList<Agent>(), new ArrayList<Assignment>());
-        directionsGoogle.addAgents(agents);
-
-        assert(agents.equals(directionsGoogle.getAgents()));
-    }
-
-    @Test
-    public void testGetAssignments() {
-        DirectionsGoogle directionsGoogle = init();
-
-        assert(assignments.equals(directionsGoogle.getAssignments()));
-    }
-
-    @Test
-    public void addAssignment() {
-        Geocoordinate geoCoord = new Geocoordinate(49.6724, 11.3494);
-        Position pos = new Position(geoCoord, "Uppsala Centrum", "Uppsala", "Uppsala län", "Sweden", "752 55", "75");
-        Assignment assignment = new Assignment(pos, "555", "LeBron", 1, 10);
-
-        DirectionsGoogle directionsGoogle = init();
-
-        directionsGoogle.addAssignment(assignment);
-        int size = directionsGoogle.getAssignments().size();
-
-        assert(assignment.getId().equals(directionsGoogle.getAssignments().get(size - 1).getId()));
-    }
-
-    @Test
-    public void addAssignments() {
-        DirectionsGoogle directionsGoogle = new DirectionsGoogle(new ArrayList<Agent>(), new ArrayList<Assignment>());
-        directionsGoogle.addAssignments(assignments);
-
-        assert(assignments.equals(directionsGoogle.getAssignments()));
-    }
-
-    @Test
-    public void testGetRoutes() {
-
-    }
-
-    @Test
-    public void testGetAgentRoutes() {
-
-    }
-
-    @Test
-    public void testGetAssignmentRoutes() {
-
-    }
-
-    @Test
-    public void calculateDistances() throws InterruptedException, ApiException, IOException {
-        DirectionsGoogle directionsGoogle = init();
-
-        assert(directionsGoogle.calculateRoutes());
+        assertEquals(travelRoutesList.size(), (assignmentList.size() * agentList.size()));
     }
 
 }

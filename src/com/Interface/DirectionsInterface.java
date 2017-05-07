@@ -10,10 +10,7 @@
 
 package com.Interface;
 
-import com.ARUBAExceptions.ModeOfTransportException;
-import com.ARUBAExceptions.NoAgentsExcpetions;
-import com.ARUBAExceptions.NoAssignmentsException;
-import com.ARUBAExceptions.RoutingResponsErrorsException;
+import com.ARUBAExceptions.*;
 import com.Agent;
 import com.Assignment;
 import com.TravelRoutes;
@@ -37,7 +34,7 @@ public interface DirectionsInterface {
      */
     List<TravelRoutes> calculateRoutes(List<Agent> agents, List<Assignment> assignments, String
             modeOfTransport) throws NoAgentsExcpetions, NoAssignmentsException,
-                                    ModeOfTransportException, RoutingResponsErrorsException;
+                                    ModeOfTransportException, RoutingResponsErrorsException, GoogleNoResultsException;
 
 }
 
