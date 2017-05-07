@@ -1,6 +1,7 @@
 package com.GoogleAPITests;
 
 
+import com.ARUBAExceptions.GoogleNoResultsException;
 import com.Geocoordinate;
 import com.GoogleAPI.GeocodingGoogle;
 import com.Position;
@@ -34,7 +35,7 @@ public class GeocodingGoogleTest {
 
 
     @Test
-    public void geocode() {
+    public void geocode() throws GoogleNoResultsException{
         assert(geocodingGoogle.geocode(position1));
         assert(geocodingGoogle.geocode(position2));
         assert(geocodingGoogle.geocode(position3));
@@ -71,7 +72,7 @@ public class GeocodingGoogleTest {
     }
 
     @Test
-    public void reverseGeocode() {
+    public void reverseGeocode() throws GoogleNoResultsException {
         position1.setGeocoordinate(geocoordinate1);
         position2.setGeocoordinate(geocoordinate2);
         position3.setGeocoordinate(geocoordinate3);

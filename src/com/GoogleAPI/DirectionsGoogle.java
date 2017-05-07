@@ -1,5 +1,6 @@
 package com.GoogleAPI;
 
+import com.ARUBAExceptions.GoogleNoResultsException;
 import com.ARUBAExceptions.ModeOfTransportException;
 import com.ARUBAExceptions.NoAgentsExcpetions;
 import com.ARUBAExceptions.NoAssignmentsException;
@@ -45,7 +46,7 @@ public class DirectionsGoogle implements DirectionsInterface {
     @Override
     public List<TravelRoutes> calculateRoutes(List<Agent> agents, List<Assignment> assignments,
                                               String modeOfTransport)
-            throws NoAgentsExcpetions, NoAssignmentsException, ModeOfTransportException {
+            throws NoAgentsExcpetions, NoAssignmentsException, ModeOfTransportException, GoogleNoResultsException {
 
         System.out.println("Entering calculateRoutes");
         List<TravelRoutes> travelRoutes = new ArrayList<>();
@@ -54,14 +55,18 @@ public class DirectionsGoogle implements DirectionsInterface {
             for (Assignment ass : assignments) {
                 try {
                     DirectionsResult dirResult =
-                            DirectionsApi.getDirections(this.context, a.getPosition().getAddress
-                                    (), ass.getPosition().getAddress()).await();
+                            DirectionsApi.getDirections(this.context, a.getPosition().getAddress(),
+                                    ass.getPosition().getAddress()).await();
+
+                    if (dirResult.routes.length == 0) {
+                        throw new GoogleNoResultsException("DirectionsGoogle.calculateRoutes: No results were found...");
+                    }
 
                     // TODO All routes and legs must be uncovered here.
                     double distance = (double)  dirResult.routes[0].legs[0].distance.inMeters;
                     long duration =             dirResult.routes[0].legs[0].duration.inSeconds;
 
-                    Route route = new Route(distance, duration, "driving");
+                    Route route = new Route(distance, duration, modeOfTransport);
 
                     TravelRoutes travelRoute = new TravelRoutes(a, ass, route);
                     travelRoutes.add(travelRoute);

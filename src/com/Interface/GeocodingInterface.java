@@ -1,5 +1,6 @@
 package com.Interface;
 
+import com.ARUBAExceptions.GoogleNoResultsException;
 import com.Position;
 
 /**
@@ -19,13 +20,13 @@ public interface GeocodingInterface {
      *
      * @return True if the positions object was successfully geocoded, otherwise false.
      */
-    boolean geocode(Position position);
+    boolean geocode(Position position) throws GoogleNoResultsException;
 
     /**
      * @param position
      *
      * @return
      */
-    boolean reverseGeocode(Position position);
+    boolean reverseGeocode(Position position) throws GoogleNoResultsException;
 
 }
