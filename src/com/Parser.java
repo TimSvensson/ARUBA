@@ -77,37 +77,47 @@ public class Parser {
      * @return the position format in String representation
      */
     public String findPositionFormat(String JSONInput) {
-        String toReturn;
-
         Input received = g.fromJson(JSONInput, Input.class);
 
         Position assignmentPosition = received.getAssignment().getPosition();
 
-        if (assignmentPosition.getGeocoordinate() != null) {
+        return findPositionFormat(assignmentPosition);
+    }
+
+    /**
+     * Finds out what the position format the input Position is of.
+     *
+     * @param position
+     * @return the position format in String representation
+     */
+    public String findPositionFormat(Position position) {
+        String toReturn = "";
+
+        if (position.getGeocoordinate() != null) {
             toReturn = "geocoordinate";
         }
-        else if (!(assignmentPosition.getAddress().equals("")) ||
-                !(assignmentPosition.getAddress() == null)){
+        else if (!(position.getAddress().equals("")) ||
+                !(position.getAddress() == null)){
             toReturn = "address";
         }
-        else if (!(assignmentPosition.getPostcode().equals("")) ||
-                !(assignmentPosition.getPostcode() == null)){
+        else if (!(position.getPostcode().equals("")) ||
+                !(position.getPostcode() == null)){
             toReturn = "postcode";
         }
-        else if (!(assignmentPosition.getZip().equals("")) ||
-                !(assignmentPosition.getZip() == null)) {
+        else if (!(position.getZip().equals("")) ||
+                !(position.getZip() == null)) {
             toReturn = "zip";
         }
-        else if (!(assignmentPosition.getCity().equals("")) ||
-                !(assignmentPosition.getCity() == null)){
+        else if (!(position.getCity().equals("")) ||
+                !(position.getCity() == null)){
             toReturn = "city";
         }
-        else if (!(assignmentPosition.getCounty().equals("")) ||
-                !(assignmentPosition.getCounty() == null)){
+        else if (!(position.getCounty().equals("")) ||
+                !(position.getCounty() == null)){
             toReturn = "county";
         }
-        else if (!(assignmentPosition.getCountry().equals("")) ||
-                !(assignmentPosition.getCountry() == null)){
+        else if (!(position.getCountry().equals("")) ||
+                !(position.getCountry() == null)){
             toReturn = "country";
         }
         else {
@@ -115,6 +125,39 @@ public class Parser {
         }
 
         return toReturn;
+    }
+
+    public String getLocation(String format, Position position) {
+        String location = "";
+
+        switch (format.toLowerCase()) {
+            case "geocoordinate":
+                location = position.getGeocoordinate().getGoogleString();
+                break;
+            case "address":
+                location = position.getAddress();
+                break;
+            case "postcode":
+                location = position.getPostcode() + " " + position.getCity();
+                break;
+            case "zip":
+                int zipNo = Integer.parseInt(position.getZip());
+                location = new Zip(zipNo).getGeocoordinate().getGoogleString();
+                break;
+            case "city":
+                location = position.getCity();
+                break;
+            case "county":
+                location = position.getCounty();
+                break;
+            case "country":
+                location = position.getCountry();
+                break;
+            default:
+                break;
+        }
+
+        return location;
     }
 
     public String JsonParserToJava(){

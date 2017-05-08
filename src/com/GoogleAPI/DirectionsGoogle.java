@@ -1,14 +1,11 @@
 package com.GoogleAPI;
 
+import com.*;
 import com.ARUBAExceptions.GoogleNoResultsException;
 import com.ARUBAExceptions.ModeOfTransportException;
 import com.ARUBAExceptions.NoAgentsExcpetions;
 import com.ARUBAExceptions.NoAssignmentsException;
-import com.Agent;
-import com.Assignment;
 import com.Interface.DirectionsInterface;
-import com.Route;
-import com.TravelRoutes;
 import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
@@ -54,9 +51,18 @@ public class DirectionsGoogle implements DirectionsInterface {
         for (Agent a : agents) {
             for (Assignment ass : assignments) {
                 try {
+                    Parser parser = new Parser();
+
+                    // Finds out which Position format is given
+                    String assignmentPositionFormat = parser.findPositionFormat(ass.getPosition());
+                    String agentPositionFormat = parser.findPositionFormat(a.getPosition());
+
+                    // Picks out the most precise position format in the respective Position objects
+                    String assignmentLocation = parser.getLocation(assignmentPositionFormat, ass.getPosition());
+                    String agentLocation = parser.getLocation(agentPositionFormat,a.getPosition());
+
                     DirectionsResult dirResult =
-                            DirectionsApi.getDirections(this.context, a.getPosition().getAddress(),
-                                    ass.getPosition().getAddress()).await();
+                            DirectionsApi.getDirections(this.context, agentLocation, assignmentLocation).await();
 
                     if (dirResult.routes.length == 0) {
                         throw new GoogleNoResultsException("DirectionsGoogle.calculateRoutes: No results were found...");
@@ -82,4 +88,6 @@ public class DirectionsGoogle implements DirectionsInterface {
 
         return ((agents.size() * assignments.size()) == travelRoutes.size()) ? travelRoutes : null;
     }
+
+
 }
