@@ -42,7 +42,8 @@ public class Position {
      * @param postcode          - the postcode of the Position
      * @param zip               - the zip of the Position
      */
-    public Position(Geocoordinate geocoordinate, String address, String city, String county, String country, String postcode, String zip) {
+    public Position(Geocoordinate geocoordinate, String address, String city, String county,
+                    String country, String postcode, String zip) {
         this.geocoordinate = geocoordinate;
         this.address = address;
         this.city = city;
@@ -55,7 +56,8 @@ public class Position {
     public Position() {
     }
 
-    public Position(String address, String city, String county, String country, String postcode, String zip) {
+    public Position(String address, String city, String county, String country, String postcode,
+                    String zip) {
         this.address = address;
         this.city = city;
         this.county = county;
@@ -80,6 +82,21 @@ public class Position {
         this.geocoordinate = geocoordinate;
     }
 
+    public boolean hasGeocoordinate() {
+        return getGeocoordinate() != null;
+    }
+
+    public boolean usingZip() {
+        if (getZip() != null || !getZip().isEmpty() || !getZip().equals("")) {
+            if ((getAddress() == null || getAddress().equals("")) && (getCity() == null ||
+                                                                      getCity().equals(""))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
      *                              jagheterhaubir@gmail.com
@@ -90,7 +107,8 @@ public class Position {
      * @param zip               - the zip of the Position.
      */
     public Position(String zip) {
-        new Position(new Geocoordinate(0,0), "", "", "", "", "", zip);
+        new Position(new Geocoordinate(0,0), "", "", "", "", "",
+                     zip);
     }
 
     /**

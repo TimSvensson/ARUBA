@@ -12,6 +12,7 @@
 
 package com.GraphHopperDirectionsAPI;
 
+import com.ARUBAExceptions.GoogleNoResultsException;
 import com.Geocoordinate;
 import com.Interface.GeocodingInterface;
 import com.Position;
@@ -19,9 +20,6 @@ import com.Position;
 import io.swagger.client.*;
 import io.swagger.client.model.*;
 import io.swagger.client.api.GeocodingApi;
-
-import java.util.List;
-import java.util.Locale;
 
 /**
  * Provides geocoding and reverse-geocoding functionality using the GraphHopper Directions API.
@@ -75,7 +73,7 @@ public class GHGeocodingAPI implements GeocodingInterface {
     //</editor-fold>
 
     @Override
-    public boolean geocode(Position position) {
+    public boolean geocode(Position position) throws GoogleNoResultsException {
 
         GeocodingApi apiInstance = new GeocodingApi();
 
