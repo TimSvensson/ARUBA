@@ -1,8 +1,9 @@
 package com;
 
-import com.ARUBAExceptions.GoogleNoResultsException;
+import com.ARUBAExceptions.NoResultsException;
 import com.GoogleAPI.GeocodingGoogle;
-import org.apache.commons.lang3.StringUtils;
+// TODO: Uncomment the row below
+//import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +11,10 @@ import java.util.List;
 /**
  * Created by timsvensson on 11/04/17.
  */
-public class AreaCalc {
+public class ZipCalc {
 
 
-    public AreaCalc() {}
+    public ZipCalc() {}
     /*
     Stöd för zip: Vad krävs? Skriv ner allt. (flytta till ARUBA 0.3)
         Hantera zip-input
@@ -30,7 +31,7 @@ public class AreaCalc {
 
         try {
             geocodedPostCodes = geocodePostCodes(positionList);
-        } catch (GoogleNoResultsException e) {
+        } catch (NoResultsException e) {
             e.printStackTrace();
         }
 
@@ -69,16 +70,18 @@ public class AreaCalc {
         // Tillfällig lösning för algoritmens skull
         for (int i = 0; i < 1000; i++) {
             String toFormat = zip + "" + i + "";
-            String formatted = StringUtils.rightPad(toFormat, 5, '0');
+            // TODO: Uncomment the row below
+            // String formatted = StringUtils.rightPad(toFormat, 5, '0');
             Position p = new Position();
-            p.setPostcode(formatted);
+            // TODO: Uncomment the row below
+            // p.setPostcode(formatted);
             postCodeList.add(p);
         }
 
         return postCodeList;
     }
 
-    List<Position> geocodePostCodes(List<Position> positions) throws GoogleNoResultsException {
+    List<Position> geocodePostCodes(List<Position> positions) throws NoResultsException {
         GeocodingGoogle geocodingGoogle = new GeocodingGoogle();
 
         for (Position p : positions) if (!geocodingGoogle.geocode(p)) positions.remove(p);
