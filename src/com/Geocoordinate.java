@@ -39,14 +39,10 @@ public class Geocoordinate {
 
     @Override
     public String toString() {
-        return "(lat=" + getLatitude() + ", lon=" + getLongitude() + ")";
+        return latitude + ", " + longitude;
     }
 
     public boolean equals(Geocoordinate g) {
         return (this.latitude == g.getLatitude() && this.longitude == g.getLongitude());
-    }
-
-    public String getGoogleString() {
-        return latitude + ", " + longitude;
     }
 }
