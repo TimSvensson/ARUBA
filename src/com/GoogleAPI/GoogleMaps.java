@@ -15,6 +15,7 @@ package com.GoogleAPI;
 import com.ZipCalc;
 import com.Position;
 import com.Zip;
+import com.google.maps.GeoApiContext;
 
 /**
  * Class summary.
@@ -26,7 +27,18 @@ import com.Zip;
  * @version JDK 1.8
  * @since JDK 1.8
  */
-public abstract class GoogleMaps {
+public class GoogleMaps {
+    GeoApiContext context = new GeoApiContext();
+
+    /**
+     * Constructs the GeocodingGoogle object that is used for the
+     * functionalities of the Google Maps Geocoding API.
+     *
+     */
+    public GoogleMaps(String apiKey) {
+        this.context.setApiKey(apiKey);
+    }
+
 
     // The real implementation that is costly.
     public void findZipGeocoordinates(Position position) {

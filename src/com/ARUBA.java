@@ -105,7 +105,7 @@ public class ARUBA {
             }
 
             // Geocode using Google
-            GeocodingGoogle gg = new GeocodingGoogle();
+            GeocodingGoogle gg = new GeocodingGoogle(this.GoogleKey);
             try {
                 if (gg.geocode(p)) {
                     return p;
@@ -131,7 +131,7 @@ public class ARUBA {
         }
 
         // Route using Google
-        DirectionsGoogle dg = new DirectionsGoogle();
+        DirectionsGoogle dg = new DirectionsGoogle(this.GoogleKey);
         try {
             return dg.calculateRoutes(agents, assignments, modeOfTransport);
         } catch (NoAgentsExcpetions | NoAssignmentsException | NoResultsException |

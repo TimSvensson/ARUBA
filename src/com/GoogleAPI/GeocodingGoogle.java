@@ -41,15 +41,15 @@ import java.io.IOException;
  * @since JDK 1.8
  */
 public class GeocodingGoogle extends GoogleMaps implements GeocodingInterface{
-    String apiKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
-    GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
 
     /**
      * Constructs the GeocodingGoogle object that is used for the
      * functionalities of the Google Maps Geocoding API.
      *
      */
-    public GeocodingGoogle() {}
+    public GeocodingGoogle(String apiKey) {
+        super(apiKey);
+    }
 
     /**
      * Takes the geocoordinates of a position and gives out complete information about the location

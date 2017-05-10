@@ -19,16 +19,15 @@ import java.util.List;
  * Created by timsvensson on 11/04/17.
  */
 public class DirectionsGoogle extends GoogleMaps implements DirectionsInterface {
-    String apiKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
-    GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
-
 
     /**
      * Constructs a DirectionsGoogle object that is ready to calculate the travelroutes between all Agents and
      * all Assignments.
      *
      */
-    public DirectionsGoogle() {}
+    public DirectionsGoogle(String apiKey) {
+        super(apiKey);
+    }
 
     /**
      * Calculates the travelroutes between all Agents and all Assignments.
