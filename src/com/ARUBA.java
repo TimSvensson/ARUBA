@@ -100,7 +100,7 @@ public class ARUBA {
                 if (ghg.geocode(p)) {
                     return ghg.getPositionResult();
                 }
-            } catch (GoogleNoResultsException e) {
+            } catch (NoResultsException e) {
                 e.printStackTrace();
             }
 
@@ -110,7 +110,7 @@ public class ARUBA {
                 if (gg.geocode(p)) {
                     return p;
                 }
-            } catch (GoogleNoResultsException e) {
+            } catch (NoResultsException e) {
                 e.printStackTrace();
             }
         }
@@ -134,7 +134,7 @@ public class ARUBA {
         DirectionsGoogle dg = new DirectionsGoogle();
         try {
             return dg.calculateRoutes(agents, assignments, modeOfTransport);
-        } catch (NoAgentsExcpetions | NoAssignmentsException | GoogleNoResultsException |
+        } catch (NoAgentsExcpetions | NoAssignmentsException | NoResultsException |
                 ModeOfTransportException e) {
             e.printStackTrace();
         }
