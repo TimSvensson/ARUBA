@@ -12,10 +12,11 @@
 
 package com.GoogleAPI;
 
-import com.ARUBAExceptions.GoogleNoResultsException;
+import com.ARUBAExceptions.NoResultsException;
 import com.Geocoordinate;
 import com.Interface.GeocodingInterface;
 import com.Position;
+import com.Zip;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
@@ -23,6 +24,7 @@ import com.google.maps.model.AddressComponent;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
+
 import java.io.IOException;
 
 /**
@@ -38,16 +40,16 @@ import java.io.IOException;
  * @version JDK 1.8
  * @since JDK 1.8
  */
-public class GeocodingGoogle implements GeocodingInterface {
-    String apiKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
-    GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
+public class GeocodingGoogle extends GoogleMaps implements GeocodingInterface{
 
     /**
      * Constructs the GeocodingGoogle object that is used for the
      * functionalities of the Google Maps Geocoding API.
      *
      */
-    public GeocodingGoogle() {}
+    public GeocodingGoogle(String apiKey) {
+        super(apiKey);
+    }
 
     /**
      * Takes the geocoordinates of a position and gives out complete information about the location
@@ -56,30 +58,36 @@ public class GeocodingGoogle implements GeocodingInterface {
      * @return true if the reverse geocoding was successful
      */
     @Override
-    public boolean geocode(Position position) throws GoogleNoResultsException {
+    public boolean geocode(Position position) throws NoResultsException {
         Geocoordinate g = new Geocoordinate(0, 0);
         position.setGeocoordinate(new Geocoordinate(-1, -1));
 
+        String location = position.getMostPreciseLocation();
         try {
-            GeocodingResult[] geocodingResults = GeocodingApi.geocode(this.context, position.getAddress()).await();
 
-            if (geocodingResults.length == 0) {
-                throw new GoogleNoResultsException("GeocodingGoogle.geocode: No results were found...");
+            if (location.toLowerCase().equals("zip")) {
+                //findZipGeocoordinates(position); // The real implementation that is costly.
+                setZipGeocoordinate(position); // The temporary, free implementation
             }
+            else {
 
-            double newLatitude = geocodingResults[0].geometry.location.lat;
-            double newLongitude = geocodingResults[0].geometry.location.lng;
-            g = new Geocoordinate(newLatitude, newLongitude);
-            position.setGeocoordinate(g);
+                GeocodingResult[] geocodingResults = GeocodingApi.geocode(this.context, location).await();
 
-        } catch (ApiException e) {
-            e.printStackTrace();
+                if (geocodingResults.length == 0) return false;
+
+                double newLatitude = geocodingResults[0].geometry.location.lat;
+                double newLongitude = geocodingResults[0].geometry.location.lng;
+                g = new Geocoordinate(newLatitude, newLongitude);
+                position.setGeocoordinate(g);
+
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ApiException e) {
+            e.printStackTrace();
         }
-
         return position.getGeocoordinate().equals(g);
     }
 
@@ -90,7 +98,7 @@ public class GeocodingGoogle implements GeocodingInterface {
      * @return true if the reverse geocoding was successful
      */
     @Override
-    public boolean reverseGeocode(Position position) throws GoogleNoResultsException{
+    public boolean reverseGeocode(Position position) throws NoResultsException {
         String newAddress = null;
         Geocoordinate g = position.getGeocoordinate();
         LatLng latLng = new LatLng(g.getLatitude(), g.getLongitude());
@@ -99,7 +107,7 @@ public class GeocodingGoogle implements GeocodingInterface {
             GeocodingResult[] geocodingResults = GeocodingApi.reverseGeocode(this.context, latLng).await();
 
             if (geocodingResults.length == 0) {
-                throw new GoogleNoResultsException("GeocodingGoogle.reverseGeocode: No results were found...");
+                throw new NoResultsException("GeocodingGoogle.reverseGeocode: No results were found...");
             }
 
             AddressComponent streetNoComponent = null;

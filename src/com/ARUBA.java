@@ -100,17 +100,17 @@ public class ARUBA {
                 if (ghg.geocode(p)) {
                     return ghg.getPositionResult();
                 }
-            } catch (GoogleNoResultsException e) {
+            } catch (NoResultsException e) {
                 e.printStackTrace();
             }
 
             // Geocode using Google
-            GeocodingGoogle gg = new GeocodingGoogle();
+            GeocodingGoogle gg = new GeocodingGoogle(this.GoogleKey);
             try {
                 if (gg.geocode(p)) {
                     return p;
                 }
-            } catch (GoogleNoResultsException e) {
+            } catch (NoResultsException e) {
                 e.printStackTrace();
             }
         }
@@ -131,10 +131,10 @@ public class ARUBA {
         }
 
         // Route using Google
-        DirectionsGoogle dg = new DirectionsGoogle();
+        DirectionsGoogle dg = new DirectionsGoogle(this.GoogleKey);
         try {
             return dg.calculateRoutes(agents, assignments, modeOfTransport);
-        } catch (NoAgentsExcpetions | NoAssignmentsException | GoogleNoResultsException |
+        } catch (NoAgentsExcpetions | NoAssignmentsException | NoResultsException |
                 ModeOfTransportException e) {
             e.printStackTrace();
         }

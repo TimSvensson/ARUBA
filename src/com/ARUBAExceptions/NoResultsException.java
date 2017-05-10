@@ -22,20 +22,20 @@ package com.ARUBAExceptions;
  * @version JDK 1.8
  * @since JDK 1.8
  */
-public class GoogleNoResultsException extends Exception {
+public class NoResultsException extends Exception {
 
-    public GoogleNoResultsException() {
+    public NoResultsException() {
     }
 
-    public GoogleNoResultsException(String message) {
+    public NoResultsException(String message) {
         super(message);
     }
 
-    public GoogleNoResultsException(String message, Throwable cause) {
+    public NoResultsException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public GoogleNoResultsException(Throwable cause) {
+    public NoResultsException(Throwable cause) {
         super(cause);
     }
 }
