@@ -1,7 +1,7 @@
 package com.GoogleAPI;
 
 import com.*;
-import com.ARUBAExceptions.GoogleNoResultsException;
+import com.ARUBAExceptions.NoResultsException;
 import com.ARUBAExceptions.ModeOfTransportException;
 import com.ARUBAExceptions.NoAgentsExcpetions;
 import com.ARUBAExceptions.NoAssignmentsException;
@@ -10,20 +10,15 @@ import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.DirectionsResult;
-import com.google.maps.model.TravelMode;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-
-import static com.ARUBA.LOGGER;
-import static com.google.maps.model.TravelMode.DRIVING;
 
 /**
  * Created by timsvensson on 11/04/17.
  */
-public class DirectionsGoogle implements DirectionsInterface {
+public class DirectionsGoogle extends GoogleMaps implements DirectionsInterface {
     String apiKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
     GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
 
@@ -43,7 +38,7 @@ public class DirectionsGoogle implements DirectionsInterface {
     @Override
     public List<TravelRoutes> calculateRoutes(List<Agent> agents, List<Assignment> assignments,
                                               String modeOfTransport)
-            throws NoAgentsExcpetions, NoAssignmentsException, ModeOfTransportException, GoogleNoResultsException {
+            throws NoAgentsExcpetions, NoAssignmentsException, ModeOfTransportException, NoResultsException {
 
         System.out.println("Entering calculateRoutes");
         List<TravelRoutes> travelRoutes = new ArrayList<>();
@@ -51,21 +46,27 @@ public class DirectionsGoogle implements DirectionsInterface {
         for (Agent a : agents) {
             for (Assignment ass : assignments) {
                 try {
-                    Parser parser = new Parser();
-
-                    // Finds out which Position format is given
-                    String assignmentPositionFormat = parser.findPositionFormat(ass.getPosition());
-                    String agentPositionFormat = parser.findPositionFormat(a.getPosition());
 
                     // Picks out the most precise position format in the respective Position objects
-                    String assignmentLocation = parser.getLocation(assignmentPositionFormat, ass.getPosition());
-                    String agentLocation = parser.getLocation(agentPositionFormat,a.getPosition());
+                    String assignmentLocation = ass.getPosition().getMostPreciseLocation();
+                    String agentLocation = a.getPosition().getMostPreciseLocation();
+
+                    if (assignmentLocation.toLowerCase().equals("zip")) {
+                        //findZipGeocoordinates(ass.getPosition()); // The real implementation that is costly.
+                        setZipGeocoordinate(ass.getPosition()); // The temporary, free implementation
+                        assignmentLocation = ass.getPosition().getGeocoordinate().toString();
+                    }
+                    if (agentLocation.toLowerCase().equals("zip")) {
+                        //findZipGeocoordinates(a.getPosition()); // The real implementation that is costly.
+                        setZipGeocoordinate(a.getPosition()); // The temporary, free implementation
+                        agentLocation = a.getPosition().getGeocoordinate().toString();
+                    }
 
                     DirectionsResult dirResult =
                             DirectionsApi.getDirections(this.context, agentLocation, assignmentLocation).await();
 
                     if (dirResult.routes.length == 0) {
-                        throw new GoogleNoResultsException("DirectionsGoogle.calculateRoutes: No results were found...");
+                        throw new NoResultsException("DirectionsGoogle.calculateRoutes: No results were found...");
                     }
 
                     // TODO All routes and legs must be uncovered here.
