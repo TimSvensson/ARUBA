@@ -1,5 +1,9 @@
 package com;
 
+import com.ARUBAExceptions.*;
+import com.GoogleAPI.DirectionsGoogle;
+import com.GoogleAPI.GeocodingGoogle;
+import com.GraphHopperDirectionsAPI.GHGeocodingAPI;
 import com.GraphHopperDirectionsAPI.GHMatrixAPI;
 import com.Sorting.SortingList;
 
@@ -21,7 +25,7 @@ public class ARUBA {
     // use the classname for the logger, this way you can refactor
     public final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    private enum APIs {GraphHopper, Google, MapBox}
+//    private enum API {GraphHopper, Google, MapBox}
 
     private final String JSONInput;
 
@@ -54,6 +58,8 @@ public class ARUBA {
         List<Agent> agents = received.getAgents();
         List<Assignment> assignments = new ArrayList<>();
         assignments.add(received.getAssignment());
+
+        String modeOfTransport = "car";
         // API Calls
 
         // TODO Create logic for choosing API
@@ -63,97 +69,76 @@ public class ARUBA {
         // TODO Check if geocoding is needed
         // TODO Implement geocoding
 
-        GHMatrixAPI ghm = new GHMatrixAPI(this.GraphHopperKey);
+        for (Agent a : agents) {
+            Position pos = a.getPosition();
 
-//        ghm.addAgents(agents);
-//        ghm.addAssignments(assignments);
-//        ghm.setModeOfTransport("car");
+            if (pos.hasGeocoordinate()) {
+                continue;
+            }
 
-//        if (!ghm.calculateRoutes()) {
-//            System.out.println("ERRORS IN GHM:\r\n" + ghm.getError().toString());
-            // TODO Handle errors
-//        }
+            a.setPosition(geocode(pos));
+        }
 
-//        ArrayList<TravelRoutes> tr = ghm.getRoutes();
+        ArrayList<TravelRoutes> tr = (ArrayList<TravelRoutes>) route(agents, assignments, modeOfTransport);
 
         // Sorting & output
-//        Output output = new Output(tr);
-//        output.JSONformat();
+        Output output = new Output(tr);
+        output.JSONformat();
 
-//        return output.getJSONrepresentation();
+        return output.getJSONrepresentation();
+    }
+
+    private Position geocode(Position p) {
+
+        if (p.usingZip()) {
+            Zip z = new Zip(Integer.getInteger(p.getZip()));
+            p.setGeocoordinate(z.getGeocoordinate());
+        } else {
+            // Geocode using GraphHopper
+            GHGeocodingAPI ghg = new GHGeocodingAPI(this.GraphHopperKey);
+            try {
+                if (ghg.geocode(p)) {
+                    return ghg.getPositionResult();
+                }
+            } catch (GoogleNoResultsException e) {
+                e.printStackTrace();
+            }
+
+            // Geocode using Google
+            GeocodingGoogle gg = new GeocodingGoogle();
+            try {
+                if (gg.geocode(p)) {
+                    return p;
+                }
+            } catch (GoogleNoResultsException e) {
+                e.printStackTrace();
+            }
+        }
+
         return null;
+    }
 
-        /*
+    private List<TravelRoutes> route(List<Agent> agents, List<Assignment> assignments,
+                                          String modeOfTransport) {
+        // Route using GraphHopper
+        GHMatrixAPI ghm = new GHMatrixAPI(this.GraphHopperKey);
         try {
-            Debugger.setup();
-        } catch (IOException e) {
+            return ghm.calculateRoutes(agents, assignments,
+                                                               modeOfTransport);
+        } catch (NoAgentsExcpetions | RoutingResponsErrorsException | ModeOfTransportException |
+                NoAssignmentsException e) {
             e.printStackTrace();
-            throw new RuntimeException("Problems with creating the log files");
-        }
-*/
-//        System.out.println("Hello world.");
-
-		/* Agent and mission data is received from Semantix */
-
-		/* Conversion of the data to Java Objects */
-//        Parser parser = new Parser();
-
-		/* Initiate the API(s) */
-//        String apiKey = "AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s";
-//        GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
-
-		/* Send requests for the travel times between each agents address and the mission address */
-
-		/* Extract the relevant data from the API responses, put the traveltime in the Agent Objects
-		 and create
-		 * a list/array of agents */
-
-		/* Send the list/array to the Sorting Algorithm that will sort the agents based on the least
-		 amount of
-		 * traveltime */
-
-		/* Conversion of this list to Semantix's code format */
-
-		/* Send the list to Semantix */
-
-
-
-        // Google Maps Directions API test
-//        String destAddress = "Dragarbrunn";
-
-//        String [] firstNames        = {    "Haubir",               "Desireé",              "Tim"};
-//        String [] lastNames         = {    "Mariwani",             "Björkman",
-        // "Svensson"};
-
-
-        // Google Maps Geocoding API test
-
-        // JSON test
-/*        Gson g = new Gson();
-
-        Assignment newAssignment = new Assignment(new Position("75"), "666", "", 1, 100);
-        String jsonNewAssignment = g.toJson(newAssignment);
-        System.out.println(jsonNewAssignment);
-
-        Agent [] agentArray = new Agent[sortingList.getSize()];
-        for (int i = 0; i < sortingList.getSize(); i++) {
-            agentArray[i] = sortingList.getAgent(i);
         }
 
-        String jsonAgentArray = g.toJson(agentArray);
-        System.out.println(jsonAgentArray);
+        // Route using Google
+        DirectionsGoogle dg = new DirectionsGoogle();
+        try {
+            return dg.calculateRoutes(agents, assignments, modeOfTransport);
+        } catch (NoAgentsExcpetions | NoAssignmentsException | GoogleNoResultsException |
+                ModeOfTransportException e) {
+            e.printStackTrace();
+        }
 
-        Input newOrder = new Input(newAssignment, agentArray);
-        String jsonNewOrder = g.toJson(newOrder);
-        System.out.println(jsonNewOrder);
-
-        String sortingListJSON = g.toJson(sortingList);
-        System.out.println(sortingListJSON);
-
-        SortingList newList = g.fromJson(sortingListJSON, SortingList.class);
-
-        System.out.println("newList contains " + newList.getSize() + " agents.");
-        newList.printList();
-*/
+        return null;
     }
 }
