@@ -1,6 +1,9 @@
 package com;
 
-import org.apache.commons.lang3.StringUtils;
+import com.ARUBAExceptions.NoResultsException;
+import com.GoogleAPI.GeocodingGoogle;
+// TODO: Uncomment the row below
+//import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +11,10 @@ import java.util.List;
 /**
  * Created by timsvensson on 11/04/17.
  */
-public class AreaCalc {
+public class ZipCalc {
 
 
-    public AreaCalc() {}
+    public ZipCalc() {}
     /*
     Stöd för zip: Vad krävs? Skriv ner allt. (flytta till ARUBA 0.3)
         Hantera zip-input
@@ -21,15 +24,18 @@ public class AreaCalc {
         http://www.cartesia.se/produkter/kartdata/postnummerkartor/
     */
 
-    Position findZipGeocooridinates(String zip) {
+    public Geocoordinate findZipGeocooridinates(String zip) {
         List<Position> positionList = findAllPostCodes(zip);
 
-        List<Position> geocodedPostCodes = geocodePostCodes(positionList);
+        List<Position> geocodedPostCodes = null;
 
-        Position toReturn = new Position();
-        toReturn.setGeocoordinate(getMiddlePostCodeGeoCoord(geocodedPostCodes));
+        try {
+            geocodedPostCodes = geocodePostCodes(positionList);
+        } catch (NoResultsException e) {
+            e.printStackTrace();
+        }
 
-        return toReturn;
+        return getMiddlePostCodeGeoCoord(geocodedPostCodes);
     }
 
     Geocoordinate getMiddlePostCodeGeoCoord(List<Position> positionsList) {
@@ -44,11 +50,6 @@ public class AreaCalc {
         double avgLat = average(latList);
         double avgLng = average(lngList);
 
-/*        String toFormat = Double.toString(avgPostCode);
-        System.out.println("getMiddlePostCode: toFormat = " + toFormat);
-
-        String formatted = StringUtils.rightPad(toFormat, 5, '0');
-        System.out.println("getMiddlePostCode: formatted = " + formatted);*/
 
         return new Geocoordinate(avgLat, avgLng);
     }
@@ -63,29 +64,28 @@ public class AreaCalc {
     }
 
     List<Position> findAllPostCodes(String zip) {
-        List<Position> positions = new ArrayList<>();
-
         // Gör anrop till valfritt API för att hitta alla postkoder inom zip:en
-
-        List<String> postCodeList = new ArrayList<>();
+        List<Position> postCodeList = new ArrayList<>();
 
         // Tillfällig lösning för algoritmens skull
         for (int i = 0; i < 1000; i++) {
             String toFormat = zip + "" + i + "";
-            String formatted = StringUtils.rightPad(toFormat, 5, '0');
-            postCodeList.add(formatted);
-        }
-
-        for (String postCode : postCodeList) {
+            // TODO: Uncomment the row below
+            // String formatted = StringUtils.rightPad(toFormat, 5, '0');
             Position p = new Position();
-            p.setPostcode(postCode);
-            positions.add(p);
+            // TODO: Uncomment the row below
+            // p.setPostcode(formatted);
+            postCodeList.add(p);
         }
 
-        return positions;
+        return postCodeList;
     }
 
-    List<Position> geocodePostCodes(List<Position> positions) {
+    List<Position> geocodePostCodes(List<Position> positions) throws NoResultsException {
+        GeocodingGoogle geocodingGoogle = new GeocodingGoogle();
+
+        for (Position p : positions) if (!geocodingGoogle.geocode(p)) positions.remove(p);
+
         return positions;
     }
 
@@ -96,12 +96,4 @@ public class AreaCalc {
         Översätt till en position (en punkt)
         Ge detta som input till routing-api:t
     */
-
-    public static void main(String [] args) {
-        AreaCalc areaCalc = new AreaCalc();
-
-        Zip zip = new Zip(75);
-        String zipString = "" + zip.getZip() + "";
-        
-    }
 }

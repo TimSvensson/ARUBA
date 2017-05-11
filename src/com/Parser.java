@@ -77,44 +77,11 @@ public class Parser {
      * @return the position format in String representation
      */
     public String findPositionFormat(String JSONInput) {
-        String toReturn;
-
         Input received = g.fromJson(JSONInput, Input.class);
 
         Position assignmentPosition = received.getAssignment().getPosition();
 
-        if (assignmentPosition.getGeocoordinate() != null) {
-            toReturn = "geocoordinate";
-        }
-        else if (!(assignmentPosition.getAddress().equals("")) ||
-                !(assignmentPosition.getAddress() == null)){
-            toReturn = "address";
-        }
-        else if (!(assignmentPosition.getPostcode().equals("")) ||
-                !(assignmentPosition.getPostcode() == null)){
-            toReturn = "postcode";
-        }
-        else if (!(assignmentPosition.getZip().equals("")) ||
-                !(assignmentPosition.getZip() == null)) {
-            toReturn = "zip";
-        }
-        else if (!(assignmentPosition.getCity().equals("")) ||
-                !(assignmentPosition.getCity() == null)){
-            toReturn = "city";
-        }
-        else if (!(assignmentPosition.getCounty().equals("")) ||
-                !(assignmentPosition.getCounty() == null)){
-            toReturn = "county";
-        }
-        else if (!(assignmentPosition.getCountry().equals("")) ||
-                !(assignmentPosition.getCountry() == null)){
-            toReturn = "country";
-        }
-        else {
-            toReturn = "";
-        }
-
-        return toReturn;
+        return assignmentPosition.getMostPreciseLocation();
     }
 
     public String JsonParserToJava(){
