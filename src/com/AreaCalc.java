@@ -1,6 +1,6 @@
 package com;
 
-import org.apache.commons.lang3.StringUtils;
+//import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,8 +72,8 @@ public class AreaCalc {
         // Tillfällig lösning för algoritmens skull
         for (int i = 0; i < 1000; i++) {
             String toFormat = zip + "" + i + "";
-            String formatted = StringUtils.rightPad(toFormat, 5, '0');
-            postCodeList.add(formatted);
+            /*String formatted = StringUtils.rightPad(toFormat, 5, '0');
+            postCodeList.add(formatted);*/
         }
 
         for (String postCode : postCodeList) {

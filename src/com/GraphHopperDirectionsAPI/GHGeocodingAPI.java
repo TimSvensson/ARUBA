@@ -101,11 +101,11 @@ public class GHGeocodingAPI implements GeocodingInterface {
         // String | Can be either, default, nominatim, opencagedata
         String provider = getProvider();
 
-        if (getResult(apiInstance, q, locale, reverse, point, provider)) {
+        if (getResult(apiInstance, q, locale, reverse, point, provider) == false) {
             return false;
         }
 
-        Location l = geocodingResult.getHits().get(0);
+        Location l = this.geocodingResult.getHits().get(0);
         String street = "";
         if (l.getStreet() != null) {
             street += l.getStreet();
@@ -113,7 +113,7 @@ public class GHGeocodingAPI implements GeocodingInterface {
                 street += " " + l.getHousenumber();
             }
         }
-        positionResult = new Position(
+        this.positionResult = new Position(
                 new Geocoordinate(l.getPoint().getLat(), l.getPoint().getLng()),
                 street,
                 l.getCity(),
@@ -192,11 +192,11 @@ public class GHGeocodingAPI implements GeocodingInterface {
                     this.getResultLimit(), reverse, point, provider);
             // System.out.println(geocodingResult);
         } catch (ApiException e) {
-            System.err.println("Exception when calling GeocodingApi#geocodeGet");
-            e.printStackTrace();
-            return true;
+//            System.err.println("Exception when calling GeocodingApi#geocodeGet");
+//            e.printStackTrace();
+            return false;
         }
-        return false;
+        return true;
     }
 
     private String getProvider() {

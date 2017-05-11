@@ -83,7 +83,8 @@ public class Position {
     }
 
     public boolean hasGeocoordinate() {
-        return getGeocoordinate() != null;
+        return getGeocoordinate() != null && getGeocoordinate().getLongitude() >= 0 &&
+               getGeocoordinate().getLatitude() >= 0;
     }
 
     public boolean usingZip() {
@@ -251,7 +252,7 @@ public class Position {
      * @return zip
      */
     public String getZip() {
-        return zip;
+        return this.zip;
     }
 
     /**

@@ -18,9 +18,11 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
- * Class summary.
+ * Class to read all the API-keys from a file. Does not need to be instantiated to be used.
  * <p>
- * Class Description.
+ * Looks for a file containing the different API keys in the %APPDATA% directory on PC and in the
+ * ~/Library/ directory on mac or Linux. All methods in the KeyGetter are static and as such can
+ * be called without instantiating the class.
  * </p>
  *
  * @author Tim Svensson <tim.svensson@fasbros.it>
@@ -55,7 +57,10 @@ public class KeyGetter {
             workingDirectory += "/Library";
         }
 
-        return workingDirectory + "/ARUBA/" + fileName;
+        workingDirectory += "/ARUBA/" + fileName;
+        System.out.println(workingDirectory); // TODO Remove in final version
+
+        return workingDirectory;
     }
 
     private static String getAPIKeyFromFile(String api)  {
@@ -65,8 +70,10 @@ public class KeyGetter {
         try {
             s = new Scanner(path);
             while (s.hasNext()) {
-                if (s.next().equals(api)) {
-                    return s.next();
+                if (s.next().toLowerCase().equals(api.toLowerCase())) {
+                    String apiKey = s.next();
+                    System.out.println(api + "\t" + apiKey); // TODO Remove in final version
+                    return apiKey;
                 } else {
                     s.next();
                 }
