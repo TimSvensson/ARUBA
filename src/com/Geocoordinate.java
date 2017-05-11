@@ -39,7 +39,7 @@ public class Geocoordinate {
 
     @Override
     public String toString() {
-        return "(lat=" + getLatitude() + ", lon=" + getLongitude() + ")";
+        return latitude + ", " + longitude;
     }
 
     public boolean equals(Geocoordinate g) {

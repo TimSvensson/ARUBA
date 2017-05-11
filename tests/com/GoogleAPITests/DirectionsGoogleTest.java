@@ -1,7 +1,7 @@
 package com.GoogleAPITests;
 
 import com.*;
-import com.ARUBAExceptions.GoogleNoResultsException;
+import com.ARUBAExceptions.NoResultsException;
 import com.ARUBAExceptions.ModeOfTransportException;
 import com.ARUBAExceptions.NoAgentsExcpetions;
 import com.ARUBAExceptions.NoAssignmentsException;
@@ -62,7 +62,7 @@ public class DirectionsGoogleTest {
 
     @Test
     public void calculateDistances() throws InterruptedException, ApiException, IOException, ModeOfTransportException,
-            NoAssignmentsException, NoAgentsExcpetions, GoogleNoResultsException {
+            NoAssignmentsException, NoAgentsExcpetions, NoResultsException {
         DirectionsGoogle directionsGoogle = new DirectionsGoogle();
 
         List<List> list = init();

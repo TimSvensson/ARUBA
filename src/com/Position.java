@@ -325,4 +325,52 @@ public class Position {
 
         return s;
     }
+
+    /**
+     * Returns the most precise position format the input Position is of.
+     *
+     * @param position
+     * @return position format in String representation
+     */
+    public String getMostPreciseLocation() {
+        String location = "";
+
+        if (this.getGeocoordinate() != null) {
+            location = this.getGeocoordinate().toString();
+        }
+        else if (!(this.getAddress().equals("")) ||
+                !(this.getAddress() == null)){
+            location = this.getAddress();
+        }
+        else if (!(this.getPostcode().equals("")) ||
+                !(this.getPostcode() == null)){
+            location = this.getPostcode() + " " + this.getCity();
+        }
+        else if (!(this.getZip().equals("")) ||
+                !(this.getZip() == null)) {
+            // Based on hardcoded geocoordinates retrieved manually
+            int zipNo = Integer.parseInt(this.getZip());
+            location = new Zip(zipNo).getGeocoordinate().toString();
+
+            // Based on the ZipCalc implementation:
+            // location = "zip";
+        }
+        else if (!(this.getCity().equals("")) ||
+                !(this.getCity() == null)){
+            location = this.getCity();
+        }
+        else if (!(this.getCounty().equals("")) ||
+                !(this.getCounty() == null)){
+            location = this.getCounty();
+        }
+        else if (!(this.getCountry().equals("")) ||
+                !(this.getCountry() == null)){
+            location = this.getCountry();
+        }
+        else {
+            location = "";
+        }
+
+        return location;
+    }
 }

@@ -1,5 +1,8 @@
 package com;
 
+import com.ARUBAExceptions.NoResultsException;
+import com.GoogleAPI.GeocodingGoogle;
+// TODO: Uncomment the row below
 //import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -72,14 +75,12 @@ public class AreaCalc {
         // Tillfällig lösning för algoritmens skull
         for (int i = 0; i < 1000; i++) {
             String toFormat = zip + "" + i + "";
-            /*String formatted = StringUtils.rightPad(toFormat, 5, '0');
-            postCodeList.add(formatted);*/
-        }
-
-        for (String postCode : postCodeList) {
+            // TODO: Uncomment the row below
+            // String formatted = StringUtils.rightPad(toFormat, 5, '0');
             Position p = new Position();
-            p.setPostcode(postCode);
-            positions.add(p);
+            // TODO: Uncomment the row below
+            // p.setPostcode(formatted);
+            postCodeList.add(p);
         }
 
         return positions;

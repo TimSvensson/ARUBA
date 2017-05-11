@@ -15,7 +15,6 @@ import com.Agent;
 import com.Assignment;
 import com.TravelRoutes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +33,7 @@ public interface DirectionsInterface {
      */
     List<TravelRoutes> calculateRoutes(List<Agent> agents, List<Assignment> assignments, String
             modeOfTransport) throws NoAgentsExcpetions, NoAssignmentsException,
-                                    ModeOfTransportException, RoutingResponsErrorsException, GoogleNoResultsException;
+                                    ModeOfTransportException, RoutingResponsErrorsException, NoResultsException;
 
 }
 
