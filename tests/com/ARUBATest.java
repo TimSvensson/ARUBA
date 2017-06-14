@@ -72,7 +72,7 @@ public class ARUBATest {
         String recived = aruba.getSortedJSON();
         Output outputTest = g.fromJson(recived, Output.class);
         SortList sortListTest = outputTest.getSortList();
-        AgentRoute agentRoute = sortListTest.getFirstAgentRoute();
+        AgentRoute agentRoute = sortListTest.getAgentRoute(0);
 
         assertEquals(agentRoute.getAgent().getId(), interpreter3.getId());
         //System.out.print(aruba.getSortedJSON());
@@ -93,7 +93,7 @@ public class ARUBATest {
         String recived = aruba.getSortedJSON();
         Output outputTest = g.fromJson(recived, Output.class);
         SortList sortListTest = outputTest.getSortList();
-        AgentRoute agentRoute = sortListTest.getFirstAgentRoute();
+        AgentRoute agentRoute = sortListTest.getAgentRoute(0);
 
         assertEquals(agentRoute.getAgent().getId(), interpreterSameLocation.getId());
         //System.out.print(aruba.getSortedJSON());
@@ -114,7 +114,7 @@ public class ARUBATest {
         String recived = aruba.getSortedJSON();
         Output outputTest = g.fromJson(recived, Output.class);
         SortList sortListTest = outputTest.getSortList();
-        AgentRoute agentRoute = sortListTest.getFirstAgentRoute();
+        AgentRoute agentRoute = sortListTest.getAgentRoute(0);
 
         assertEquals(agentRoute.getAgent().getId(), interpreter6.getId());
         assertNotEquals(agentRoute.getAgent().getId(), interpreterCopy.getId());

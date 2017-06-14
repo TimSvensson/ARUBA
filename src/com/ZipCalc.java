@@ -23,7 +23,7 @@ public class ZipCalc {
         www.Postnummerservice.se
         http://www.cartesia.se/produkter/kartdata/postnummerkartor/
     */
-
+/*
     public Geocoordinate findZipGeocooridinates(String zip) {
         List<Position> positionList = findAllPostCodes(zip);
 
@@ -88,7 +88,7 @@ public class ZipCalc {
 
         return positions;
     }
-
+*/
     /*
     Stöd för postkodssökning: Vad krävs? Skriv ner allt.
         Hantera postkods-input

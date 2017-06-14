@@ -1,6 +1,6 @@
 /*
  * Project: ARUBA 
- * Class:   GoogleNoResultsException
+ * Class:   NoResultsException
  *
  * Version info
  * Created: 5/7/17
@@ -13,9 +13,10 @@
 package com.ARUBAExceptions;
 
 /**
- * Class summary.
+ * NoResultsException
+ *
  * <p>
- * Class Description.
+ * Whenever an API doesn't find any results, a NoResulstsExcpetion is thrown.
  * </p>
  *
  * @author Haubir Mariwani <haubir.mariwani@fasbros.it>
@@ -24,17 +25,35 @@ package com.ARUBAExceptions;
  */
 public class NoResultsException extends Exception {
 
-    public NoResultsException() {
-    }
+    /**
+     * Empty constructor.
+     */
+    public NoResultsException() {}
 
+    /**
+     * Constructor with message.
+     *
+     * @param message
+     */
     public NoResultsException(String message) {
         super(message);
     }
 
+    /**
+     * Constructor with message and throwable cause.
+     *
+     * @param message
+     * @param cause
+     */
     public NoResultsException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * Constructor with throwable cause.
+     *
+     * @param cause
+     */
     public NoResultsException(Throwable cause) {
         super(cause);
     }

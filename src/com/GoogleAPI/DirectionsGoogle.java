@@ -1,13 +1,27 @@
+/*
+ * Project: ARUBA
+ * Class:   DirectionsGoogle
+ *
+ * Version info
+ * Created: 4/11/17
+ * Creator: Haubir Mariwani
+ *
+ * Copyright notice
+ * Property of Fasbros IT. Do not copy, alter, distribute, or sell in any way unless given explicit permission.
+ */
+
 package com.GoogleAPI;
 
-import com.*;
-import com.ARUBAExceptions.NoResultsException;
 import com.ARUBAExceptions.ModeOfTransportException;
 import com.ARUBAExceptions.NoAgentsExcpetions;
 import com.ARUBAExceptions.NoAssignmentsException;
+import com.ARUBAExceptions.NoResultsException;
+import com.Agent;
+import com.Assignment;
 import com.Interface.DirectionsInterface;
+import com.Route;
+import com.TravelRoutes;
 import com.google.maps.DirectionsApi;
-import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.DirectionsResult;
 
@@ -16,23 +30,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by timsvensson on 11/04/17.
+ * Handles the functionalities and duties of the Google Directions API in this system.
+ * Inherits from the GoogleMaps class and implements the DirectionsInterface.
+ * <p>
+ * Supports calculations of travelroutes and traveltimes.
+ *
+ * </p>
+ *
+ * @author Haubir Mariwani <haubir.mariwani@fasbros.it>
+ * @version JDK 1.8
+ * @since JDK 1.8
  */
 public class DirectionsGoogle extends GoogleMaps implements DirectionsInterface {
 
-    /**
-     * Constructs a DirectionsGoogle object that is ready to calculate the travelroutes between all Agents and
-     * all Assignments.
-     *
-     */
     public DirectionsGoogle(String apiKey) {
         super(apiKey);
     }
 
     /**
-     * Calculates the travelroutes between all Agents and all Assignments.
+     * Calculates and returns the travelroutes between a set of Agents and a set of
+     * Assignments.
      *
-     * @return true
+     * @throws NoAgentsExcpetions,
+     * @throws NoAssignmentsException
+     * @throws ModeOfTransportException
+     * @throws NoResultsException
+     *
+     * @param agents            - the agents
+     * @param assignments       - the assignements
+     * @param modeOfTransport   - the desired mode of transport
+     *
+     * @return a list of all the Travelroutes objects if the method finished successfully,
+     * eitherwise null.
      */
     @Override
     public List<TravelRoutes> calculateRoutes(List<Agent> agents, List<Assignment> assignments,

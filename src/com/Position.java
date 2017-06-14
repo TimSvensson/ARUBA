@@ -1,3 +1,17 @@
+/*
+ * Project: ARUBA
+ * Class:   Position
+ *
+ * Version info
+ * Created: 4/11/17
+ * Creator: Haubir Mariwani
+ *
+ * Copyright notice
+ * Property of Fasbros IT. Do not copy, alter, distribute, or sell in any way unless given explicit permission.
+ */
+
+package com;
+
 /**
  *
  * A position in the world.
@@ -12,13 +26,10 @@
  *      - Zip - The two first digits in the postcode
  *
  * @author Created by Haubir -  haubir.mariwani@fasbros.it
- *                              jagheterhaubir@gmail.com
+ *
  * @version //What version of java is current
  * @since April 11th of 2017
  */
-
-package com;
-
 public class Position {
     private Geocoordinate geocoordinate;
     //private String name;
@@ -53,9 +64,23 @@ public class Position {
         this.zip = zip;
     }
 
-    public Position() {
-    }
+    /**
+     * Constructs an empty Position object
+     */
+    public Position() {}
 
+    /**
+     * @author Created by Haubir -  haubir.mariwani@fasbros.it
+     *                              jagheterhaubir@gmail.com
+     *
+     * Constructs a Position object with its respective attributes
+     * @param address           - the address of the Position
+     * @param city              - the city of the Position
+     * @param county            - the county of the Position
+     * @param country           - the country of the Position
+     * @param postcode          - the postcode of the Position
+     * @param zip               - the zip of the Position
+     */
     public Position(String address, String city, String county, String country, String postcode,
                     String zip) {
         this.address = address;
@@ -76,9 +101,10 @@ public class Position {
         this.zip = zip;
     }*/
 
-
+    /**
+     * Constructs a Position object with a Geocoordinate
+     */
     public Position(Geocoordinate geocoordinate) {
-
         this.geocoordinate = geocoordinate;
     }
 
@@ -328,7 +354,6 @@ public class Position {
     /**
      * Returns the most precise position format the input Position is of.
      *
-     * @param position
      * @return position format in String representation
      */
     public String getMostPreciseLocation() {
@@ -337,16 +362,13 @@ public class Position {
         if (this.getGeocoordinate() != null) {
             location = this.getGeocoordinate().toString();
         }
-        else if (!(this.getAddress().equals("")) ||
-                !(this.getAddress() == null)){
+        else if (!(this.getAddress() == null)){
             location = this.getAddress();
         }
-        else if (!(this.getPostcode().equals("")) ||
-                !(this.getPostcode() == null)){
+        else if (!(this.getPostcode() == null)){
             location = this.getPostcode() + " " + this.getCity();
         }
-        else if (!(this.getZip().equals("")) ||
-                !(this.getZip() == null)) {
+        else if (!(this.getZip() == null)) {
             // Based on hardcoded geocoordinates retrieved manually
             int zipNo = Integer.parseInt(this.getZip());
             location = new Zip(zipNo).getGeocoordinate().toString();
@@ -354,16 +376,13 @@ public class Position {
             // Based on the ZipCalc implementation:
             // location = "zip";
         }
-        else if (!(this.getCity().equals("")) ||
-                !(this.getCity() == null)){
+        else if (!(this.getCity() == null)){
             location = this.getCity();
         }
-        else if (!(this.getCounty().equals("")) ||
-                !(this.getCounty() == null)){
+        else if (!(this.getCounty() == null)){
             location = this.getCounty();
         }
-        else if (!(this.getCountry().equals("")) ||
-                !(this.getCountry() == null)){
+        else if (!(this.getCountry() == null)){
             location = this.getCountry();
         }
         else {

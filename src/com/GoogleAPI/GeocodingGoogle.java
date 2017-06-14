@@ -3,7 +3,7 @@
  * Class:   GeocodingGoogle
  *
  * Version info
- * Created: 18/04/17
+ * Created: 4/18/17
  * Creator: Haubir Mariwani
  *
  * Copyright notice
@@ -29,10 +29,9 @@ import java.io.IOException;
 
 /**
  * Handles the functionalities and duties of the Google Geocoding API in this system.
+ * Inherits from the GoogleMaps class and implements the GeocodingInterface.
  * <p>
- * Upon receiving an address to geocode, the GeocodingGoogle object makes a request to
- * the Google Geocoding API and receives the corresponding geocodes for the address, and
- * stores them within the object.
+ * Supports geocoding and reverse geocoding functionalities.
  *
  * </p>
  *
@@ -42,17 +41,14 @@ import java.io.IOException;
  */
 public class GeocodingGoogle extends GoogleMaps implements GeocodingInterface{
 
-    /**
-     * Constructs the GeocodingGoogle object that is used for the
-     * functionalities of the Google Maps Geocoding API.
-     *
-     */
     public GeocodingGoogle(String apiKey) {
         super(apiKey);
     }
 
     /**
      * Takes the geocoordinates of a position and gives out complete information about the location
+     *
+     * @throws NoResultsException
      *
      * @param position
      * @return true if the reverse geocoding was successful
@@ -94,6 +90,8 @@ public class GeocodingGoogle extends GoogleMaps implements GeocodingInterface{
     /**
      * Takes the geocoordinates of a position and gives out complete information about the location
      *
+     * @throws NoResultsException
+     *
      * @param position
      * @return true if the reverse geocoding was successful
      */
@@ -126,6 +124,9 @@ public class GeocodingGoogle extends GoogleMaps implements GeocodingInterface{
                         case ROUTE:
                             routeComponent = a;
                             break;
+                        case POSTAL_CODE:
+                            postCodeComponent = a;
+                            break;
                         case LOCALITY:
                             cityComponent = a;
                             break;
@@ -135,9 +136,6 @@ public class GeocodingGoogle extends GoogleMaps implements GeocodingInterface{
                         case COUNTRY:
                             countryComponent = a;
                             break;
-                        case POSTAL_CODE:
-                            postCodeComponent = a;
-                            break;
                         default:
                             break;
                     }
@@ -145,22 +143,31 @@ public class GeocodingGoogle extends GoogleMaps implements GeocodingInterface{
                 }
             }
 
+            // Sets the address attribute
             String newStreetNo = streetNoComponent.longName;
             String newRoute = routeComponent.longName;
             newAddress = newRoute + " " + newStreetNo;
             position.setAddress(newAddress);
 
+            // Sets the postcode attribute
+            String newPostCode = postCodeComponent.longName;
+            position.setPostcode(newPostCode);
+
+            // Sets the zip attribute
+            String newZip = newPostCode.substring(0, 2);
+            position.setZip(newZip);
+
+            // Sets the city attribute
             String newCity = cityComponent.longName;
             position.setCity(newCity);
 
+            // Sets the county attribute
             String newCounty = countyComponent.longName;
             position.setCounty(newCounty);
 
+            // Sets the country attribute
             String newCountry = countryComponent.longName;
             position.setCountry(newCountry);
-
-            String newPostCode = postCodeComponent.longName;
-            position.setPostcode(newPostCode);
 
         } catch (ApiException e) {
             e.printStackTrace();

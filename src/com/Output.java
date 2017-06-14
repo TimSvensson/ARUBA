@@ -1,6 +1,6 @@
-package com;/*
+/*
  * Project: ARUBA 
- * Class:   com.Output
+ * Class:   Output
  *
  * Version info
  * Created: 4/26/17
@@ -9,6 +9,8 @@ package com;/*
  * Copyright notice
  * Property of Fasbros IT. Do not copy, alter, distribute, or sell in any way unless given explicit permission.
  */
+
+package com;
 
 import com.Debug.Debugger;
 import com.Sorting.SortList;
@@ -31,12 +33,13 @@ import java.util.List;
 public class Output {
     private SortList sortList;
     //private Debugger debugger;
-    private String JSONrepresentation;
 
     public Output(List<TravelRoutes> travelRoutes/*, Debugger debugger*/) {
         (this.sortList = new SortList(travelRoutes)).sortList();
         //this.debugger = debugger;
     }
+
+    public Output(){}
 
     public SortList getSortList() {
         return sortList;
@@ -60,12 +63,7 @@ public class Output {
     }
     */
 
-    public void JSONformat() {
-        // this.JSONrepresentation = "";
-        this.JSONrepresentation = new Gson().toJson(this);
-    }
-
     public String getJSONrepresentation() {
-        return JSONrepresentation;
+        return new Gson().toJson(this);
     }
 }

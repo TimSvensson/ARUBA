@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
  * Created by timsvensson on 12/04/17.
  */
 public class GeocodingGoogleTest {
-    GeocodingGoogle geocodingGoogle = new GeocodingGoogle();
+    GeocodingGoogle geocodingGoogle = new GeocodingGoogle("AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s");
 
     Position position1 = new Position(new Geocoordinate(0.000, 0.000),"Sernanders väg 7", "Uppsala", "Uppsala län", "Sweden", "752 61", "75");
     Geocoordinate geocoordinate1 = new Geocoordinate(59.8507334,17.59078569999997);

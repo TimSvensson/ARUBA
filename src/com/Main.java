@@ -34,7 +34,7 @@ public class Main {
         ARUBA aruba = new ARUBA(jsonInput, graphHopperKey, googleKey, mapBoxKey);
 
         // TODO return this to outside the application
-        System.out.print(aruba.getSortedJSON());
+        System.out.print("Output: " + aruba.getSortedJSON());
 
         System.exit(0);
     }
