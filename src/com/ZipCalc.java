@@ -23,24 +23,22 @@ public class ZipCalc {
         www.Postnummerservice.se
         http://www.cartesia.se/produkter/kartdata/postnummerkartor/
     */
-
-    public Geocoordinate findZipGeocooridinates(String zip) {
+/*
+    Position findZipGeocooridinates(String zip) {
         List<Position> positionList = findAllPostCodes(zip);
 
-        List<Position> geocodedPostCodes = null;
+        List<Position> geocodedPostCodes = geocodePostCodes(positionList);
 
-        try {
-            geocodedPostCodes = geocodePostCodes(positionList);
-        } catch (NoResultsException e) {
-            e.printStackTrace();
-        }
+        Position toReturn = new Position();
+        toReturn.setGeocoordinate(getMiddlePostCodeGeoCoord(geocodedPostCodes));
 
-        return getMiddlePostCodeGeoCoord(geocodedPostCodes);
+        return toReturn;
     }
 
     Geocoordinate getMiddlePostCodeGeoCoord(List<Position> positionsList) {
         List<Double> latList = new ArrayList<>();
         List<Double> lngList = new ArrayList<>();
+
 
         for (Position p : positionsList) {
             latList.add(p.getGeocoordinate().getLatitude());
@@ -49,6 +47,7 @@ public class ZipCalc {
 
         double avgLat = average(latList);
         double avgLng = average(lngList);
+
 
 
         return new Geocoordinate(avgLat, avgLng);
@@ -64,8 +63,11 @@ public class ZipCalc {
     }
 
     List<Position> findAllPostCodes(String zip) {
+        List<Position> positions = new ArrayList<>();
+
         // Gör anrop till valfritt API för att hitta alla postkoder inom zip:en
-        List<Position> postCodeList = new ArrayList<>();
+
+        List<String> postCodeList = new ArrayList<>();
 
         // Tillfällig lösning för algoritmens skull
         for (int i = 0; i < 1000; i++) {
@@ -78,17 +80,13 @@ public class ZipCalc {
             postCodeList.add(p);
         }
 
-        return postCodeList;
-    }
-
-    List<Position> geocodePostCodes(List<Position> positions) throws NoResultsException {
-        GeocodingGoogle geocodingGoogle = new GeocodingGoogle();
-
-        for (Position p : positions) if (!geocodingGoogle.geocode(p)) positions.remove(p);
-
         return positions;
     }
 
+    List<Position> geocodePostCodes(List<Position> positions) {
+        return positions;
+    }
+*/
     /*
     Stöd för postkodssökning: Vad krävs? Skriv ner allt.
         Hantera postkods-input

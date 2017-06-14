@@ -1,6 +1,10 @@
 package com.GraphHopperDirectionsAPITests;
 
 import com.*;
+import com.ARUBAExceptions.ModeOfTransportException;
+import com.ARUBAExceptions.NoAgentsExcpetions;
+import com.ARUBAExceptions.NoAssignmentsException;
+import com.ARUBAExceptions.RoutingResponsErrorsException;
 import com.GraphHopperDirectionsAPI.GHMatrixAPI;
 import org.junit.Test;
 
@@ -44,26 +48,28 @@ public class GHMatrixAPITest {
         ArrayList<Assignment> assignments = new ArrayList<>();
         assignments.add(assignment);
 
-//        ghm.addAgents(agents);
-//        ghm.addAssignments(assignments);
-//        ghm.setModeOfTransport("car");
+//         Check Calculations were done without error
 
-        // Check Calculations were done without error
-//        assertTrue(ghm.calculateRoutes());
 
         // Check that there are TravelsRoutes in ghm
-//        ArrayList<TravelRoutes> travelRoutes = ghm.getRoutes();
-//        assertFalse(travelRoutes.isEmpty());
+        ArrayList<TravelRoutes> travelRoutes = null;
+        try {
+            travelRoutes = (ArrayList<TravelRoutes>) ghm.calculateRoutes(agents, assignments, "car");
+        } catch (NoAgentsExcpetions | NoAssignmentsException | RoutingResponsErrorsException |
+                ModeOfTransportException noAgentsExcpetions) {
+            noAgentsExcpetions.printStackTrace();
+        }
+        assertFalse(travelRoutes.isEmpty());
 
         // Check that the correct info was received
-//        TravelRoutes tr = travelRoutes.get(0);
+        TravelRoutes tr = travelRoutes.get(0);
 
-//        assertTrue(tr.getAgent().equals(agent));
-//        assertTrue(tr.getAssignment().equals(assignment));
+        assertTrue(tr.getAgent().equals(agent));
+        assertTrue(tr.getAssignment().equals(assignment));
 
-//        assertTrue(tr.getRoute(0).getModeOfTransport().equals("car"));
-//        assertEquals(10103.0, tr.getRoute(0).getDistance(), 0.1);
-//        assertEquals(655000, tr.getRoute(0).getTime());
+        assertTrue(tr.getRoute(0).getModeOfTransport().equals("car"));
+        assertEquals(10103.0, tr.getRoute(0).getDistance(), 0.1);
+        assertEquals(655000, tr.getRoute(0).getTime());
     }
 
     @Test
@@ -75,7 +81,8 @@ public class GHMatrixAPITest {
         Position asPos = new Position(asGC, "", "", "", "", "", "");
         Assignment assignment = new Assignment(asPos, "0", "Polhacksbacken", 1200, 1200);
 
-//        ghm.addAssignment(assignment);
+        ArrayList<Assignment> assignments = new ArrayList<>();
+        assignments.add(assignment);
 
         Geocoordinate haubirGC = new Geocoordinate(59.850672, 17.590611);
         Position haubirPos = new Position(haubirGC, "", "", "", "","", "");
@@ -99,17 +106,20 @@ public class GHMatrixAPITest {
         agents.add(dess);
         agents.add(chrille);
 
-//        ghm.addAgents(agents);
+        String modeOfTransport = "car";
 
-//        ghm.setModeOfTransport("car");
+        ArrayList<TravelRoutes> tr = null;
+        try {
+            tr = (ArrayList<TravelRoutes>) ghm.calculateRoutes(agents, assignments,
+                                                               modeOfTransport);
+        } catch (NoAgentsExcpetions | NoAssignmentsException | RoutingResponsErrorsException |
+                ModeOfTransportException noAgentsExcpetions) {
+            noAgentsExcpetions.printStackTrace();
+        }
 
-//        assertTrue(ghm.calculateRoutes());
-
-//        ArrayList<TravelRoutes> tr = ghm.getRoutes();
-
-//        assertEquals(haubir, tr.get(0).getAgent());
-//        assertEquals(tim, tr.get(1).getAgent());
-//        assertEquals(dess, tr.get(2).getAgent());
-//        assertEquals(chrille, tr.get(3).getAgent());
+        assertEquals(haubir, tr.get(0).getAgent());
+        assertEquals(tim, tr.get(1).getAgent());
+        assertEquals(dess, tr.get(2).getAgent());
+        assertEquals(chrille, tr.get(3).getAgent());
     }
 }

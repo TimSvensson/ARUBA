@@ -85,23 +85,19 @@ public class Parser {
     }
 
     public String JsonParserToJava(){
-        Geocoordinate geoTestHelp1 = new Geocoordinate(59.8415562, 17.6477043);
-        Position positionTestHelp1 = new Position(geoTestHelp1, "Institutionen för informationsteknologi, Lägerhyddsvägen 2", "Sweden", "", "Uppsala", "752 37", "75");
+        Position positionTestHelp1 = new Position("Lägerhyddsvägen 2", "Sweden", "", "Uppsala", "75237", "75");
         Assignment interpretationSite = new Assignment(positionTestHelp1, "42", "Carl", 4, 6);
 
 
-        Geocoordinate geoTestHelp2 = new Geocoordinate(59.8513422, 17.592865999999958);
-        Position positionTestHelp2 = new Position(geoTestHelp2, "Flogstavägen", "Uppsala", "", "Sweden", "75272", "75");
+        Position positionTestHelp2 = new Position("", "", "", "Sweden", "", "75");
         Agent interpreter1 = new Agent(positionTestHelp2, "333", "Carl", "Eriksson");
 
-        Geocoordinate geoTestHelp3 = new Geocoordinate(59.9208594, 16.606327999999962);
-        Position positionTestHelp3 = new Position(geoTestHelp3, "", "Sala", "", "Sweden", "", "73");
+        Position positionTestHelp3 = new Position("", "Sala", "", "Sweden", "", "73");
         Agent interpreter2 = new Agent(positionTestHelp3, "666", "Bengt", "Göteborg");
 
-        Geocoordinate geoTestHelp4 = new Geocoordinate(59.850354, 17.584603);
-        Position positionTestHelp4 = new Position(geoTestHelp3, "Flogstavägen 77B", "Uppsala",
-                                                  "Uppsala län", "Sweden",
-                                                  "", "73");
+        Position positionTestHelp4 = new Position("", "Uppsala",
+                                                  "", "Sweden",
+                                                  "", "");
         Agent interpreter3 = new Agent(positionTestHelp3, "939393", "Tim","Svensson");
 
         ArrayList<Agent> list = new ArrayList<Agent>();

@@ -30,6 +30,7 @@ import org.junit.runners.Suite;
         TravelRoutesTest.class,
         SortListTest.class,
         GeocoordinateTest.class,
+        RobustnessTest.class,
 })
 
 public final class AllTest {}
