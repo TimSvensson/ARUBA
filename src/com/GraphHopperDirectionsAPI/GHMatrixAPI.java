@@ -46,10 +46,10 @@ public class GHMatrixAPI implements DirectionsInterface {
 
     //</editor-fold>
 
-    public GHMatrixAPI(String APIkey) {
+    public GHMatrixAPI(String apiKey) {
 
-        matrixClient = new GraphHopperMatrixWeb();
-        matrixClient.setKey(APIkey);
+        this.matrixClient = new GraphHopperMatrixWeb();
+        this.matrixClient.setKey(apiKey);
     }
 
     //<editor-fold desc="Public Mathods">
@@ -69,7 +69,7 @@ public class GHMatrixAPI implements DirectionsInterface {
         if (agents == null || agents.isEmpty()) {
             throw new NoAgentsExcpetions();
         }
-        for ( Agent a : agents ) {
+        for (Agent a : agents) {
             ghmRequest.addFromPoint(ToGHPoint(a));
         }
 

@@ -39,13 +39,13 @@ public class GoogleMaps {
         this.context.setApiKey(apiKey);
     }
 
-
+/*
     // The real implementation that is costly.
     public void findZipGeocoordinates(Position position) {
         ZipCalc zipCalc = new ZipCalc();
         position.setGeocoordinate(zipCalc.findZipGeocooridinates(position.getZip()));
     }
-
+*/
     // The temporary, free implementation
     public void setZipGeocoordinate(Position position) {
         position.setGeocoordinate(new Zip(Integer.parseInt(position.getZip())).getGeocoordinate());

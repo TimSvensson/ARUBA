@@ -11,10 +11,10 @@ import java.util.List;
 /**
  * Created by timsvensson on 11/04/17.
  */
-public class AreaCalc {
+public class ZipCalc {
 
 
-    public AreaCalc() {}
+    public ZipCalc() {}
     /*
     Stöd för zip: Vad krävs? Skriv ner allt. (flytta till ARUBA 0.3)
         Hantera zip-input
@@ -23,7 +23,7 @@ public class AreaCalc {
         www.Postnummerservice.se
         http://www.cartesia.se/produkter/kartdata/postnummerkartor/
     */
-
+/*
     Position findZipGeocooridinates(String zip) {
         List<Position> positionList = findAllPostCodes(zip);
 
@@ -39,6 +39,7 @@ public class AreaCalc {
         List<Double> latList = new ArrayList<>();
         List<Double> lngList = new ArrayList<>();
 
+
         for (Position p : positionsList) {
             latList.add(p.getGeocoordinate().getLatitude());
             lngList.add(p.getGeocoordinate().getLongitude());
@@ -47,11 +48,7 @@ public class AreaCalc {
         double avgLat = average(latList);
         double avgLng = average(lngList);
 
-/*        String toFormat = Double.toString(avgPostCode);
-        System.out.println("getMiddlePostCode: toFormat = " + toFormat);
 
-        String formatted = StringUtils.rightPad(toFormat, 5, '0');
-        System.out.println("getMiddlePostCode: formatted = " + formatted);*/
 
         return new Geocoordinate(avgLat, avgLng);
     }
@@ -89,7 +86,7 @@ public class AreaCalc {
     List<Position> geocodePostCodes(List<Position> positions) {
         return positions;
     }
-
+*/
     /*
     Stöd för postkodssökning: Vad krävs? Skriv ner allt.
         Hantera postkods-input
@@ -97,12 +94,4 @@ public class AreaCalc {
         Översätt till en position (en punkt)
         Ge detta som input till routing-api:t
     */
-
-    public static void main(String [] args) {
-        AreaCalc areaCalc = new AreaCalc();
-
-        Zip zip = new Zip(75);
-        String zipString = "" + zip.getZip() + "";
-        
-    }
 }

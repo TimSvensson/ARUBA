@@ -63,7 +63,7 @@ public class DirectionsGoogleTest {
     @Test
     public void calculateDistances() throws InterruptedException, ApiException, IOException, ModeOfTransportException,
             NoAssignmentsException, NoAgentsExcpetions, NoResultsException {
-        DirectionsGoogle directionsGoogle = new DirectionsGoogle();
+        DirectionsGoogle directionsGoogle = new DirectionsGoogle("AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s");
 
         List<List> list = init();
         List<Agent> agentList = list.get(0);

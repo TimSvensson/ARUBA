@@ -57,10 +57,10 @@ public class JsonObjectTest {
         list.add(interpreter1);
         list.add(interpreter2);
         Input jsonObjectEnd = new Input(interpretationSite, list);
-        //Gson g = new Gson();
-        //String jsonOrder = g.toJson(jsonObjectEnd);
+        //Gson gson = new Gson();
+        //String jsonOrder = gson.toJson(jsonObjectEnd);
 
-        //Input receivedOrder = g.fromJson(jsonOrder, Input.class);
+        //Input receivedOrder = gson.fromJson(jsonOrder, Input.class);
 
         // Change the name of the FileOutPutStream to determine what file it's saved in.
         try (Writer writer = new OutputStreamWriter(new FileOutputStream("ExampleInput.json"), "UTF-8")) {

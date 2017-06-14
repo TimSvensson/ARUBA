@@ -30,43 +30,30 @@ import java.util.ArrayList;
  */
 public class RobustnessTest {
 
+    private RandomAgent randomAgent = new RandomAgent();
+    Parser parser = new Parser();
+    Gson gson = new Gson();
+
     private Position assignmentPosition = new Position("Lägerhydsvägen 2", "Uppsala",
-                                                             "Uppsala", "Sweden", "75237", "");
+                                                       "Uppsala", "Sweden", "75237", "");
     private Assignment assignment = new Assignment(assignmentPosition, "Polacksbacken",
                                                          "IT-Sektionen");
 
-    private Position [] agPos = {
-            new Position("", "Uppsala", "", "Sweden", "", ""),
-            new Position("", "Stockholm", "", "Sweden", "", ""),
-            new Position("", "Västerås", "", "Sweden", "", ""),
-            new Position("", "Eskilstuna", "", "Sweden", "", ""),
-            new Position("", "Sala", "", "Sweden", "", ""),
-            new Position("", "", "","Sweden", "", "75")
-    };
-
-    private Agent [] agents = {
-            new Agent(agPos[0], "0", "A", "AA"),
-            new Agent(agPos[1], "1", "B", "BB"),
-            new Agent(agPos[2], "2", "C", "CC"),
-            new Agent(agPos[3], "3", "D", "DD"),
-            new Agent(agPos[4], "4", "E", "EE"),
-            new Agent(agPos[5], "5", "F", "FF"),
-    };
-
+    // Driftsäkerhet
     @Test
     public void GHDisabled() {
-        Parser parser = new Parser();
-        Gson g = new Gson();
 
-        ArrayList<Agent> ags = new ArrayList<>();
-        for (Agent a : this.agents) {
-            ags.add(a);
+        ArrayList<Agent> agents = randomAgent.getAgents(10);
+
+        for (Agent a : agents) {
+            assert(a.getPosition() != null);
         }
 
-        Input jsonInput = new Input(this.assignment, ags);
-        String arubaArg = g.toJson(jsonInput);
+        Input jsonInput = new Input(this.assignment, agents);
+        String arubaArg = this.gson.toJson(jsonInput);
 
-        ARUBA aruba = new ARUBA(arubaArg,"", KeyGetter.getGoogleKey(), KeyGetter.getMapBoxKey());
+        ARUBA aruba = new ARUBA(arubaArg,"incorrect api key", KeyGetter.getGoogleKey(),
+                                KeyGetter.getMapBoxKey());
 
         String result = aruba.getSortedJSON();
 
@@ -75,17 +62,57 @@ public class RobustnessTest {
 
     @Test
     public void GoogleDisabled() {
+        ArrayList<Agent> agents = randomAgent.getAgents(10);
 
+        for (Agent a : agents) {
+            assert(a.getPosition() != null);
+        }
+
+        Input jsonInput = new Input(this.assignment, agents);
+        String arubaArg = this.gson.toJson(jsonInput);
+
+        ARUBA aruba = new ARUBA(arubaArg, KeyGetter.getGHKey(), "incorrect api key",
+                                KeyGetter.getMapBoxKey());
+
+        String result = aruba.getSortedJSON();
     }
+
+//    @Test
+//    public void GHGeocodeGoogleRouting() {
+//
+//    }
+
+//    @Test
+//    public void GoogleGeocodeGHRouting() {
+//
+//    }
+
+    // Stresstester
+
+    // TODO Hundra
 
     @Test
-    public void GHGeocodeGoogleRouting() {
+    public void tvåhundraAgentTest() {
 
+        // TODO Add time checks
+
+        // TODO Increase number of agents
+        ArrayList<Agent> agents = randomAgent.getAgents(20);
+
+        for (Agent a : agents) {
+            assert(a.getPosition() != null);
+        }
+
+        Input jsonInput = new Input(this.assignment, agents);
+        String arubaArg = this.gson.toJson(jsonInput);
+
+        ARUBA aruba = new ARUBA(arubaArg,KeyGetter.getGHKey(), KeyGetter.getGoogleKey(),
+                                KeyGetter.getMapBoxKey());
+
+        String result = aruba.getSortedJSON();
     }
 
-    @Test
-    public void GoogleGeocodeGHRouting() {
+    // TODO femhundra
 
-    }
-
+    // TODO tusen
 }
