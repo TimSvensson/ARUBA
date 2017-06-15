@@ -8,7 +8,6 @@ import com.GraphHopperDirectionsAPI.GHMatrixAPI;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * The Main entry point of the ARUBA application.
@@ -88,7 +87,6 @@ public class ARUBA {
 
         // Sorting & output
         Output output = new Output(tr);
-        output.JSONformat();
 
         return output.getJSONrepresentation();
     }
@@ -140,7 +138,6 @@ public class ARUBA {
             if (a.getPosition() == null || !a.getPosition().hasGeocoordinate()) {
 
                 System.out.println("Removing " + a.toString());
-
                 agents.remove(i);
             }
 
