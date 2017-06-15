@@ -60,12 +60,7 @@ public class Output {
     }
     */
 
-    public void JSONformat() {
-        // this.JSONrepresentation = "";
-        this.JSONrepresentation = new Gson().toJson(this);
-    }
-
     public String getJSONrepresentation() {
-        return JSONrepresentation;
+        return new Gson().toJson(this);
     }
 }

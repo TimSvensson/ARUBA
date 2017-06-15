@@ -1,5 +1,7 @@
+
+package com;
+
 /**
- *
  * An agent.
  * <p>
  * An agent that is available for an assignment. The Agent object contains important information
@@ -11,9 +13,6 @@
  * @version //What version of java is current
  * @since April 11th of 2017
  */
-
-package com;
-
 public class Agent {
     private Position position;
     private String id;
