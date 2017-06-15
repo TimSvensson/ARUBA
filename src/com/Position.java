@@ -108,21 +108,6 @@ public class Position {
         this.geocoordinate = geocoordinate;
     }
 
-    public boolean hasGeocoordinate() {
-        return getGeocoordinate() != null;
-    }
-
-    public boolean usingZip() {
-        if (getZip() != null || !getZip().isEmpty() || !getZip().equals("")) {
-            if ((getAddress() == null || getAddress().equals("")) && (getCity() == null ||
-                                                                      getCity().equals(""))) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
      *                              jagheterhaubir@gmail.com
@@ -133,8 +118,34 @@ public class Position {
      * @param zip               - the zip of the Position.
      */
     public Position(String zip) {
-        new Position(new Geocoordinate(0,0), "", "", "", "", "",
-                     zip);
+        new Position(new Geocoordinate(0,0), "", "", "", "", "", zip);
+    }
+
+    public boolean hasGeocoordinate() {
+        return getGeocoordinate() != null && getGeocoordinate().getLongitude() >= 0 &&
+               getGeocoordinate().getLatitude() >= 0;
+    }
+
+    private boolean stringNotEmpty(String s) {
+        return ! (s == null || s.isEmpty() || s.equals(""));
+    }
+
+    public boolean usingZip() {
+
+        if (hasGeocoordinate()) {
+            return false;
+        }
+
+        if (stringNotEmpty(this.postcode) || stringNotEmpty(this.city)
+            || stringNotEmpty(this.address)) {
+            return false;
+        }
+
+        if (!stringNotEmpty(this.zip)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -277,7 +288,7 @@ public class Position {
      * @return zip
      */
     public String getZip() {
-        return zip;
+        return this.zip;
     }
 
     /**

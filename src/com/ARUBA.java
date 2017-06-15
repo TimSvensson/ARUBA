@@ -1,15 +1,3 @@
-/*
- * Project: ARUBA
- * Class:   ARUBA
- *
- * Version info
- * Created: 4/26/17
- * Creator: Haubir Mariwani
- *
- * Copyright notice
- * Property of Fasbros IT. Do not copy, alter, distribute, or sell in any way unless given explicit permission.
- */
-
 package com;
 
 import com.ARUBAExceptions.*;
@@ -17,12 +5,14 @@ import com.GoogleAPI.DirectionsGoogle;
 import com.GoogleAPI.GeocodingGoogle;
 import com.GraphHopperDirectionsAPI.GHGeocodingAPI;
 import com.GraphHopperDirectionsAPI.GHMatrixAPI;
+import com.Sorting.SortingList;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 /**
- * The UI entry point of the ARUBA application.
+ * The Main entry point of the ARUBA application.
  * <p>
  * To be written.
  * </p>
@@ -33,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class ARUBA {
     // use the classname for the logger, this way you can refactor
-    // public final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    public final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 //    private enum API {GraphHopper, Google, MapBox}
 
@@ -93,6 +83,7 @@ public class ARUBA {
 
         // Sorting & output
         Output output = new Output(tr);
+        output.JSONformat();
 
         return output.getJSONrepresentation();
     }

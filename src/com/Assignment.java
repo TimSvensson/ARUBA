@@ -43,12 +43,19 @@ public class Assignment {
      * @param startTime     - the time the Assignment starts
      * @param endTime       - the time the Assignment ends
      */
+    @Deprecated
     public Assignment(Position position, String id, String clientName, int startTime, int endTime) {
         this.position = position;
         this.id = id;
         this.clientName = clientName;
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public Assignment(Position position, String id, String clientName) {
+        this.position = position;
+        this.id = id;
+        this.clientName = clientName;
     }
 
     /**
