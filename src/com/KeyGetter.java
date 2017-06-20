@@ -1,22 +1,3 @@
-/*
- * Project: ARUBA 
- * Class:   KetGeter
- *
- * Version info
- * Created: 10/05/17
- * Creator: Tim Svensson
- *
- * Copyright notice
- * Property of Fasbros IT. Do not copy, alter, distribute, or sell in any way unless given explicit permission.
- */
-
-package com;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Scanner;
-
 /**
  * Class to read all the API-keys from a file. Does not need to be instantiated to be used.
  * <p>
@@ -29,6 +10,14 @@ import java.util.Scanner;
  * @version JDK 1.8
  * @since JDK 1.8
  */
+
+package com;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
+
 public class KeyGetter {
 
     private static String getWorkingDirectory() {

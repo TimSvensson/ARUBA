@@ -2,13 +2,14 @@
  * @author Created by Haubir -  haubir.mariwani@fasbros.it
  *                              jagheterhaubir@gmail.com
  *
- * An order.
+ * An input or in other words: an order.
  * <p>
- * The order contains information about an Assignment and the available Agents for it.
+ * The input contains information about an Assignment and the available Agents for it.
  *
  * @version //What version of java is current
  * @since April 11th of 2017
  */
+
 package com;
 
 import java.util.ArrayList;
@@ -32,6 +33,13 @@ public class Input {
         this.debugMode = false;
     }
 
+    /**
+     * @author Created by Haubir -  haubir.mariwani@fasbros.it
+     *                              jagheterhaubir@gmail.com
+     * Constructs the Input object. But with the alternative of getting the debug information.
+     *@param assignment - the Assignment of the order
+     * @param agentArray - the array of Agents that are available
+     */
     public Input(Assignment assignment, List<Agent> agentArray, boolean debugMode) {
         this.assignment = assignment;
         this.agents = agentArray;
