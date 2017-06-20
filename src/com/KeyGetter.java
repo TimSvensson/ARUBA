@@ -47,7 +47,7 @@ public class KeyGetter {
         }
 
         workingDirectory += "/ARUBA/" + fileName;
-        System.out.println(workingDirectory); // TODO Remove in final version
+        System.out.println(workingDirectory);
 
         return workingDirectory;
     }
@@ -61,7 +61,7 @@ public class KeyGetter {
             while (s.hasNext()) {
                 if (s.next().toLowerCase().equals(api.toLowerCase())) {
                     String apiKey = s.next();
-                    System.out.println(api + "\t" + apiKey); // TODO Remove in final version
+                    System.out.println(api + "\t" + apiKey);
                     return apiKey;
                 } else {
                     s.next();
@@ -81,8 +81,6 @@ public class KeyGetter {
         return getAPIKeyFromFile("Google");
     }
 
-    public static String getMapBoxKey() {
-        return getAPIKeyFromFile("MapBox");
-    }
+    public static String getMapBoxKey() {return getAPIKeyFromFile("MapBox"); }
 
 }
