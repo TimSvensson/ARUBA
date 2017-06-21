@@ -3,7 +3,7 @@ package com.GoogleAPITests;
 import com.*;
 import com.ARUBAExceptions.NoResultsException;
 import com.ARUBAExceptions.ModeOfTransportException;
-import com.ARUBAExceptions.NoAgentsExcpetions;
+import com.ARUBAExceptions.NoAgentsException;
 import com.ARUBAExceptions.NoAssignmentsException;
 import com.GoogleAPI.DirectionsGoogle;
 import com.google.maps.errors.ApiException;
@@ -62,7 +62,7 @@ public class DirectionsGoogleTest {
 
     @Test
     public void calculateDistances() throws InterruptedException, ApiException, IOException, ModeOfTransportException,
-            NoAssignmentsException, NoAgentsExcpetions, NoResultsException {
+                                            NoAssignmentsException, NoAgentsException, NoResultsException {
         DirectionsGoogle directionsGoogle = new DirectionsGoogle("AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s");
 
         List<List> list = init();

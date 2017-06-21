@@ -12,32 +12,27 @@
 
 package com.ARUBAExceptions;
 
-import java.io.IOException;
-
 /**
- * Class summary.
- * <p>
- * Class Description.
- * </p>
+ * Exception thrown when the Directions, or Geocoding classes detect that there are no Agents in
+ * there input.
  *
  * @author Tim Svensson <tim.svensson@fasbros.it>
  * @version JDK 1.8
  * @since JDK 1.8
  */
-public class NoAgentsExcpetions extends Exception {
+public class NoAgentsException extends Exception {
 
-    public NoAgentsExcpetions() {
-    }
+    public NoAgentsException() {}
 
-    public NoAgentsExcpetions(String message) {
+    public NoAgentsException(String message) {
         super(message);
     }
 
-    public NoAgentsExcpetions(String message, Throwable cause) {
+    public NoAgentsException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public NoAgentsExcpetions(Throwable cause) {
+    public NoAgentsException(Throwable cause) {
         super(cause);
     }
 }

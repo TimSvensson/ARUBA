@@ -18,7 +18,9 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Generates a set of agents with randomly selected attributes.
  * <p>
- * Class Description.
+ * Using a predetermined set of cities and zip range this class creates and returns a user
+ * specified number of Agents with pseudo-randomly generated attributes. This class is created
+ * specifically to assist with the testing of ARUBA.
  * </p>
  *
  * @author Tim Svensson <tim.svensson@fasbros.it>
@@ -64,7 +66,7 @@ public class RandomAgent {
      * Creates a set of Agent-objects using a predetermined set of characteristics selected at
      * random.
      *
-     * @author Tim Svensson
+     * @author Tim Svensson <tim.svensson@fasbros.it>
      * @param numberOfAgents The number of agents to be pseudo-randomly created
      * @return An ArrayList of agents with pseudo-random attributes
      */

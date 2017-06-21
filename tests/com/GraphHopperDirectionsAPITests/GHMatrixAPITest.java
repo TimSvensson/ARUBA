@@ -2,9 +2,9 @@ package com.GraphHopperDirectionsAPITests;
 
 import com.*;
 import com.ARUBAExceptions.ModeOfTransportException;
-import com.ARUBAExceptions.NoAgentsExcpetions;
+import com.ARUBAExceptions.NoAgentsException;
 import com.ARUBAExceptions.NoAssignmentsException;
-import com.ARUBAExceptions.RoutingResponsErrorsException;
+import com.ARUBAExceptions.HasErrorsException;
 import com.GraphHopperDirectionsAPI.GHMatrixAPI;
 import org.junit.Test;
 
@@ -55,9 +55,9 @@ public class GHMatrixAPITest {
         ArrayList<TravelRoutes> travelRoutes = null;
         try {
             travelRoutes = (ArrayList<TravelRoutes>) ghm.calculateRoutes(agents, assignments, "car");
-        } catch (NoAgentsExcpetions | NoAssignmentsException | RoutingResponsErrorsException |
-                ModeOfTransportException noAgentsExcpetions) {
-            noAgentsExcpetions.printStackTrace();
+        } catch (NoAgentsException | NoAssignmentsException | HasErrorsException |
+                ModeOfTransportException noAgentsException) {
+            noAgentsException.printStackTrace();
         }
         assertFalse(travelRoutes.isEmpty());
 
@@ -112,9 +112,9 @@ public class GHMatrixAPITest {
         try {
             tr = (ArrayList<TravelRoutes>) ghm.calculateRoutes(agents, assignments,
                                                                modeOfTransport);
-        } catch (NoAgentsExcpetions | NoAssignmentsException | RoutingResponsErrorsException |
-                ModeOfTransportException noAgentsExcpetions) {
-            noAgentsExcpetions.printStackTrace();
+        } catch (NoAgentsException | NoAssignmentsException | HasErrorsException |
+                ModeOfTransportException noAgentsException) {
+            noAgentsException.printStackTrace();
         }
 
         assertEquals(haubir, tr.get(0).getAgent());

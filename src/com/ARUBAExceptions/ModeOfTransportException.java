@@ -13,10 +13,7 @@
 package com.ARUBAExceptions;
 
 /**
- * Class summary.
- * <p>
- * Class Description.
- * </p>
+ * Thrown when no 'mode of transport' has been specified in any of the Directions classes.
  *
  * @author Tim Svensson <tim.svensson@fasbros.it>
  * @version JDK 1.8
