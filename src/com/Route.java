@@ -15,8 +15,8 @@ package com;
 /**
  * Saves a route as a distance, a time and a modeOfTransport.
  * <p>
- * Used in conjunction with the TravelRoutes class. Saves a specific route, the distance, the time, and the modeOfTransport used
- * between the origin and the destination.
+ * Used in conjunction with the TravelRoutes class. Saves a specific route, the distance, the
+ * time, and the modeOfTransport used between the origin and the destination.
  *
  * @author  Tim Svensson <tim.svensson@fasbros.it>
  * @version JDK 1.8

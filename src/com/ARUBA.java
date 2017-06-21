@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The Main entry point of the ARUBA application.
+ * The ARUBA application.
  * <p>
- * To be written.
+ * Sorts the Agents in the input in order of whom has the smallest amount of travel time to the
+ * assignment. The input and output is formatted as JSON-objects.
  * </p>
  *
  * @author Tim Svensson <tim.svensson@fasbros.it>
@@ -68,8 +69,8 @@ public class ARUBA {
         String posFormat = p.findPositionFormat(JSONInput);
 
         // Detects the format of the Assignment's position
-        System.out.println("posFormat: " + posFormat);
-        System.out.println("JSONInput: " + JSONInput);
+//        System.out.println("posFormat: " + posFormat);
+//        System.out.println("JSONInput: " + JSONInput);
 
         List<Agent> agents = received.getAgents();
         List<Assignment> assignments = new ArrayList<>();
@@ -93,7 +94,7 @@ public class ARUBA {
         // Geocode all Agents
         int tmp = 0;
         for (Agent a : agents) {
-            System.out.print(tmp + " ");
+//            System.out.print(tmp + " ");
             Position pos = a.getPosition();
             if (pos.hasGeocoordinate()) {
                 continue;
@@ -136,7 +137,7 @@ public class ARUBA {
             // Geocode using GraphHopper
             GHGeocodingAPI ghg = new GHGeocodingAPI(this.graphHopperKey);
             try {
-                System.out.println("Using GH Geocode API");
+//                System.out.println("Using GH Geocode API");
                 if (ghg.geocode(p)) {
                     return ghg.getPositionResult();
                 }

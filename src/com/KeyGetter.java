@@ -1,9 +1,9 @@
 /**
  * Class to read all the API-keys from a file. Does not need to be instantiated to be used.
  * <p>
- * Looks for a file containing the different API keys in the %APPDATA% directory on PC and in the
- * ~/Library/ directory on mac or Linux. All methods in the KeyGetter are static and as such can
- * be called without instantiating the class.
+ * Looks for a file containing the different API keys in the %APPDATA%/ARUBA/api_keys.txt
+ * on PC and in the ~/Library/ARUBA/api_keys.txt on mac or Linux. All methods in the KeyGetter
+ * are static and as such can be called without instantiating the class.
  * </p>
  *
  * @author Tim Svensson <tim.svensson@fasbros.it>
@@ -20,6 +20,10 @@ import java.util.Scanner;
 
 public class KeyGetter {
 
+    /**
+     * Creates the path to the 'api_keys.txt' file and is OS-dependent.
+     * @return The path to the 'api_keys.txt'
+     */
     private static String getWorkingDirectory() {
 
         String workingDirectory;
@@ -52,6 +56,11 @@ public class KeyGetter {
         return workingDirectory;
     }
 
+    /**
+     * Finds and returns the api key in the file api_key.txt
+     * @param api The api
+     * @return The api key
+     */
     private static String getAPIKeyFromFile(String api)  {
 
         Path path = Paths.get(getWorkingDirectory());

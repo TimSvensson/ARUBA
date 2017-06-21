@@ -14,10 +14,7 @@
 package com;
 
 /**
- * Class summary.
  * An estimation of the middle point of zips that exists in Sweden
- * Class Description.
- * </p>
  *
  * @author Desireé Björkman <dessexd@hotmail.com>
  * @version JDK 1.8
