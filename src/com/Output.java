@@ -1,33 +1,14 @@
-package com;/*
- * Project: ARUBA 
- * Class:   com.Output
- *
- * Version info
- * Created: 4/26/17
- * Creator: Haubir Mariwani
- *
- * Copyright notice
- * Property of Fasbros IT. Do not copy, alter, distribute, or sell in any way unless given explicit permission.
- */
-
-import com.Debug.Debugger;
-import com.Sorting.SortList;
-import com.TravelRoutes;
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Class summary.
- * <p>
- * Class Description.
- * </p>
+ * The Output class will assist in the sorting 
  *
- * @author Haubir Mariwani <haubir.mariwani@fasbros.it>
+ * @author Created by Haubir -  haubir.mariwani@fasbros.it
+ *                              jagheterhaubir@gmail.com
  * @version JDK 1.8
  * @since JDK 1.8
  */
+
+package com;
+
 public class Output {
     private SortList sortList;
     //private Debugger debugger;

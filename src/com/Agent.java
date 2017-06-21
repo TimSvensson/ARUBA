@@ -1,6 +1,3 @@
-
-package com;
-
 /**
  * An agent.
  * <p>
@@ -10,9 +7,12 @@ package com;
  *
  * @author Created by Haubir -  haubir.mariwani@fasbros.it
  *                              jagheterhaubir@gmail.com
- * @version //What version of java is current
- * @since April 11th of 2017
+ * @version JDK 1.8
+ * @since JDK 1.8
  */
+
+package com;
+
 public class Agent {
     private Position position;
     private String id;
@@ -138,24 +138,3 @@ public class Agent {
         return this.firstName + " " + this.surName + " " + this.id;
     }
 }
-
-/*
-* { 
-*      ”interpretationSite”: { 
-*         ”zip”: ”42” 
-*      },
-*       ”interpreter”: {
-*          ”id”: ”42”,
-*          ”position”: {
-*             ”residenceZip”: ”42”
-*          }
-*       }, 
-*       ”interpreter”: {
-*           ”id”: ”4242”,
-*          ”position”: {
-*             ”residenceZip”: ”43”
-*          }
-*       }
-*  }
-*
-* */
