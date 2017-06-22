@@ -13,10 +13,7 @@
 package com.ARUBAExceptions;
 
 /**
- * Class summary.
- * <p>
- * Class Description.
- * </p>
+ * Thrown when there's no results from any of the Directions or Geocodeing classes.
  *
  * @author Haubir Mariwani <haubir.mariwani@fasbros.it>
  * @version JDK 1.8

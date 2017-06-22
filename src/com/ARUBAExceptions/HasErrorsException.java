@@ -13,29 +13,26 @@
 package com.ARUBAExceptions;
 
 /**
- * Class summary.
- * <p>
- * Class Description.
- * </p>
+ * If the result from either the Geocoding or Directions classes has errors in their results,
+ * this exception is thrown.
  *
  * @author Tim Svensson <tim.svensson@fasbros.it>
  * @version JDK 1.8
  * @since JDK 1.8
  */
-public class RoutingResponsErrorsException extends Exception{
+public class HasErrorsException extends Exception{
 
-    public RoutingResponsErrorsException() {
-    }
+    public HasErrorsException() {}
 
-    public RoutingResponsErrorsException(String message) {
+    public HasErrorsException(String message) {
         super(message);
     }
 
-    public RoutingResponsErrorsException(String message, Throwable cause) {
+    public HasErrorsException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public RoutingResponsErrorsException(Throwable cause) {
+    public HasErrorsException(Throwable cause) {
         super(cause);
     }
 }

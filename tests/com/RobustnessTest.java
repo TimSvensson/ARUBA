@@ -77,22 +77,8 @@ public class RobustnessTest {
         String result = aruba.getSortedJSON();
     }
 
-//    @Test
-//    public void GHGeocodeGoogleRouting() {
-//
-//    }
-
-//    @Test
-//    public void GoogleGeocodeGHRouting() {
-//
-//    }
-
-    // Stresstester
-
-    // TODO Hundra
-
     @Test
-    public void tvåhundraAgentTest() {
+    public void ManyAgentsTest() {
 
         // TODO Add time checks
 

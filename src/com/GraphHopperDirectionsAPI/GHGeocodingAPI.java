@@ -22,10 +22,7 @@ import io.swagger.client.model.GeocodingResult;
 import io.swagger.client.model.Location;
 
 /**
- * Provides geocoding and reverse-geocoding functionality using the GraphHopper Directions API.
- * <p>
- * Class Description.
- * </p>
+ * Provides geocoding and reverse-geocoding functionality using GraphHopper's Geocode API.
  *
  * @author Tim Svensson <tim.svensson@fasbros.it>
  * @version JDK 1.8
@@ -48,7 +45,6 @@ public class GHGeocodingAPI implements GeocodingInterface {
         this.apiKey = apiKey;
     }
 
-    //<editor-fold desc="Public Methods">
     //<editor-fold desc="Getters&Setters">
     public Position getPositionResult() {
         return positionResult;
@@ -69,9 +65,9 @@ public class GHGeocodingAPI implements GeocodingInterface {
     public GeocodingResult getGeocodingResult() {
         return geocodingResult;
     }
-
     //</editor-fold>
 
+    //<editor-fold desc="Public Methods">
     @Override
     public boolean geocode(Position position) throws NoResultsException {
 
@@ -185,20 +181,34 @@ public class GHGeocodingAPI implements GeocodingInterface {
     //</editor-fold>
 
     //<editor-fold desc="Private Methods">
+
+    /**
+     * Executes the API-call to Graphhoppers Geocoding API. Used for both Geocoding and Reverse
+     * Geocoding, the desired functionality is specified using a boolean.
+     *
+     * @param apiInstance The instance of the Graphhopper Java client.
+     * @param q Query string.
+     * @param locale Represents what language the result is to be written in.
+     * @param reverse Specifies if the call will geocode or reverse-geocode.
+     * @param point The location bias in the format 'latitude,longitude'.
+     * @param provider Which Geocode provider is to be used.
+     * @return True if the API-call was made successfully, otherwise false.
+     */
     private boolean getResult(GeocodingApi apiInstance, String q, String locale, Boolean reverse,
                               String point, String provider) {
         try {
             this.geocodingResult = apiInstance.geocodeGet(this.apiKey, q, locale,
                     this.getResultLimit(), reverse, point, provider);
-            // System.out.println(geocodingResult);
         } catch (ApiException e) {
-//            System.err.println("Exception when calling GeocodingApi#geocodeGet");
-//            e.printStackTrace();
             return false;
         }
         return true;
     }
 
+    /**
+     * Returns the provider used to get the Reverse Geocoding or Geocoding results in the API-call.
+     * @return The provider used.
+     */
     private String getProvider() {
         String provider = "";
         switch (this.ghGeocodeProvider) {

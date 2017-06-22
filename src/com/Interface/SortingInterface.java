@@ -4,10 +4,10 @@
  * Version info
  * First pass 4/19/17
  *
- * Prpoerty of Fasbros IT. Do not copy, rewrite, ues or distribute without permission from Fasbros IT
+ * Property of Fasbros IT. Do not copy, rewrite, ues or distribute without permission from
+ * Fasbros IT
  * Email: contact@fasbros.it
  */
-
 
 package com.Interface;
 
@@ -16,7 +16,6 @@ import java.util.List;
 /**
  * Interface for the functionalities and duties of the sorting algorithm in this system.
  * <p>
- *
  * </p>
  *
  * @author Haubir Mariwani <haubir.mariwani@fasbros.it>

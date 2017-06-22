@@ -1,10 +1,11 @@
 /*
- * %W% %E% Tim Svensson
+ * Tim Svensson
  *
  * Version info
  * First pass
  *
- * Prpoerty of Fasbros IT. Do not copy, rewrite, ues or distribute without permission from Fasbros IT
+ * Property of Fasbros IT. Do not copy, rewrite, ues or distribute without permission from
+ * Fasbros IT
  * Email: contact@fasbros.it
  */
 
@@ -20,8 +21,9 @@ import java.util.List;
 /**
  * Interface for all Directions API calls.
  *
- * @version		0.1 2017-04-11
- * @author		Tim Svensson
+ * @author Tim Svensson
+ * @version JDK 1.8
+ * @since JDK 1.8
  */
 public interface DirectionsInterface {
 
@@ -31,9 +33,9 @@ public interface DirectionsInterface {
      *
      * @return A list of TravelRoutes.
      */
-    List<TravelRoutes> calculateRoutes(List<Agent> agents, List<Assignment> assignments, String
-            modeOfTransport) throws NoAgentsExcpetions, NoAssignmentsException,
-                                    ModeOfTransportException, RoutingResponsErrorsException, NoResultsException;
+    List<TravelRoutes> calculateRoutes(List<Agent> agents, List<Assignment> assignments,
+                                       String modeOfTransport)
+    throws NoAgentsException, NoAssignmentsException, ModeOfTransportException, HasErrorsException, NoResultsException;
 
 }
 
