@@ -13,7 +13,7 @@
 package com.GoogleAPI;
 
 import com.ARUBAExceptions.ModeOfTransportException;
-import com.ARUBAExceptions.NoAgentsExcpetions;
+import com.ARUBAExceptions.NoAgentsException;
 import com.ARUBAExceptions.NoAssignmentsException;
 import com.ARUBAExceptions.NoResultsException;
 import com.Agent;
@@ -66,7 +66,7 @@ public class DirectionsGoogle extends GoogleMaps implements DirectionsInterface 
     @Override
     public List<TravelRoutes> calculateRoutes(List<Agent> agents, List<Assignment> assignments,
                                               String modeOfTransport)
-            throws NoAgentsExcpetions, NoAssignmentsException, ModeOfTransportException, NoResultsException {
+    throws NoAgentsException, NoAssignmentsException, ModeOfTransportException, NoResultsException {
 
         System.out.println("Entering calculateRoutes");
         List<TravelRoutes> travelRoutes = new ArrayList<>();

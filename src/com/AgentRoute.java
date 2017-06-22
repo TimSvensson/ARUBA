@@ -13,9 +13,9 @@
 package com;
 
 /**
- * Holds an agent and its travelroute to an Assignment.
+ * Class summary.
  * <p>
- *
+ * Class Description.
  * </p>
  *
  * @author Haubir Mariwani <haubir.mariwani@fasbros.it>
@@ -26,48 +26,23 @@ public class AgentRoute {
     private Agent agent;
     private Route route;
 
-    /**
-     * Constructs an AgentRoute object.
-     *
-     * @param agent
-     * @param route
-     */
     public AgentRoute(Agent agent, Route route) {
         this.agent = agent;
         this.route = route;
     }
 
-    /**
-     * Returns the agent of the object.
-     *
-     * @return agent
-     */
     public Agent getAgent() {
         return agent;
     }
 
-    /**
-     * Sets the agent of the object to the parameter agent.
-     *
-     * @param agent
-     */
     public void setAgent(Agent agent) {
         this.agent = agent;
     }
 
-    /**
-     * Returns the route of the object.
-     *
-     * @return route
-     */
     public Route getRoute() {
         return route;
     }
 
-    /**
-     * Sets the route of the object to the parameter route.
-     * @param route
-     */
     public void setRoute(Route route) {
         this.route = route;
     }

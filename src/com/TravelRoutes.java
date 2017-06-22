@@ -16,10 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Holds all the Route objects for a specific Agent and a specific Assignment.
- * <p>
- * Class Description.
- * </p>
+ * Holds all the Routes between an Agent and an Assignment.
  *
  * @author Tim Svensson <tim.svensson@fasbros.it>
  * @version JDK 1.8

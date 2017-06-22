@@ -22,8 +22,8 @@ package com;
  *
  * @author Created by Haubir -  haubir.mariwani@fasbros.it
  *                              jagheterhaubir@gmail.com
- * @version //What version of java is current
- * @since April 11th of 2017
+ * @version JDK 1.8
+ * @since JDK 1.8
  */
 public class Assignment {
     private Position position;
@@ -52,6 +52,12 @@ public class Assignment {
         this.endTime = endTime;
     }
 
+    /**
+     * Constructs the Assignment object with it's respective attributes. Without the time.
+     * @param position      - the position of the Assignment
+     * @param id            - the id of the Assignment
+     * @param clientName    - the name of the client
+     */
     public Assignment(Position position, String id, String clientName) {
         this.position = position;
         this.id = id;
