@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Returns a number of random agents.
+ * Generates a set of agents with randomly selected attributes.
  * <p>
  * Class Description.
  * </p>
@@ -60,6 +60,14 @@ public class RandomAgent {
             "Haparanda"
     };
 
+    /**
+     * Creates a set of Agent-objects using a predetermined set of characteristics selected at
+     * random.
+     *
+     * @author Tim Svensson
+     * @param numberOfAgents The number of agents to be pseudo-randomly created
+     * @return An ArrayList of agents with pseudo-random attributes
+     */
     public ArrayList<Agent> getAgents(int numberOfAgents) {
 
         ArrayList<Agent> agents = new ArrayList<>();
@@ -73,8 +81,8 @@ public class RandomAgent {
             int zipOrCity = ThreadLocalRandom.current().nextInt(0, 2);
 
             if (zipOrCity == 0) {
-
                 int zipNum;
+                // A zip may not be any of the following numbers: 48, 49
                 do {
                     zipNum = ThreadLocalRandom.current().nextInt(this.zipRange[0],
                                                               this.zipRange[1] + 1);
@@ -91,10 +99,10 @@ public class RandomAgent {
 
             Agent a = new Agent(p, Integer.toString(i), Integer.toString(i), Integer.toString(i));
 
+            // Check if the Agent's position is null; if null, the assertion will fail.
             assert a.getPosition() != null: a.toString() + "'s position is null!";
 
             agents.add(a);
-
         }
 
         return agents;

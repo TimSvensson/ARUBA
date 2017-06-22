@@ -1,17 +1,7 @@
-/*
- * Project: ARUBA
- * Class:   Agent
- *
- * Version info
- * Created: 4/11/17
- * Creator: Haubir Mariwani
- *
- * Copyright notice
- * Property of Fasbros IT. Do not copy, alter, distribute, or sell in any way unless given explicit permission.
- */
+
+package com;
 
 /**
- *
  * An agent.
  * <p>
  * An agent that is available for an assignment. The Agent object contains important information
@@ -19,13 +9,10 @@
  * to reach an assignment's position. The agent only has a zip as position.
  *
  * @author Created by Haubir -  haubir.mariwani@fasbros.it
- *
+ *                              jagheterhaubir@gmail.com
  * @version //What version of java is current
  * @since April 11th of 2017
  */
-
-package com;
-
 public class Agent {
     private Position position;
     private String id;
@@ -41,7 +28,7 @@ public class Agent {
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *
+     *                              jagheterhaubir@gmail.com
      * Constructs an Agent object
      * @param position
      * @param id
@@ -57,7 +44,7 @@ public class Agent {
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *
+     *                              jagheterhaubir@gmail.com
      * Returns the Position object of the Agent
      * @return position
      */
@@ -67,7 +54,7 @@ public class Agent {
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *
+     *                              jagheterhaubir@gmail.com
      * Sets the Agent's position to the parameter
      * @param position
      */
@@ -78,7 +65,7 @@ public class Agent {
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *
+     *                              jagheterhaubir@gmail.com
      * Returns the first name of the Agent
      * @return firstName
      */
@@ -88,7 +75,7 @@ public class Agent {
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *
+     *                              jagheterhaubir@gmail.com
      * Sets the first name of the Agent to the parameter
      * @param firstName
      */
@@ -98,7 +85,7 @@ public class Agent {
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *
+     *                              jagheterhaubir@gmail.com
      * Returns the surname of the Agent
      * @return surName
      */
@@ -108,7 +95,7 @@ public class Agent {
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *
+     *                              jagheterhaubir@gmail.com
      * Sets the surname of the Agent to the parameter
      * @param surName
      */
@@ -121,19 +108,13 @@ public class Agent {
         return id;
     }
 
-    /**
-     * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *
-     * Sets the id of the Agent to the parameter
-     * @param id
-     */
     public void setId(String id) {
         this.id = id;
     }
 
 /*
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *
+     *                              jagheterhaubir@gmail.com
      * Tells whether the Agent is currently working or not. True if working, else false.
      * @return isWorking
      */
@@ -144,7 +125,7 @@ public class Agent {
 
     /*
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *
+     *                              jagheterhaubir@gmail.com
      * Sets the Agent's working status to True or False. True if working, else false.
      * @param working
      */
@@ -157,3 +138,24 @@ public class Agent {
         return this.firstName + " " + this.surName + " " + this.id;
     }
 }
+
+/*
+* { 
+*      ”interpretationSite”: { 
+*         ”zip”: ”42” 
+*      },
+*       ”interpreter”: {
+*          ”id”: ”42”,
+*          ”position”: {
+*             ”residenceZip”: ”42”
+*          }
+*       }, 
+*       ”interpreter”: {
+*           ”id”: ”4242”,
+*          ”position”: {
+*             ”residenceZip”: ”43”
+*          }
+*       }
+*  }
+*
+* */
