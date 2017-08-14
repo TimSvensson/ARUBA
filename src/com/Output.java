@@ -33,10 +33,21 @@ public class Output {
     //private Debugger debugger;
     private String JSONrepresentation;
 
+    /**
+     * Constructs an Output object that contains the information that will be sent to the company that uses
+     * this software.
+     *
+     * @param travelRoutes
+     */
     public Output(List<TravelRoutes> travelRoutes/*, Debugger debugger*/) {
         (this.sortList = new SortList(travelRoutes)).sortList();
         //this.debugger = debugger;
     }
+
+    /**
+     * Constructs an empty Output object
+     */
+    public Output() {}
 
     public SortList getSortList() {
         return sortList;
@@ -46,6 +57,12 @@ public class Output {
         this.sortList = sortList;
     }
 
+    /**
+     * Given a list of travelroutes, the list is sorted based on the agents' traveltimes
+     * and stored within this Output object.
+     *
+     * @param travelRoutes
+     */
     public void setSortList(List<TravelRoutes> travelRoutes) {
         (this.sortList = new SortList(travelRoutes)).sortList();
     }
@@ -60,6 +77,12 @@ public class Output {
     }
     */
 
+    /**
+     * Returns the JSON representation of the important information that will be sent to the company using this
+     * software.
+     *
+     * @return
+     */
     public String getJSONrepresentation() {
         return new Gson().toJson(this);
     }

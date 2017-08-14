@@ -51,7 +51,7 @@ public class DirectionsGoogle extends GoogleMaps implements DirectionsInterface 
      * Calculates and returns the travelroutes between a set of Agents and a set of
      * Assignments.
      *
-     * @throws NoAgentsExcpetions,
+     * @throws NoAgentsException,
      * @throws NoAssignmentsException
      * @throws ModeOfTransportException
      * @throws NoResultsException

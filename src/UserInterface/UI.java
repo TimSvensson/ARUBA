@@ -13,7 +13,7 @@
 package UserInterface;
 
 import com.ARUBAExceptions.ModeOfTransportException;
-import com.ARUBAExceptions.NoAgentsExcpetions;
+import com.ARUBAExceptions.NoAgentsException;
 import com.ARUBAExceptions.NoAssignmentsException;
 import com.ARUBAExceptions.NoResultsException;
 import com.*;
@@ -102,8 +102,8 @@ public class UI {
             List<TravelRoutes> travelRoutes = new ArrayList<>();
             try {
                 travelRoutes = directionsGoogle.calculateRoutes(agents, assignments, "car");
-            } catch (NoAgentsExcpetions noAgentsExcpetions) {
-                noAgentsExcpetions.printStackTrace();
+            } catch (NoAgentsException noAgentsException) {
+                noAgentsException.printStackTrace();
             } catch (NoAssignmentsException e1) {
                 e1.printStackTrace();
             } catch (ModeOfTransportException e1) {

@@ -56,9 +56,10 @@ public class GeocodingGoogle extends GoogleMaps implements GeocodingInterface{
     @Override
     public boolean geocode(Position position) throws NoResultsException {
         Geocoordinate g = new Geocoordinate(0, 0);
-        position.setGeocoordinate(new Geocoordinate(-1, -1));
 
         String location = position.getMostPreciseLocation();
+
+        position.setGeocoordinate(new Geocoordinate(-1, -1));
         try {
 
             if (location.toLowerCase().equals("zip")) {

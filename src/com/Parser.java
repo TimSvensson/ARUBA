@@ -81,6 +81,11 @@ public class Parser {
         return assignmentPosition.getMostPreciseLocation();
     }
 
+    /**
+     * Testfunction that puts everything into work.
+     *
+     * @return
+     */
     public String JsonParserToJava(){
         Position positionTestHelp1 = new Position("Lägerhyddsvägen 2", "Sweden", "", "Uppsala", "75237", "75");
         Assignment interpretationSite = new Assignment(positionTestHelp1, "42", "Carl", 4, 6);
