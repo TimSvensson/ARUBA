@@ -16,15 +16,14 @@ import com.Agent;
 import com.AgentRoute;
 import com.Assignment;
 import com.TravelRoutes;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * Class summary.
+ * Handles the sorting functionalities of the system. Contains the inner class ListElement.
  * <p>
- * Class Description.
+ * Sorts it's list based on each ListElements traveltime to the target Assignment.
  * </p>
  *
  * @author Haubir Mariwani <haubir.mariwani@fasbros.it>
@@ -32,15 +31,14 @@ import java.util.List;
  * @since JDK 1.8
  */
 public class SortList {
-    private List<ListElement> list = new ArrayList<>();
     private Assignment target;
-    private ListElement first;
-    private ListElement last;
+    private List<ListElement> list = new ArrayList<>();
 
     /**
      * The element that will be added to the list of the SortList object.
      * <p>
-     * This element holds the object that is inserted into the list, and also it's sorting criteria.
+     * This element holds the object that is inserted into the list, and
+     * its sorting criteria (the traveltime).
      * </p>
      *
      * @author Haubir Mariwani <haubir.mariwani@fasbros.it>
@@ -48,52 +46,48 @@ public class SortList {
      * @since JDK 1.8
      */
     private class ListElement implements Comparable<ListElement> {
-        //private double criteria;
         private double travelTime;
-        private AgentRoute object;
+        private AgentRoute agentRoute;
 
-        protected ListElement(double criteria, AgentRoute object) {
-            //this.criteria = criteria;
+        /**
+         * Constructs a ListElement object.
+         *
+         * @param criteria
+         * @param agentRoute
+         */
+        protected ListElement(double criteria, AgentRoute agentRoute) {
             this.travelTime = criteria;
-            this.object = object;
+            this.agentRoute = agentRoute;
         }
 
-        /* protected double getCriteria() {
-            return criteria;
+        /**
+         * Returns the agentRoute object.
+         *
+         * @return agentRoute
+         */
+        protected AgentRoute getAgentRoute() {
+            return agentRoute;
         }
 
-        protected void setCriteria(double criteria) {
-            this.criteria = criteria;
-        }
-        */
-
-        protected AgentRoute getObject() {
-            return object;
-        }
-
-        protected void setObject(AgentRoute object) {
-            this.object = object;
+        /**
+         * Sets input AgentRoute object as the agentRoute attribute
+         * @param agentRoute
+         */
+        protected void setAgentRoute(AgentRoute agentRoute) {
+            this.agentRoute = agentRoute;
         }
 
         /**
          * @author Created by Haubir -  haubir.mariwani@fasbros.it
-         *                              jagheterhaubir@gmail.com
-         * This method decides the criteria on which the SortList object sorts the list of Agents.
+         *
+         * This method decides how the SortList object will sort the list of ListElements.
          *
          * It overrides the compareTo() method in the Comparable interface.
          * @param o
-         * @return  -1 - if this element's criteria has a smaller value than the one of the parameter element.
-         *          0  - if this element's criteria has the same value as the one of the parameter element.
-         *          1  - if this element's criteria has a bigger value than the one of the parameter element.
+         * @return  -1 - if this element's travelTime has a smaller value than the one of the parameter element.
+         *          0  - if this element's travelTime has the same value as the one of the parameter element.
+         *          1  - if this element's travelTime has a bigger value than the one of the parameter element.
          */
-/*
-        @Override
-        public int compareTo(ListElement o) {
-            if (this.criteria - o.criteria < 0)             return -1;
-            else if (this.criteria - o.criteria == 0)       return  0;
-            else                                            return  1;
-        }
-*/
         @Override
         public int compareTo(ListElement o) {
             if (this.travelTime - o.travelTime < 0)             return -1;
@@ -104,7 +98,6 @@ public class SortList {
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *                              jagheterhaubir@gmail.com
      *
      * Empty constructor. The list is created empty when this constructor is used.
      */
@@ -112,7 +105,6 @@ public class SortList {
 
     /**
      * @author Created by Haubir -  haubir.mariwani@fasbros.it
-     *                              jagheterhaubir@gmail.com
      *
      * Constructor that takes a list as argument and adds it's elements to the objects own list.
      */
@@ -141,22 +133,12 @@ public class SortList {
     }
 
     /**
-     * Return the first listelement in the sortlist
-     *
-     * @return first.
-     */
-    public AgentRoute getFirstAgentRoute() {
-        return this.first.getObject();
-    }
-
-    /**
      * Adds an element to the list.
      *
      * @param travelRoutes
      *
      * @return true if the element was successfully added, otherwise false.
      */
-
     public boolean addToList(TravelRoutes travelRoutes) {
         boolean added = false;
 
@@ -171,9 +153,6 @@ public class SortList {
         ListElement element = new ListElement(criteria, agentRoute);
         this.list.add(element);
 
-        if (this.list.size() == 1) this.first = element;
-
-        this.last = element;
         added = true;
         
         return added;
@@ -194,7 +173,7 @@ public class SortList {
         }
         else {
             for (int i = 0; i < this.list.size(); i++) {
-                AgentRoute agentRoute = this.list.get(i).getObject();
+                AgentRoute agentRoute = this.list.get(i).getAgentRoute();
                 Agent listAgent = agentRoute.getAgent();
 
                 if (listAgent.getId().equals(agent.getId())) {
@@ -207,13 +186,11 @@ public class SortList {
         return idExists;
     }
 
-
     /**
      * Sorts the list according to the criteria of the ListElements.
      *
      * @return true if the list was successfully sorted, otherwise false.
      */
-
     public boolean sortList() {
         if (this.isEmpty()) return false;
 
@@ -231,10 +208,13 @@ public class SortList {
         return this.list.size() == 0;
     }
 
-    /*
-     * Just for testing purposes
+    /**
+     * Returns the AgentRoute object at the given index in the ArrayList.
+     *
+     * @param index
+     * @return the AgentRoute object
      */
     public AgentRoute getAgentRoute(int index) {
-        return this.list.get(index).getObject();
+        return this.list.get(index).getAgentRoute();
     }
 }

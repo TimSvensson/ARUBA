@@ -1,54 +1,105 @@
 {
-  "list": {
-    "travelTime": 699000.0,
-    "object": {
-      "agent": {
-        "position": {
-          "geocoordinate": {
-            "latitude": 59.8513422,
-            "longitude": 17.592865999999958
-          },
-          "address": "Flogstavägen",
-          "city": "Uppsala",
-          "county": "",
-          "country": "Sweden",
-          "postcode": "75272",
-          "zip": "75"
+  "sortList": {
+    "target": {
+      "position": {
+        "geocoordinate": {
+          "latitude": 59.8415562,
+          "longitude": 17.6477043
         },
-        "id": "333",
-        "firstName": "Carl",
-        "surName": "Eriksson"
+        "address": "Institutionen för informationsteknologi, Lägerhyddsvägen 2",
+        "city": "Sweden",
+        "county": "",
+        "country": "Uppsala",
+        "postcode": "752 37",
+        "zip": "75"
       },
-      "route": {
-        "distance": 5715.0,
-        "time": 699000,
-        "modeOfTransport": "car"
-      }
+      "id": "42",
+      "clientName": "Carl",
+      "startTime": 4,
+      "endTime": 6
     },
-    "travelTime": 3903000.0,
-    "object": {
-      "agent": {
-        "position": {
-          "geocoordinate": {
-            "latitude": 59.9208594,
-            "longitude": 16.606327999999962
+    "list": [
+      {
+        "travelTime": 427000.0,
+        "object": {
+          "agent": {
+            "position": {
+              "geocoordinate": {
+                "latitude": 59.8513422,
+                "longitude": 17.592865999999958
+              },
+              "address": "Flogstavägen",
+              "city": "Uppsala",
+              "county": "",
+              "country": "Sweden",
+              "postcode": "75272",
+              "zip": "75"
+            },
+            "id": "333",
+            "firstName": "Carl",
+            "surName": "Eriksson"
           },
-          "address": "",
-          "city": "Sala",
-          "county": "",
-          "country": "Sweden",
-          "postcode": "",
-          "zip": "73"
-        },
-        "id": "666",
-        "firstName": "Bengt",
-        "surName": "Göteborg"
+          "route": {
+            "distance": 4871.0,
+            "time": 427000,
+            "modeOfTransport": "car"
+          }
+        }
       },
-      "route": {
-        "distance": 64095.0,
-        "time": 3903000,
-        "modeOfTransport": "car"
+      {
+        "travelTime": 3431000.0,
+        "object": {
+          "agent": {
+            "position": {
+              "geocoordinate": {
+                "latitude": 59.9208594,
+                "longitude": 16.606327999999962
+              },
+              "address": "",
+              "city": "Sala",
+              "county": "",
+              "country": "Sweden",
+              "postcode": "",
+              "zip": "73"
+            },
+            "id": "666",
+            "firstName": "Bengt",
+            "surName": "Göteborg"
+          },
+          "route": {
+            "distance": 64467.0,
+            "time": 3431000,
+            "modeOfTransport": "car"
+          }
+        }
+      },
+      {
+        "travelTime": 3431000.0,
+        "object": {
+          "agent": {
+            "position": {
+              "geocoordinate": {
+                "latitude": 59.9208594,
+                "longitude": 16.606327999999962
+              },
+              "address": "",
+              "city": "Sala",
+              "county": "",
+              "country": "Sweden",
+              "postcode": "",
+              "zip": "73"
+            },
+            "id": "939393",
+            "firstName": "Tim",
+            "surName": "Svensson"
+          },
+          "route": {
+            "distance": 64467.0,
+            "time": 3431000,
+            "modeOfTransport": "car"
+          }
+        }
       }
-    }
+    ]
   }
 }

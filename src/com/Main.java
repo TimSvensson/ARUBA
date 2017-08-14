@@ -24,7 +24,7 @@ public class Main {
                 .getMapBoxKey());
 
         // TODO return this to outside the application
-        System.out.print(aruba.getSortedJSON());
+        System.out.print("Output: " + aruba.getSortedJSON());
 
         System.exit(0);
     }

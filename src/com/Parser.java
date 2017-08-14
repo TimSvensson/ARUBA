@@ -1,6 +1,6 @@
 /*
  * Project: ARUBA
- * Class:   HtmlFormatter
+ * Class:   Parser
  *
  * Version info
  * Created: 4/11/17
@@ -13,11 +13,9 @@
 package com;
 
 import com.google.gson.Gson;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-
 
 /**
  * Class summary.
@@ -59,8 +57,7 @@ public class Parser {
     }
 
     /**
-     * Tells whether the user wants debugging information or not
-     *
+     * Tells whether the user wants debugging information or not.
      *
      * @return true or false
      */
@@ -84,6 +81,11 @@ public class Parser {
         return assignmentPosition.getMostPreciseLocation();
     }
 
+    /**
+     * Testfunction that puts everything into work.
+     *
+     * @return
+     */
     public String JsonParserToJava(){
         Position positionTestHelp1 = new Position("Lägerhyddsvägen 2", "Sweden", "", "Uppsala", "75237", "75");
         Assignment interpretationSite = new Assignment(positionTestHelp1, "42", "Carl", 4, 6);

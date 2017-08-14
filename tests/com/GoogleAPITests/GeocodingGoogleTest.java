@@ -15,22 +15,22 @@ import static org.junit.Assert.assertEquals;
 public class GeocodingGoogleTest {
     GeocodingGoogle geocodingGoogle = new GeocodingGoogle("AIzaSyC3SJNwOjapbbdwGZlanF1mC83UGEbWH7s");
 
-    Position position1 = new Position(new Geocoordinate(0.000, 0.000),"Sernanders väg 7", "Uppsala", "Uppsala län", "Sweden", "752 61", "75");
+    Position position1 = new Position("Sernanders väg 7", "Uppsala", "Uppsala län", "Sweden", "752 61", "75");
     Geocoordinate geocoordinate1 = new Geocoordinate(59.8507334,17.59078569999997);
 
-    Position position2 = new Position(new Geocoordinate(0.000, 0.000),"Råcksta Gårdsväg 23", "Stockholm", "Stockholms län", "Sweden", "162 54", "16");
+    Position position2 = new Position("Råcksta Gårdsväg 23", "Stockholm", "Stockholms län", "Sweden", "162 54", "16");
     Geocoordinate geocoordinate2 = new Geocoordinate(59.35468299999999,17.887079599999993);
 
-    Position position3 = new Position(new Geocoordinate(0.000, 0.000),"Skattegårdsvägen 390", "Stockholm", "Stockholms län", "Sweden", "162 45", "16");
+    Position position3 = new Position("Skattegårdsvägen 390", "Stockholm", "Stockholms län", "Sweden", "162 45", "16");
     Geocoordinate geocoordinate3 = new Geocoordinate(59.3776421,17.84364210000001);
 
-    Position position4 = new Position(new Geocoordinate(0.000, 0.000),"Luthagsesplanaden 91", "Uppsala", "Uppsala län", "Sweden", "752 71", "75");
+    Position position4 = new Position("Luthagsesplanaden 91", "Uppsala", "Uppsala län", "Sweden", "752 71", "75");
     Geocoordinate geocoordinate4 = new Geocoordinate(59.85368039999999,17.599490599999967);
 
-    Position position5 = new Position(new Geocoordinate(0.000, 0.000),"Flogstavägen 77B", "Uppsala", "Uppsala län", "Sweden", "752 72", "75");
+    Position position5 = new Position("Flogstavägen 77B", "Uppsala", "Uppsala län", "Sweden", "752 72", "75");
     Geocoordinate geocoordinate5 = new Geocoordinate(59.85036530000001,17.58458089999999);
 
-    Position position6 = new Position(new Geocoordinate(0.000, 0.000),"Marknadsgatan 1", "Uppsala", "Uppsala län", "Sweden", "754 31", "75");
+    Position position6 = new Position("Marknadsgatan 1", "Uppsala", "Uppsala län", "Sweden", "754 31", "75");
     Geocoordinate geocoordinate6 = new Geocoordinate(59.87719869999999,17.6740273);
 
 

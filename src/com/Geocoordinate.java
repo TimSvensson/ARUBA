@@ -1,12 +1,17 @@
+/**
+ *
+ * A geocoordinate.
+ * <p>
+ * This object contains a positions latitude and longitude values.
+ *
+ * @author Created by Haubir -  haubir.mariwani@fasbros.it
+ *                              jagheterhaubir@gmail.com
+ * @version //What version of java is current
+ * @since April 5th of 2017
+ */
+
 package com;
 
-/**
- * Object used to hold a coordinate consisting of a latitude, longitude pair.
- *
- * @author Created by Haubir -  haubir.mariwani@fasbros.it jagheterhaubir@gmail.com
- * @version JDK 1.8
- * @since JDK 1.8
- */
 public class Geocoordinate {
     private double latitude;
     private double longitude;
